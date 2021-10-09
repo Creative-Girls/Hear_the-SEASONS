@@ -9,7 +9,7 @@ Spring spring;
 
 
 void setup() {
-    size(708, 979);
+    size(708, 979,P3D);
     
     //load the doorbell sound
     rain = new SoundFile(this, "rain.wav");
@@ -24,9 +24,8 @@ void setup() {
 }
 
 void draw() {
-    spring.display(mouseX, mouseY);
-    
-    if(spring.mousecursor1(mouseX, mouseY))
+    spring.draw();
+    if (spring.mousecursor1(mouseX, mouseY))
         cursor(HAND);
     else if (spring.mousecursor2(mouseX, mouseY))
         cursor(HAND);
@@ -34,30 +33,29 @@ void draw() {
         cursor(HAND);
 }
 
-// play the sound effect if the user clicks on the doorbell
-// and if the doorbell is not playing already.
 void mousePressed() {
-    if(spring.isHit1(mouseX, mouseY) && !Butterfly.isPlaying()) {
+    if (spring.isHit1(mouseX, mouseY) && !Butterfly.isPlaying()) {
         Butterfly.loop();
         frog.pause();
         bird.pause();
-} else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
-        Butterfly.pause();
-}
-    
-    if(spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
-        bird.loop();
-        frog.pause();
-        Butterfly.pause();
-} else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
-        bird.pause();
-}
-    
-    if(spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
-        frog.loop();
-        Butterfly.pause();
-        bird.pause();
-} else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
-        frog.pause();
-}
-}
+    } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
+            Butterfly.pause();
+        }
+            
+            if (spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
+                bird.loop();
+                frog.pause();
+                Butterfly.pause();
+            } else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
+                    bird.pause();
+                }
+                    
+                    if (spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
+                        frog.loop();
+                        Butterfly.pause();
+                        bird.pause();
+                    } else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
+                            frog.pause();
+                        }
+                        }
+                            
