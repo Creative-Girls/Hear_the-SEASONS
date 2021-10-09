@@ -14,27 +14,27 @@ class Spring {
         //butterfly hit detection
         boolean isHit1(float mx, float my) {
             if (dist(mx, my, x, y) < 50) {
-                returntrue;
+                return true;
             } else {
-                returnfalse;
+                return false;
             }
         }
             
             //BlueBird hit
             boolean isHit2(float mx, float my) {
                 if (dist(mx, my, x - 40, y - 400) < 50) {
-                    returntrue;
+                    return true;
             } else {
-                    returnfalse;
+                    return false;
                 }
             }
                 
                 //frog hit
                 boolean isHit3(float mx, float my) {
                     if (dist(mx,my, x - 180, y + 250) < 50) {
-                        returntrue;
+                        return true;
                 } else {
-                        returnfalse;
+                        return false;
                     }
                 }
                     
@@ -56,7 +56,6 @@ class Spring {
                             
                             imageMode(CENTER);
                             image(Bbird,x - 40,y- 400,80,80);
-                            
                             
                             imageMode(CENTER);
                            image(Frog,x - 180,y+ 250,150,150);

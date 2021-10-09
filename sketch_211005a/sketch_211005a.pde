@@ -28,19 +28,25 @@ void draw() {
 // and if the doorbell is not playing already.
 void mousePressed() {
     if (spring.isHit1(mouseX, mouseY) && !Butterfly.isPlaying()) { 
-        Butterfly.play();
+        Butterfly.loop();
+         frog.pause();
+         bird.pause();
     } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
         Butterfly.pause();
     }
     
     if (spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) { 
-        bird.play();
+        bird.loop();
+        frog.pause();
+         Butterfly.pause();
     } else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
         bird.pause();
     }
     
     if (spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) { 
-        frog.play();
+        frog.loop();
+         Butterfly.pause();
+         bird.pause();
     } else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
         frog.pause();
     }
