@@ -27,44 +27,44 @@ class Spring {
             returntrue;
         } else {
             returnfalse;
-            }
         }
+    }
     
     //frog hit
     boolean isHit3(float mx, float my) {
         if (dist(mx,my, x - 180, y + 250) < 50) {
             returntrue;
-            } else {
+        } else {
             returnfalse;
-            }
         }
+    }
     
     boolean mousecursor1(float mx, float my) {
         if (dist(mx, my,x, y) < 80) {
             returntrue;
-            } else {
+        } else {
             cursor(ARROW);
             returnfalse;
-            }
         }
+    }
     
     boolean mousecursor2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 80) {
             returntrue;
-            } else {
+        } else {
             cursor(ARROW);
             returnfalse;
-            }
         }
+    }
     
     boolean mousecursor3(float mx, float my) {
         if (dist(mx, my, x - 180, y + 250) < 80) {
             returntrue;
-            } else {
+        } else {
             cursor(ARROW);
             returnfalse;
-            }
         }
+    }
     
     
     voiddraw() {
@@ -73,40 +73,40 @@ class Spring {
         Bbird_display();
         frog_display();
         sun_display();
-        }
+    }
     
     void backimage() {
         back = loadImage("SpringBg.png");
         background(back);
-        }
+    }
     
     void butterfly_display() {
         
         Bbutterfly = loadImage("BlueButterfly.png");
         imageMode(CENTER);
         image(Bbutterfly, x, y);
-        }
+    }
     
     void Bbird_display() {
         
         Bbird = loadImage("BlueBird.png");
         imageMode(CENTER);
         image(Bbird, x - 40, y - 400, 80, 80);
-        }
+    }
     
     void frog_display() {
         
         Frog = loadImage("Frog.png");
         imageMode(CENTER);
         image(Frog, x - 180, y + 250, 150, 150);
-        }
+    }
     
     void sun_display() {
         Sun = loadImage("sun.png");
         imageMode(CENTER);
         image(Sun, x - 250, y - 390, random(100,150), random(100,150));
         
-        }
-    
-    
     }
+    
+    
+}
