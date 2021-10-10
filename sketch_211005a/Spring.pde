@@ -71,7 +71,7 @@ class Spring {
     }
     
     
-    voiddraw() {
+    void draw() {
         backimage();
         butterfly_display();
         Bbird_display();
@@ -131,5 +131,4 @@ class Spring {
     }
     
     
-    <<<<<<< HEAD
 }
