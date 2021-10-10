@@ -3,7 +3,7 @@ PImage bg_title;
 Button btnStart;
 int w_color = 255;
 
-void setup(){
+void setup() {
     size(708, 979);
     background(255);
     bg = loadImage("Intro-bg.png");
@@ -15,20 +15,21 @@ void setup(){
     btnStart = new Button("START", w_color, 290, 750, 150, 50);
 }
 
-void draw(){
-  frameRate(60);
-  background(255);
-  image(bg, 0, 0);
-  image(bg_title, 0, 0);
-  
-  //button
-  btnStart.Draw();
-  textAlign(CENTER, CENTER);
-  textSize(16);
+void draw() {
+    frameRate(60);
+    background(255);
+    image(bg, 0, 0);
+    image(bg_title, 0, 0);
+    
+    //button
+    btnStart.Draw();
+    textAlign(CENTER, CENTER);
+    textSize(16);
 }
 
-void mousePressed(){
-  if(btnStart.MouseIsOverOn()){
-    background(255);
-  }
-}
+void mousePressed() {
+    if (btnStart.MouseIsOverOn()) {
+        background(255);
+    }
+    }
+        

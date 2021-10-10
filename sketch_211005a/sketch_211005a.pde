@@ -9,7 +9,7 @@ Spring spring;
 
 
 void setup() {
-    size(708, 979,P3D);
+    size(708, 979);
     
     //load the doorbell sound
     rain = new SoundFile(this, "rain.wav");
@@ -18,7 +18,7 @@ void setup() {
     frog = new SoundFile(this, "frog.mp3");
     bgm = new SoundFile(this, "birdbgm.wav");
     bgm.amp(0.5);
-    bgm.play();
+    bgm.loop();
     //doorbell to be clicked
     spring = new Spring(width / 2, height / 2);
 }
@@ -39,23 +39,23 @@ void mousePressed() {
         frog.pause();
         bird.pause();
     } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
-            Butterfly.pause();
-        }
-            
-            if (spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
-                bird.loop();
-                frog.pause();
-                Butterfly.pause();
-            } else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
-                    bird.pause();
-                }
-                    
-                    if (spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
-                        frog.loop();
-                        Butterfly.pause();
-                        bird.pause();
-                    } else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
-                            frog.pause();
-                        }
-                        }
-                            
+      spring.butterfly_hit=false;
+        Butterfly.pause();
+    }
+    
+    if (spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
+        bird.loop();
+        frog.pause();
+        Butterfly.pause();
+    } else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
+        bird.pause();
+    }
+    
+    if (spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
+        frog.loop();
+        Butterfly.pause();
+        bird.pause();
+    } else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
+        frog.pause();
+    }
+}
