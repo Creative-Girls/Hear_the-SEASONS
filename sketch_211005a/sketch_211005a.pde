@@ -39,6 +39,7 @@ void mousePressed() {
         frog.pause();
         bird.pause();
     } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
+      spring.butterfly_hit=false;
         Butterfly.pause();
     }
     

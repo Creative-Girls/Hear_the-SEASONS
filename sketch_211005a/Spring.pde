@@ -10,6 +10,10 @@ class Spring {
     float x;
     float y;
     float n = 0;
+    int cx,cy;
+    
+    boolean butterfly_hit = false;
+
     
     Spring(float x_, float y_) {
         x = x_;
@@ -19,61 +23,64 @@ class Spring {
     //butterfly hit detection
     boolean isHit1(float mx, float my) {
         if (dist(mx, my, x, y) < 50) {
-            returntrue;
+          butterfly_hit = true;
+            return true;
         } else {
-            returnfalse;
+          butterfly_hit = false;
+            return false;
         }
     }
     
     //BlueBird hit
     boolean isHit2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 50) {
-            returntrue;
+            return true;
         } else {
-            returnfalse;
+            return false;
+            }
         }
-    }
     
     //frog hit
     boolean isHit3(float mx, float my) {
         if (dist(mx,my, x - 180, y + 180) < 50) {
-            returntrue;
+            return true;
         } else {
-            returnfalse;
+            return false;
         }
     }
     
     boolean mousecursor1(float mx, float my) {
         if (dist(mx, my,x, y) < 80) {
-            returntrue;
-        } else {
+            return true;
+            } else {
             cursor(ARROW);
-            returnfalse;
+            return false;
+            }
         }
-    }
     
     boolean mousecursor2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 80) {
-            returntrue;
-        } else {
+            return true;
+            } else {
             cursor(ARROW);
-            returnfalse;
+            return false;
+            }
         }
-    }
     
     boolean mousecursor3(float mx, float my) {
-        if (dist(mx, my, x - 180, y + 180) < 80) {
-            returntrue;
-        } else {
+        if (dist(mx, my, x - 180, y + 250) < 80) {
+            return true;
+            } else {
             cursor(ARROW);
-            returnfalse;
+            return false;
+            }
         }
-    }
     
     
-    voiddraw() {
+    void draw() {
         backimage();
         butterfly_display();
+       
         Bbird_display();
         frog_display();
         sun_display();
@@ -89,7 +96,15 @@ class Spring {
         
         Bbutterfly = loadImage("BlueButterfly.png");
         imageMode(CENTER);
-        image(Bbutterfly, x, y);
+       
+        if(butterfly_hit)
+        {
+           image(Bbutterfly,x+floor(cos(cx)*4),y+floor(sin(cy)*4));
+           cx+=1;
+            cy+=1;
+        }else{
+          image(Bbutterfly, x, y);
+        }
     }
     
     void Bbird_display() {
@@ -129,7 +144,4 @@ class Spring {
         image(cloud1, x - 300 , y - 350, 100, 100);
         image(cloud2, x + 300, y - 400, 100, 100);
     }
-    
-    
-    <<<<<<< HEAD
 }
