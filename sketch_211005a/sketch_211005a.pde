@@ -39,7 +39,7 @@ void mousePressed() {
         frog.pause();
         bird.pause();
     } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
-      spring.butterfly_hit=false;
+        spring.butterfly_hit=false;
         Butterfly.pause();
     }
     
@@ -48,6 +48,7 @@ void mousePressed() {
         frog.pause();
         Butterfly.pause();
     } else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
+        spring.bluebird_hit=false;
         bird.pause();
     }
     

@@ -1,6 +1,6 @@
 class Spring {
     PImage Bbutterfly;
-    PImage Bbird;
+    PImage Bbird1, Bbird2;
     PImage Frog;
     PImage Rock;
     PImage back;
@@ -13,6 +13,7 @@ class Spring {
     int cx,cy;
     
     boolean butterfly_hit = false;
+    boolean bluebird_hit = false;
 
     
     Spring(float x_, float y_) {
@@ -34,8 +35,10 @@ class Spring {
     //BlueBird hit
     boolean isHit2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 50) {
+          bluebird_hit = true;
             return true;
         } else {
+          bluebird_hit = false;
             return false;
             }
         }
@@ -109,9 +112,18 @@ class Spring {
     
     void Bbird_display() {
         
-        Bbird = loadImage("BlueBird.png");
+        Bbird1 = loadImage("BlueBird1.png");
+        Bbird2 = loadImage("BlueBird2.png");
         imageMode(CENTER);
-        image(Bbird, x - 40, y - 400, 80, 80);
+        
+        if(bluebird_hit){
+          n += 2;
+          if (n >= 15){
+            n -= 15;}
+          image(Bbird1, x, y - n);
+        }else{
+          image(Bbird2, x, y);
+        }
     }
     
     void frog_display() {
