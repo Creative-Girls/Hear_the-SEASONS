@@ -1,5 +1,3 @@
-Animation animation1;
-
 class Spring {
     PImage Bbutterfly;
     PImage Bbird;
@@ -94,11 +92,6 @@ class Spring {
         Bbird = loadImage("BlueBird.png");
         imageMode(CENTER);
         image(Bbird, x - 40, y - 400, 80, 80);
-        
-        animation1 = new Animation("BlueBird", 12);
-        
-        animation1.update();
-        animation1.display();
         }
     
     void frog_display() {
