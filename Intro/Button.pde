@@ -1,6 +1,6 @@
 class Button{
     String onlabel;
-    intxcolor;
+    int xcolor;
     float x;
     float y;
     float w;

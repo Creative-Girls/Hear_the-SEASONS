@@ -28,10 +28,10 @@ class Spring {
     boolean isHit1(float mx, float my) {
         if (dist(mx, my, x, y) < 50) {
             butterfly_hit = true;
-            returntrue;
+            return true;
         } else {
             butterfly_hit = false;
-            returnfalse;
+            return false;
         }
 }
     
@@ -39,10 +39,10 @@ class Spring {
     boolean isHit2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 50) {
             bluebird_hit = true;
-            returntrue;
+            return true;
         } else {
             bluebird_hit = false;
-            returnfalse;
+            return false;
         }
 }
     
@@ -50,37 +50,37 @@ class Spring {
     boolean isHit3(float mx, float my) {
         if (dist(mx, my, x - 180, y + 180) < 50) {
             frog_hit = true;
-            returntrue;
+            return true;
         } else {
             frog_hit = false;
-            returnfalse;
+            return false;
         }
 }
     
     boolean mousecursor1(float mx, float my) {
         if (dist(mx, my, x, y) < 80) {
-            returntrue;
+            return true;
         } else {
             cursor(ARROW);
-            returnfalse;
+            return false;
         }
 }
     
     boolean mousecursor2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 80) {
-            returntrue;
+            return true;
         } else {
             cursor(ARROW);
-            returnfalse;
+            return false;
         }
 }
     
     boolean mousecursor3(float mx, float my) {
         if (dist(mx, my, x - 180, y + 180) < 80) {
-            returntrue;
+            return true;
         } else {
             cursor(ARROW);
-            returnfalse;
+            return false;
         }
 }
     
@@ -168,8 +168,6 @@ class Spring {
         image(cloud1, x - 150 - floor(cos(cx1)), y - 350 - floor(sin(cy1)),100,100);
         image(cloud2, x + 150 + floor(cos(cx1)), y - 400 + floor(sin(cy1)), 100, 100);
         cx1 += 1;
-        cy1 += 1;
-        
-        
+        cy1 += 1; 
 }
 }
