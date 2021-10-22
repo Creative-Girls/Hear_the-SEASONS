@@ -137,7 +137,7 @@ void draw() {
 void mousePressed() {
   println("page is"+page);
     if (page == 0&&btnStart.MouseIsOverOn()) {
-       page= 4;
+       page= 1;
 
     }else if(page == 1&&btnStart.MouseIsOverOn()){
      page = 2;
