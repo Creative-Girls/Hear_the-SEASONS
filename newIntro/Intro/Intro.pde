@@ -1,0 +1,272 @@
+PImage bg;
+PImage bg_title;
+MenuButton btnStart;
+/*summerButton btnSummer;
+autumnButton btnAutumn;
+winterButton btnWinter;*/
+int w_color = 255;
+import processing.sound.*;
+
+SoundFile rain;
+SoundFile rain_under_parasol;
+SoundFile Butterfly;
+SoundFile bird;
+SoundFile frog;
+SoundFile bgm;
+SoundFile airplane;
+SoundFile cicada;
+SoundFile palm;
+SoundFile leaf;
+SoundFile sea;
+SoundFile seaBg;
+SoundFile seagulls;
+Spring spring;
+Summer summer;
+
+//Winter
+SoundFile fire;
+Winter winter;
+
+int page = 0;//page num
+/*
+  봄 : 1
+  여름 : 2
+  가을 : 3
+  겨울 : 4
+*/
+
+void setup() {
+    size(708, 979);
+    background(255);
+    bg = loadImage("/intro/Intro-bg.png");
+    bg.resize(708, 979);
+    bg_title = loadImage("/intro/Intro-title.png");
+    bg_title.resize(708, 979);
+    
+    //Button
+    btnStart = new springButton("START", w_color, 290, 750, 150, 50);
+    /*btnSummer = new summerButton("SUMMER", w_color, 290, 750, 150, 50);
+    btnAutumn = new autumnButton("AUTUMN", w_color, 290, 750, 150, 50);
+    btnWinter = new winterButton("WINTER", w_color, 290, 750, 150, 50);*/
+
+    
+     //load the doorbell sound
+     //spring
+    rain = new SoundFile(this, "/spring/sound/rain.wav");
+    Butterfly = new SoundFile(this, "/spring/sound/butterfly.mp3");
+    bird = new SoundFile(this, "/spring/sound/bird.wav");
+    frog = new SoundFile(this, "/spring/sound/frog.mp3");
+   // bgm = new SoundFile(this, "birdbgm.wav");
+   // bgm.amp(0.5);
+   // bgm.loop();
+   
+   //summer
+   rain_under_parasol = new SoundFile(this, "rain under parasol.m4a");
+   cicada = new SoundFile(this, "cicada.wav");
+   seagulls = new SoundFile(this, "seagulls.wav");
+   sea = new SoundFile(this, "sea.wav");
+   leaf = new SoundFile(this, "leaf.wav");
+   airplane = new SoundFile(this, "airplane.wav");
+   
+   //winter
+   fire = new SoundFile(this,"/winter/sound/fire.flac");
+   
+    //doorbell to be clicked
+    spring = new Spring(width / 2, height / 2);
+    summer = new Summer(width / 2, height / 2);
+}
+
+void draw() {
+    if(page == 0)
+    {
+      frameRate(60);
+      background(255);
+      image(bg, 0, 0);
+      image(bg_title, 0, 0);
+      
+      
+    //button
+    btnStart.Draw();
+    textAlign(CENTER, CENTER);
+    textSize(16);
+    }
+    
+    else if(page == 1)
+    {
+      spring.draw();
+    if(spring.mousecursor1(mouseX, mouseY))
+        cursor(HAND);
+    else if (spring.mousecursor2(mouseX, mouseY))
+        cursor(HAND);
+    else if (spring.mousecursor3(mouseX, mouseY))
+        cursor(HAND);
+        
+      //button
+      btnStart = new summerButton("SUMMER", w_color, 290, 750, 150, 50);
+      btnStart.Draw();
+      textAlign(CENTER, CENTER);
+      textSize(16);
+    }
+    
+    else if(page == 2)
+    {
+      summer.draw();
+    if(summer.mousecursor1(mouseX, mouseY))
+        cursor(HAND);
+    else if (summer.mousecursor2(mouseX, mouseY))
+        cursor(HAND);
+    else if (summer.mousecursor3(mouseX, mouseY))
+        cursor(HAND);
+        
+      //button
+      btnStart = new autumnButton("AUTUMN", w_color, 290, 750, 150, 50);
+      btnStart.Draw();
+      textAlign(CENTER, CENTER);
+      textSize(16);
+    }
+    else if(page == 4)
+    {
+      winter.draw();
+    if(winter.mousecursor1(mouseX, mouseY))
+        cursor(HAND);
+       
+    }
+
+}
+
+void mousePressed() {
+  println("page is"+page);
+    if (page == 0&&btnStart.MouseIsOverOn()) {
+       page= 4;
+
+    }else if(page == 1&&btnStart.MouseIsOverOn()){
+     page = 2;
+    }
+//spring   
+    if(spring.isHit1(mouseX, mouseY) && !Butterfly.isPlaying()) {
+        Butterfly.loop();
+        frog.pause();
+        bird.pause();
+} else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
+        spring.butterfly_hit = false;
+        Butterfly.pause();
+}
+    
+    if(spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
+        bird.loop();
+        frog.pause();
+        Butterfly.pause();
+} else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
+        spring.bluebird_hit = false;
+        bird.pause();
+}
+    
+    if(spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
+        frog.loop();
+        Butterfly.pause();
+        bird.pause();
+} else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
+        spring.frog_hit = false;
+        frog.pause();
+}
+
+//summer
+    if(summer.isHit1(mouseX, mouseY) && !seagulls.isPlaying()) {
+        seagulls.loop();
+        sea.pause();
+        palm.pause();
+        leaf.pause();
+        cicada.pause();
+        airplane.pause();
+        rain_under_parasol.pause();
+} else if (spring.isHit1(mouseX, mouseY) && seagulls.isPlaying()) {
+        summer.seagulls_hit = false;
+        seagulls.pause();
+}
+    
+    if(summer.isHit2(mouseX, mouseY) && !sea.isPlaying()) {
+        sea.loop();
+        seagulls.pause();
+        palm.pause();
+        leaf.pause();
+        cicada.pause();
+        airplane.pause();
+        rain_under_parasol.pause();
+} else if (summer.isHit2(mouseX, mouseY) && sea.isPlaying()) {
+        summer.sea_hit = false;
+        sea.pause();
+}
+    
+    if(summer.isHit3(mouseX, mouseY) && !palm.isPlaying()) {
+        palm.loop();
+        seagulls.pause();
+        sea.pause();
+        leaf.pause();
+        cicada.pause();
+        airplane.pause();
+        rain_under_parasol.pause();
+} else if (summer.isHit3(mouseX, mouseY) && palm.isPlaying()) {
+        summer.palm_hit = false;
+        palm.pause();
+}
+
+    if(summer.isHit4(mouseX, mouseY) && !leaf.isPlaying()) {
+        leaf.loop();
+        seagulls.pause();
+        sea.pause();
+        palm.pause();
+        cicada.pause();
+        airplane.pause();
+        rain_under_parasol.pause();
+} else if (summer.isHit4(mouseX, mouseY) && leaf.isPlaying()) {
+        summer.leaf_hit = false;
+        leaf.pause();
+}
+
+    if(summer.isHit7(mouseX, mouseY) && !cicada.isPlaying()) {
+        cicada.loop();
+        seagulls.pause();
+        sea.pause();
+        leaf.pause();
+        palm.pause();
+        airplane.pause();
+        rain_under_parasol.pause();
+} else if (summer.isHit7(mouseX, mouseY) && cicada.isPlaying()) {
+        summer.cicada_hit = false;
+        cicada.pause();
+}
+
+    if(summer.isHit9(mouseX, mouseY) && !airplane.isPlaying()) {
+        airplane.loop();
+        seagulls.pause();
+        sea.pause();
+        leaf.pause();
+        cicada.pause();
+        palm.pause();
+        rain_under_parasol.pause();
+} else if (summer.isHit9(mouseX, mouseY) && airplane.isPlaying()) {
+        summer.airplane_hit = false;
+        airplane.pause();
+}
+
+    if(summer.isHit10(mouseX, mouseY) && !rain_under_parasol.isPlaying()) {
+        rain_under_parasol.loop();
+        seagulls.pause();
+        sea.pause();
+        leaf.pause();
+        cicada.pause();
+        airplane.pause();
+        palm.pause();
+} else if (summer.isHit10(mouseX, mouseY) && rain_under_parasol.isPlaying()) {
+        summer.parasol_hit = false;
+        rain_under_parasol.pause();
+}
+//winter
+if(winter.isHit1(mouseX, mouseY) && !fire.isPlaying()) {
+        fire.loop();
+} else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
+        winter.fire_hit = false;
+        fire.pause();
+}
+}
+        
