@@ -2,7 +2,7 @@ class Spring {
     summerButton btnSummer;
     autumnButton btnAutumn;
     winterButton btnWinter;
-  
+    
     PImage Bbutterfly;
     PImage Bbird1, Bbird2;
     PImage Frog;
@@ -26,7 +26,15 @@ class Spring {
     Spring(float x_, float y_) {
         x = x_;
         y = y_;
-}
+        
+        Bbird1 = loadImage("/spring/img/BlueBird1.png");
+        Bbird2 = loadImage("/spring/img/BlueBird2.png");
+        Frog = loadImage("/spring/img/Frog.png");
+        Rock = loadImage("/spring/img/rock.png");
+        Sun = loadImage("/spring/img/sun.png");
+        cloud1 = loadImage("/spring/img/cloud1.png");
+        cloud2 = loadImage("/spring/img/cloud2.png");
+    }
     
     //butterfly hit detection
     boolean isHit1(float mx, float my) {
@@ -37,7 +45,7 @@ class Spring {
             butterfly_hit = false;
             return false;
         }
-}
+    }
     
     //BlueBird hit
     boolean isHit2(float mx, float my) {
@@ -48,27 +56,27 @@ class Spring {
             bluebird_hit = false;
             return false;
         }
-}
+    }
     
     //frog hit
     boolean isHit3(float mx, float my) {
-        if (dist(mx, my, x - 180, y + 180) < 50) {
+        if (dist(mx,my, x - 180, y + 180) < 50) {
             frog_hit = true;
             return true;
         } else {
             frog_hit = false;
             return false;
         }
-}
+    }
     
     boolean mousecursor1(float mx, float my) {
-        if (dist(mx, my, x, y) < 80) {
+        if (dist(mx, my,x, y) < 80) {
             return true;
         } else {
             cursor(ARROW);
             return false;
         }
-}
+    }
     
     boolean mousecursor2(float mx, float my) {
         if (dist(mx, my, x - 40, y - 400) < 80) {
@@ -77,7 +85,7 @@ class Spring {
             cursor(ARROW);
             return false;
         }
-}
+    }
     
     boolean mousecursor3(float mx, float my) {
         if (dist(mx, my, x - 180, y + 180) < 80) {
@@ -86,7 +94,7 @@ class Spring {
             cursor(ARROW);
             return false;
         }
-}
+    }
     
     
     void draw() {
@@ -97,75 +105,61 @@ class Spring {
         frog_display();
         sun_display();
         cloud_display();
-}
+    }
     
     void backimage() {
-        back= loadImage("/spring/img/SpringBg.png");
         background(back);
-}
+    }
     
     void butterfly_display() {
-        
-        Bbutterfly = loadImage("/spring/img/BlueButterfly.png");
         imageMode(CENTER);
         
         if (butterfly_hit)
-        {
+            {
             image(Bbutterfly, x + floor(cos(cx) * 4), y + floor(sin(cy) * 4));
             cx += 1;
             cy += 1;
         } else {
             image(Bbutterfly, x, y);
         }
-}
+    }
     
     void Bbird_display() {
-        
-        Bbird1 = loadImage("/spring/img/BlueBird1.png");
-        Bbird2 = loadImage("/spring/img/BlueBird2.png");
         imageMode(CENTER);
         
         if (bluebird_hit) {
             n += 2;
-           if (n >= 15) {
-               n -= 15;
-        }
+            if (n >= 15) {
+                n -= 15;
+            }
             image(Bbird1, x, y - n);
         } else {
             image(Bbird2, x, y);
         }
-}
+    }
     
     void frog_display() {
-        
-        Frog= loadImage("/spring/img/Frog.png");
-        Rock= loadImage("/spring/img/rock.png");
-        
         imageMode(CENTER);
         image(Rock, x - 180, y + 250, 180, 200);
         
         if (frog_hit) {
             n += 2;
-           if (n >= 15) {
-               n -= 4;
-        }
+            if (n >= 15) {
+                n -= 4;
+            }
             image(Frog, x - 180, y + 180 - n, 150, 150);
         } else{
             image(Frog, x - 180, y + 180, 150, 150);
         }
         
-}
+    }
     
     void sun_display() {
-        Sun = loadImage("/spring/img/sun.png");
         imageMode(CENTER);
         image(Sun, x - 250, y - 390, random(100, 150), random(100, 150));
-}
+    }
     
     void cloud_display() {
-        
-        cloud1 = loadImage("/spring/img/cloud1.png");
-        cloud2 = loadImage("/spring/img/cloud2.png");
         
         imageMode(CENTER);
         
@@ -173,5 +167,5 @@ class Spring {
         image(cloud2, x + 150 + floor(cos(cx1)), y - 400 + floor(sin(cy1)), 100, 100);
         cx1 += 1;
         cy1 += 1; 
-}
+    }
 }
