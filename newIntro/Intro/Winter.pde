@@ -10,7 +10,7 @@ class Winter {
     
     boolean fire_hit = false;
     
-    Winter(float x_, float y_, String weather) {
+    Winter(float x_, float y_, String weather, int month, int day) {
         x = x_;
         y = y_;
     }

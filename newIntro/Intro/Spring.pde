@@ -22,8 +22,10 @@ class Spring {
     boolean bluebird_hit = false;
     boolean frog_hit = false;
     
+    int hour;
     
-    Spring(float x_, float y_, String weather) {
+    
+    Spring(float x_, float y_, String weather, int month, int day) {
         x = x_;
         y = y_;
         
@@ -98,6 +100,8 @@ class Spring {
     
     
     void draw() {
+      hour = hour();
+      
         backimage();
         butterfly_display();
         

@@ -33,6 +33,11 @@ private String key;
 XML latElement;
 String weather;
 
+
+//get Date
+int month;
+int day;
+
 int page = 0;//page num
 /*
   봄 : 1
@@ -55,6 +60,11 @@ void setup() {
     latElement = xml.getChild("weather");
     println("weather ::::: "+latElement.getString("value"));
     weather = latElement.getString("value");
+    
+    //get Date
+    month = month();
+    day = day();
+    println("오늘은"+month+"월"+day+"일");
     
     //Button
     btnStart = new springButton("START", w_color, 290, 750, 150, 50);
@@ -85,8 +95,8 @@ void setup() {
    fire = new SoundFile(this,"/winter/sound/fire.flac");
    
     //doorbell to be clicked
-    spring = new Spring(width / 2, height / 2,weather);
-    summer = new Summer(width / 2, height / 2,weather);
+    spring = new Spring(width / 2, height / 2,weather,month,day);
+    summer = new Summer(width / 2, height / 2,weather,month,day);
 }
 
 void draw() {

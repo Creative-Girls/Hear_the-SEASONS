@@ -19,7 +19,7 @@ class Fall {
     boolean crow_hit = false;
     boolean bug_hit = false;
     
-    Fall(float x_, float y_) {
+    Fall(float x_, float y_, String weather, int month, int day) {
         x = x_;
         y = y_;
         
