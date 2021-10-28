@@ -27,6 +27,12 @@ Summer summer;
 SoundFile fire;
 Winter winter;
 
+//get weather API
+XML xml;
+private String key;
+XML latElement;
+String weather;
+
 int page = 0;//page num
 /*
   봄 : 1
@@ -42,6 +48,13 @@ void setup() {
     bg.resize(708, 979);
     bg_title = loadImage("/intro/Intro-title.png");
     bg_title.resize(708, 979);
+    
+    //get weatherAPI
+    key ="d296134b27215cc728104f660752f821";
+    xml = loadXML("https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=d296134b27215cc728104f660752f821&mode=xml");    
+    latElement = xml.getChild("weather");
+    println("weather ::::: "+latElement.getString("value"));
+    weather = latElement.getString("value");
     
     //Button
     btnStart = new springButton("START", w_color, 290, 750, 150, 50);
@@ -72,8 +85,8 @@ void setup() {
    fire = new SoundFile(this,"/winter/sound/fire.flac");
    
     //doorbell to be clicked
-    spring = new Spring(width / 2, height / 2);
-    summer = new Summer(width / 2, height / 2);
+    spring = new Spring(width / 2, height / 2,weather);
+    summer = new Summer(width / 2, height / 2,weather);
 }
 
 void draw() {

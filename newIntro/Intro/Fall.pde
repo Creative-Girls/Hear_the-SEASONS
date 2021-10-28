@@ -53,7 +53,7 @@ class Fall {
     
     boolean mousecursor1(float mx, float my) {
         if (dist(mx, my, x + 180, y + 250) < 80) {
-            returntrue;
+            return true;
         } else {
             cursor(ARROW);
             return false;
@@ -64,7 +64,7 @@ class Fall {
     boolean isHit2(float mx, float my) {
         if (dist(mx,my, x - 250, y + 100) < 80) {
             tree_hit = true;
-            returntrue;
+            return true;
             } else {
             tree_hit = false;
             return false;
@@ -74,7 +74,7 @@ class Fall {
     
     boolean mousecursor2(float mx, float my) {
         if (dist(mx, my,x - 250, y + 100) < 80) {
-            returntrue;
+            return true;
             } else {
             cursor(ARROW);
             return false;
@@ -82,10 +82,10 @@ class Fall {
         }
     
     // crow_hit detection
-    boolean isHit3(floatmx, float my) {
+    boolean isHit3(float mx, float my) {
         if (dist(mx, my, x - 150, y - 60) < 80) {
             crow_hit = true;
-            returntrue;
+            return true;
             } else {
             crow_hit = false;
             return false;
@@ -94,7 +94,7 @@ class Fall {
     
     boolean mousecursor3(float mx, float my) {
         if (dist(mx, my, x - 150, y - 60) < 80) {
-            returntrue;
+            return true;
             } else {
             cursor(ARROW);
             return false;
@@ -105,16 +105,16 @@ class Fall {
     boolean isHit4(float mx, float my) {
         if (dist(mx, my, x, y) < 60 || dist(mx, my, x + 150, y - 200) < 60) {
             bug_hit = true;
-            returntrue;
+            return true;
             } else {
             bug_hit = false;
             return false;
             }
         }
     
-    boolean mousecursor4(float mx, float my) {
+    boolean mousecursor4(float mx, float my, String weather) {
         if (dist(mx, my, x, y) < 60 || dist(mx, my, x + 150, y - 200) < 60) {
-            returntrue;
+            return true;
             } else {
             cursor(ARROW);
             return false;

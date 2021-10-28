@@ -35,7 +35,7 @@ class Summer {
     boolean parasol_hit = false;
     
     
-    Summer(float x_, float y_) {
+    Summer(float x_, float y_, String weather) {
         x = x_;
         y = y_;
 }
