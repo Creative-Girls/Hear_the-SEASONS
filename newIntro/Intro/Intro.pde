@@ -1,3 +1,7 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+
+Minim minim;
 PImage bg;
 PImage bg_title;
 MenuButton btnStart;
@@ -7,24 +11,23 @@ winterButton btnWinter;*/
 int w_color = 255;
 import processing.sound.*;
 
-SoundFile rain;
-SoundFile rain_under_parasol;
-SoundFile Butterfly;
-SoundFile bird;
-SoundFile frog;
-SoundFile bgm;
-SoundFile airplane;
-SoundFile cicada;
-SoundFile palm;
-SoundFile leaf;
-SoundFile sea;
-SoundFile seaBg;
-SoundFile seagulls;
+AudioPlayer rain;
+AudioPlayer Butterfly;
+AudioPlayer bird;
+AudioPlayer frog;
+AudioPlayer bgm;
+AudioPlayer airplane;
+AudioPlayer cicada;
+AudioPlayer palm;
+AudioPlayer leaf;
+AudioPlayer sea;
+AudioPlayer seaBg;
+AudioPlayer seagulls;
 Spring spring;
 Summer summer;
 
 //Winter
-SoundFile fire;
+AudioPlayer fire;
 Winter winter;
 
 //get weather API
@@ -47,6 +50,7 @@ int page = 0;//page num
 */
 
 void setup() {
+    minim = new Minim(this);
     size(708, 979);
     background(255);
     bg = loadImage("/intro/Intro-bg.png");
@@ -56,7 +60,7 @@ void setup() {
     
     //get weatherAPI
     key ="d296134b27215cc728104f660752f821";
-    xml = loadXML("https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=d296134b27215cc728104f660752f821&mode=xml");    
+    xml = loadXML("https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid="+key+"&mode=xml");    
     latElement = xml.getChild("weather");
     println("weather ::::: "+latElement.getString("value"));
     weather = latElement.getString("value");
@@ -75,24 +79,24 @@ void setup() {
     
      //load the doorbell sound
      //spring
-    rain = new SoundFile(this, "/spring/sound/rain.wav");
-    Butterfly = new SoundFile(this, "/spring/sound/butterfly.mp3");
-    bird = new SoundFile(this, "/spring/sound/bird.wav");
-    frog = new SoundFile(this, "/spring/sound/frog.mp3");
-   // bgm = new SoundFile(this, "birdbgm.wav");
+    rain = minim.loadFile("/spring/sound/rain.wav");
+    Butterfly = minim.loadFile("/spring/sound/butterfly.mp3");
+    bird = minim.loadFile("/spring/sound/bird.wav");
+    frog = minim.loadFile("/spring/sound/frog.mp3");
+   // bgm = minim.loadFile( "birdbgm.wav");
    // bgm.amp(0.5);
    // bgm.loop();
    
    //summer
-   rain_under_parasol = new SoundFile(this, "rain under parasol.m4a");
-   cicada = new SoundFile(this, "cicada.wav");
-   seagulls = new SoundFile(this, "seagulls.wav");
-   sea = new SoundFile(this, "sea.wav");
-   leaf = new SoundFile(this, "leaf.wav");
-   airplane = new SoundFile(this, "airplane.wav");
+   //rain_under_parasol = minim.loadFile( "rain under parasol.m4a");
+   cicada = minim.loadFile( "cicada.wav");
+   seagulls = minim.loadFile( "seagulls.wav");
+   sea = minim.loadFile( "sea.wav");
+   leaf = minim.loadFile( "leaf.wav");
+   airplane = minim.loadFile( "airplane.wav");
    
    //winter
-   fire = new SoundFile(this,"/winter/sound/fire.flac");
+   fire = minim.loadFile("/winter/sound/fire.flac");
    
     //doorbell to be clicked
     spring = new Spring(width / 2, height / 2,weather,month,day);
@@ -201,7 +205,7 @@ void mousePressed() {
         leaf.pause();
         cicada.pause();
         airplane.pause();
-        rain_under_parasol.pause();
+        //rain_under_parasol.pause();
 } else if (spring.isHit1(mouseX, mouseY) && seagulls.isPlaying()) {
         summer.seagulls_hit = false;
         seagulls.pause();
@@ -214,7 +218,7 @@ void mousePressed() {
         leaf.pause();
         cicada.pause();
         airplane.pause();
-        rain_under_parasol.pause();
+       // rain_under_parasol.pause();
 } else if (summer.isHit2(mouseX, mouseY) && sea.isPlaying()) {
         summer.sea_hit = false;
         sea.pause();
@@ -227,7 +231,7 @@ void mousePressed() {
         leaf.pause();
         cicada.pause();
         airplane.pause();
-        rain_under_parasol.pause();
+        //rain_under_parasol.pause();
 } else if (summer.isHit3(mouseX, mouseY) && palm.isPlaying()) {
         summer.palm_hit = false;
         palm.pause();
@@ -240,7 +244,7 @@ void mousePressed() {
         palm.pause();
         cicada.pause();
         airplane.pause();
-        rain_under_parasol.pause();
+        //rain_under_parasol.pause();
 } else if (summer.isHit4(mouseX, mouseY) && leaf.isPlaying()) {
         summer.leaf_hit = false;
         leaf.pause();
@@ -253,7 +257,7 @@ void mousePressed() {
         leaf.pause();
         palm.pause();
         airplane.pause();
-        rain_under_parasol.pause();
+        //rain_under_parasol.pause();
 } else if (summer.isHit7(mouseX, mouseY) && cicada.isPlaying()) {
         summer.cicada_hit = false;
         cicada.pause();
@@ -266,13 +270,13 @@ void mousePressed() {
         leaf.pause();
         cicada.pause();
         palm.pause();
-        rain_under_parasol.pause();
+        //rain_under_parasol.pause();
 } else if (summer.isHit9(mouseX, mouseY) && airplane.isPlaying()) {
         summer.airplane_hit = false;
         airplane.pause();
 }
 
-    if(summer.isHit10(mouseX, mouseY) && !rain_under_parasol.isPlaying()) {
+   /* if(summer.isHit10(mouseX, mouseY) && !rain_under_parasol.isPlaying()) {
         rain_under_parasol.loop();
         seagulls.pause();
         sea.pause();
@@ -283,7 +287,7 @@ void mousePressed() {
 } else if (summer.isHit10(mouseX, mouseY) && rain_under_parasol.isPlaying()) {
         summer.parasol_hit = false;
         rain_under_parasol.pause();
-}
+}*/
 //winter
 if(winter.isHit1(mouseX, mouseY) && !fire.isPlaying()) {
         fire.loop();
