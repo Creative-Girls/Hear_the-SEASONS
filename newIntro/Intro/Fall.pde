@@ -208,4 +208,10 @@ class Fall {
             image(bug2, x + 150, y - 200, 60, 60);
         }
     }
-}
+    
+    void moon_display() {
+        imageMode(CENTER);
+        image(moon, x, 85, 200, 200);
+    }
+    }
+        
