@@ -11,6 +11,8 @@ class Fall {
     PImage bug2;
     PImage bug3;
     PImage bug4;
+    PImage moon;
+    
     float x, y;
     float cx, cy;
     
