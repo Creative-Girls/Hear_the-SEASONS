@@ -88,19 +88,19 @@ void setup() {
    // bgm.loop();
    
    //summer
-   //rain_under_parasol = minim.loadFile( "rain under parasol.m4a");
-   cicada = minim.loadFile( "cicada.wav");
-   seagulls = minim.loadFile( "seagulls.wav");
-   sea = minim.loadFile( "sea.wav");
-   leaf = minim.loadFile( "leaf.wav");
-   airplane = minim.loadFile( "airplane.wav");
+   //rain_under_parasol =  minim.loadFile("/summer/sound/rain-under-parasol.mp3");
+   cicada =  minim.loadFile( "/summer/sound/cicada.wav");
+   seagulls =  minim.loadFile( "/summer/sound/seagulls.wav");
+   sea =  minim.loadFile( "/summer/sound/sea.wav");
+   leaf =  minim.loadFile( "/summer/sound/leaf.wav");
+   airplane = minim.loadFile( "/summer/sound/airplane.wav");
    
    //winter
    fire = minim.loadFile("/winter/sound/fire.flac");
    
     //doorbell to be clicked
     spring = new Spring(width / 2, height / 2,weather,month,day);
-    summer = new Summer(width / 2, height / 2,weather,month,day);
+    
 }
 
 void draw() {

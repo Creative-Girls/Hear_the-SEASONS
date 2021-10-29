@@ -1,23 +1,20 @@
 class Summer {
-    springButton btnStart;
-    autumnButton btnAutumn;
-    winterButton btnWinter;
-
     PImage SummerBg;
     PImage back;
     PImage seagull1, seagull2, seagull3, seagull4;
     PImage sea;
     PImage palm1, palm2;
-    PImage leaf1, leaf2, leaf3, leaf4, leaf5;
+    PImage leaf1, leaf2, leaf3, leaf4, leaf5, leaf6;
     PImage lighthouse_bottom, lighthouse_top;
-    PImage cloud;
+    PImage cloud1, cloud2;
     PImage cicada;
     PImage boat;
     PImage airplane;
     PImage parasol;
+    
     float x;
     float y;
-    float z;
+
     float n = 0;
     float k;
     int cx, cy;
@@ -35,9 +32,42 @@ class Summer {
     boolean parasol_hit = false;
     
     
-    Summer(float x_, float y_, String weather, int month, int day) {
+    Summer(float x_, float y_) {
         x = x_;
         y = y_;
+        
+        back= loadImage("/summer/img/SummerBg.png");
+        
+        palm1 = loadImage("/summer/img/palm1.png");
+        palm2 = loadImage("/summer/img/palm2.png");
+        
+        sea = loadImage("/summer/img/sea.png");
+        
+        seagull1 = loadImage("/summer/img/seagull1.png");
+        seagull2 = loadImage("/summer/img/seagull2.png");
+        seagull3 = loadImage("/summer/img/seagull3.png");
+        seagull4 = loadImage("/summer/img/seagull4.png");
+        
+        leaf1 = loadImage("/summer/img/leaf1.png");
+        leaf2 = loadImage("/summer/img/leaf2.png");
+        leaf3 = loadImage("/summer/img/leaf3.png");
+        leaf4 = loadImage("/summer/img/leaf4.png");
+        leaf5 = loadImage("/summer/img/leaf5.png");
+        leaf6 = loadImage("/summer/img/leaf6.png");
+        
+        lighthouse_bottom= loadImage("/summer/img/lighthouse_bottom.png");
+        lighthouse_top= loadImage("/summer/img/lighthouse_top.png");
+        
+        cloud1 = loadImage("/summer/img/cloud1.png");
+        cloud2 = loadImage("/summer/img/cloud2.png");
+        
+        boat = loadImage("/summer/img/boat.png");
+        
+        airplane = loadImage("/summer/img/airplane.jpg");
+        
+        cicada = loadImage("/summer/img/cicada.png");
+        
+        parasol = loadImage("/summer/img/parasol.png");
 }
     
     //seagull hit detection
@@ -194,14 +224,12 @@ class Summer {
 }
     
     void backimage() {
-        back= loadImage("SummerBg.png");
+        
         background(back);
 }
     
     void palm_display() {
         
-        palm1 = loadImage("palm1.png");
-        palm2 = loadImage("palm2.png");
 
         imageMode(CENTER);
         
@@ -219,15 +247,11 @@ class Summer {
 }
 
     void sea_display(){
-      sea = loadImage("sea.png");
+      
     }
     
     void seagull_display() {
-        
-        seagull1 = loadImage("seagull1.png");
-        seagull2 = loadImage("seagull2.png");
-        seagull3 = loadImage("seagull3.png");
-        seagull4 = loadImage("seagull4.png");
+       
         
         imageMode(CENTER);
         
@@ -250,11 +274,6 @@ class Summer {
 
 void leaf_display() {
         
-        leaf1 = loadImage("leaf1.png");
-        leaf2 = loadImage("leaf2.png");
-        leaf3 = loadImage("leaf3.png");
-        leaf4 = loadImage("leaf4.png");
-        leaf5 = loadImage("leaf5.png");
 
         imageMode(CENTER);
         
@@ -265,6 +284,7 @@ void leaf_display() {
             image(leaf3, x + floor(cos(cx) * 4), y + floor(sin(cy) * 4));
             image(leaf4, x + floor(cos(cx) * 4), y + floor(sin(cy) * 4));
             image(leaf5, x + floor(cos(cx) * 4), y + floor(sin(cy) * 4));
+            image(leaf6, x + floor(cos(cx) * 4), y + floor(sin(cy) * 4));
          
             cx += 1;
             cy += 1;
@@ -279,8 +299,6 @@ void leaf_display() {
     
     void lighthouse_display() {
         
-        lighthouse_bottom= loadImage("lighthouse_bottom.png");
-        lighthouse_top= loadImage("lighthouse_top.png");
         
         imageMode(CENTER);
         
@@ -293,18 +311,16 @@ void leaf_display() {
     
     void cloud_display() {
         
-        cloud = loadImage("cloud.png");
-        
         imageMode(CENTER);
         
-        image(cloud, x - 150 - floor(cos(cx1)), y - 350 - floor(sin(cy1)),100,100);
+        image(cloud1, x - 150 - floor(cos(cx1)), y - 350 - floor(sin(cy1)),100,100);
+        image(cloud2, x + 150 + floor(cos(cx1)), y - 400 + floor(sin(cy1)), 100, 100);
         cx1 += 1;
         cy1 += 1; 
 }
 
     void boat_display() {
         
-        boat = loadImage("boat.png");
         
         imageMode(CENTER);
         
@@ -314,8 +330,7 @@ void leaf_display() {
 }
 
     void airplane_display() {
-        
-        airplane = loadImage("airplane.jpg");
+       
         
         imageMode(CENTER);
         
@@ -325,11 +340,11 @@ void leaf_display() {
 }
 
     void cicada_display(){
-      cicada = loadImage("cicada.png");
+       
     }
     
     void parasol_display(){
-      parasol = loadImage("parasol.png");
+       
     }
 
 }
