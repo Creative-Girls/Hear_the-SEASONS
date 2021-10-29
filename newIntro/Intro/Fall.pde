@@ -34,6 +34,7 @@ class Fall {
         leaves1 = loadImage("/fall/img/leaves1.png");
         leaves2 = loadImage("/fall/img/leaves2.png");
         
+        moon = loadImage("/data/fall/img/moon.png");
         bug1 = loadImage("/data/fall/img/bug1.png");
         bug2 = loadImage("/data/fall/img/bug2.png");
         bug3 = loadImage("/fall/img/bug3.png");
@@ -57,84 +58,94 @@ class Fall {
         } else {
             cursor(ARROW);
             return false;
-            }
         }
+    }
     
     //tree_hit detection
     boolean isHit2(float mx, float my) {
         if (dist(mx,my, x - 250, y + 100) < 80) {
             tree_hit = true;
             return true;
-            } else {
+        } else {
             tree_hit = false;
             return false;
-            }
         }
+    }
     
     
     boolean mousecursor2(float mx, float my) {
         if (dist(mx, my,x - 250, y + 100) < 80) {
             return true;
-            } else {
+        } else {
             cursor(ARROW);
             return false;
-            }
         }
+    }
     
     // crow_hit detection
     boolean isHit3(float mx, float my) {
         if (dist(mx, my, x - 150, y - 60) < 80) {
             crow_hit = true;
             return true;
-            } else {
+        } else {
             crow_hit = false;
             return false;
-            }
         }
+    }
     
     boolean mousecursor3(float mx, float my) {
         if (dist(mx, my, x - 150, y - 60) < 80) {
             return true;
-            } else {
+        } else {
             cursor(ARROW);
             return false;
-            }
         }
+    }
     
     //bug_hit detection
     boolean isHit4(float mx, float my) {
         if (dist(mx, my, x, y) < 60 || dist(mx, my, x + 150, y - 200) < 60) {
             bug_hit = true;
             return true;
-            } else {
+        } else {
             bug_hit = false;
             return false;
-            }
         }
+    }
     
     boolean mousecursor4(float mx, float my, String weather) {
         if (dist(mx, my, x, y) < 60 || dist(mx, my, x + 150, y - 200) < 60) {
             return true;
-            } else {
+        } else {
             cursor(ARROW);
             return false;
-            }
         }
+    }
     
     void setup() {
-        }
+    }
     
     void draw() {
         backimage();
-        scarecrow_display();
-        tree_display();
-        crow_display();
-        bug_display();
+        // night 
+        if (hour() >= 18) {
+            scarecrow_display();
+            moon_display();
+            tree_display();
+            crow_display();
+            bug_display();
+        } else if (hour() < 18) {
+            //day
+            scarecrow_display();
+            tree_display();
+            crow_display();
+            
         }
+    }
     
     void backimage() {
         background(fallbg);
-        }
+    }
     
     void scarecrow_display() {
         
@@ -145,10 +156,10 @@ class Fall {
             image(scarecrow, x + 180 + floor(cos(cx) * 7), y + 250 + floor(sin(cy) * 7), 300, 300);
             cx += 1;
             cy += 1;
-            } else {
+        } else {
             image(scarecrow, x + 180, y + 250, 300, 300);
-            }
         }
+    }
     
     void tree_display() {
         
@@ -160,11 +171,11 @@ class Fall {
             cx += 1;
             cy += 1;
             image(leaves2, x - 250, y + 100 + 5 * cy, 800, 800);
-            } else {
+        } else {
             image(leaves1, x - 250, y + 100, 800, 800);
             image(leaves2, x - 250, y + 100, 800, 800);
-            }
         }
+    }
     
     void crow_display() {
         
@@ -174,10 +185,10 @@ class Fall {
             image(crow2, x - 150 + floor(cos(cx) * 2), y - 60 - cy * 2, 50, 50);
             cx += 1;
             cy += 1;
-            } else {
+        } else {
             image(crow1, x - 150, y - 60, 50, 50);
-            }
         }
+    }
     
     void bug_display() {
         
@@ -190,9 +201,9 @@ class Fall {
             image(bug4, x - 350 + cy * 2, y - 150 + floor(cos(cx) * 2), 60, 60);
             cx += 1;
             cy += 1;
-            } else {
+        } else {
             image(bug1, x, y, 60, 60);
             image(bug2, x + 150, y - 200, 60, 60);
-            }
         }
     }
+}
