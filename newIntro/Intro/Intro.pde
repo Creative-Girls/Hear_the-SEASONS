@@ -12,6 +12,7 @@ int w_color = 255;
 import processing.sound.*;
 
 AudioPlayer rain;
+AudioPlayer rain_under_parasol;
 AudioPlayer Butterfly;
 SoundFile bird;
 AudioPlayer frog;
@@ -95,7 +96,7 @@ void setup() {
     // bgm.loop();
     
     //summer
-    //rain_under_parasol =  minim.loadFile("/summer/sound/rain-under-parasol.mp3");
+    rain_under_parasol =  minim.loadFile("/summer/sound/rain-under-parasol.mp3");
     cicada =  minim.loadFile("/summer/sound/cicada.wav");
     seagulls =  minim.loadFile("/summer/sound/seagulls.wav");
     sea = new SoundFile(this,"/summer/sound/sea.wav");
@@ -103,7 +104,7 @@ void setup() {
     airplane = minim.loadFile("/summer/sound/airplane.wav");
     
     //winter
-    fire = new SoundFule(this,"/winter/sound/fire.flac");
+    fire = new SoundFile(this,"/winter/sound/fire.flac");
     
     // fall
     leaves = minim.loadFile("/fall/sound/leaves.wav");
@@ -140,9 +141,9 @@ void draw() {
         spring.draw();
         if (spring.mousecursor1(mouseX, mouseY))
             cursor(HAND);
-        elseif (spring.mousecursor2(mouseX, mouseY))
+        else if (spring.mousecursor2(mouseX, mouseY))
             cursor(HAND);
-        elseif (spring.mousecursor3(mouseX, mouseY))
+        else if (spring.mousecursor3(mouseX, mouseY))
             cursor(HAND);
         
         //button
@@ -157,9 +158,9 @@ void draw() {
         summer.draw();
         if (summer.mousecursor1(mouseX, mouseY))
             cursor(HAND);
-        elseif (summer.mousecursor2(mouseX, mouseY))
+        else if (summer.mousecursor2(mouseX, mouseY))
             cursor(HAND);
-        elseif (summer.mousecursor3(mouseX, mouseY))
+        else if (summer.mousecursor3(mouseX, mouseY))
             cursor(HAND);
         
         //button
@@ -313,4 +314,3 @@ void mousePressed() {
         fire.pause();
     }
 }
-
