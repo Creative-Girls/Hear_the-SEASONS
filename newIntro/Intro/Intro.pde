@@ -177,11 +177,11 @@ void draw() {
         fall.draw();
         if (fall.mousecursor1(mouseX, mouseY))
             cursor(HAND);
-        elseif (fall.mousecursor2(mouseX, mouseY))
+        else if (fall.mousecursor2(mouseX, mouseY))
             cursor(HAND);
-        elseif (fall.mousecursor3(mouseX, mouseY))
+        else if (fall.mousecursor3(mouseX, mouseY))
             cursor(HAND);
-        elseif (fall.mousecursor4(mouseX, mouseY))
+        else if (fall.mousecursor4(mouseX, mouseY))
             cursor(HAND);
         
         /* if(weather.equals(wclear) == true && !rain.isPlaying()){
