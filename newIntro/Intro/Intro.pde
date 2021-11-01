@@ -11,11 +11,12 @@ winterButton btnWinter;*/
 int w_color = 255;
 import processing.sound.*;
 
-AudioPlayer rain;
+
 AudioPlayer rain_under_parasol;
-AudioPlayer Butterfly;
+SoundFile rain;
+SoundFile Butterfly;
 SoundFile bird;
-AudioPlayer frog;
+SoundFile frog;
 AudioPlayer bgm;
 AudioPlayer airplane;
 AudioPlayer cicada;
@@ -28,15 +29,19 @@ Spring spring;
 Summer summer;
 
 Fall fall;
-AudioPlayer leaves;
-AudioPlayer crow;
+SoundFile leaves;
+SoundFile crow;
 AudioPlayer fallbgm;
-AudioPlayer tree;
-AudioPlayer bug;
+SoundFile tree;
+SoundFile bug;
 
 //Winter
 SoundFile fire;
 Winter winter;
+
+// literally weather rain
+String wrain = "rain";
+String wclear = "clear";
 
 //get weather API
 XML xml;
@@ -107,11 +112,11 @@ void setup() {
     fire = new SoundFile(this,"/winter/sound/fire.flac");
     
     // fall
-    leaves = minim.loadFile("/fall/sound/leaves.wav");
-    crow = minim.loadFile("/fall/sound/hooded_crow.wav");
+    leaves = new SoundFile(this, "/fall/sound/leaves.wav");
+    crow = new SoundFile(this, "/fall/sound/hooded_crow.wav");
     //fallbgm = minim.loadFile("fallbg.wav");
-    tree = minim.loadFile("/fall/sound/tree.wav");
-    bug = minim.loadFile("/fall/sound/cricket.wav");
+    tree = new SoundFile(this, "/fall/sound/tree.wav");
+    bug = new SoundFile(this, "/fall/sound/cricket.wav");
     //fallbgm.amp(0.5);
     //fallbgm.loop();
     
@@ -168,9 +173,24 @@ void draw() {
         btnStart.Draw();
         textAlign(CENTER, CENTER);
         textSize(16);
+    } else if (page ==  3) {
+        fall.draw();
+        if (fall.mousecursor1(mouseX, mouseY))
+            cursor(HAND);
+        else if (fall.mousecursor2(mouseX, mouseY))
+            cursor(HAND);
+        else if (fall.mousecursor3(mouseX, mouseY))
+            cursor(HAND);
+        else if (fall.mousecursor4(mouseX, mouseY))
+            cursor(HAND);
+        
+        /* if(weather.equals(wclear) == true && !rain.isPlaying()){
+        rain.play();
+    }else if (rain.isPlaying())
+        rain.pause(); */
     }
     else if (page == 4)
-    {
+        {
         winter.draw();
         if (winter.mousecursor1(mouseX, mouseY))
             cursor(HAND);
@@ -187,36 +207,36 @@ void mousePressed() {
     } else if (page == 1 &&  btnStart.MouseIsOverOn()) {
         page = 2;
     }
-    //spring   
-    if (spring.isHit1(mouseX, mouseY) && !Butterfly.isPlaying()) {
+    //spring
+    if (page == 1 && spring.isHit1(mouseX, mouseY) && !Butterfly.isPlaying()) {
         Butterfly.loop();
         frog.pause();
         bird.pause();
-    } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
+    } else if (page == 1 && spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
         spring.butterfly_hit = false;
         Butterfly.pause();
     }
     
-    if (spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
+    if (page == 1 && spring.isHit2(mouseX, mouseY) && !bird.isPlaying()) {
         bird.loop();
         frog.pause();
         Butterfly.pause();
-    } else if (spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
+    } else if (page == 1 && spring.isHit2(mouseX, mouseY) && bird.isPlaying()) {
         spring.bluebird_hit = false;
         bird.pause();
     }
     
-    if (spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
+    if (page == 1 && spring.isHit3(mouseX, mouseY) && !frog.isPlaying()) {
         frog.loop();
         Butterfly.pause();
         bird.pause();
-    } else if (spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
+    } else if (page == 1 && spring.isHit3(mouseX, mouseY) && frog.isPlaying()) {
         spring.frog_hit = false;
         frog.pause();
     }
     
     //summer
-    if (summer.isHit1(mouseX,mouseY) && !seagulls.isPlaying()) {
+    if (page == 2 &&  summer.isHit1(mouseX,mouseY) && !seagulls.isPlaying()) {
         seagulls.loop();
         sea.pause();
         palm.pause();
@@ -224,12 +244,12 @@ void mousePressed() {
         cicada.pause();
         airplane.pause();
         //rain_under_parasol.pause();
-    } else if (spring.isHit1(mouseX, mouseY) && seagulls.isPlaying()) {
+    } else if (page == 2 &&  spring.isHit1(mouseX, mouseY) && seagulls.isPlaying()) {
         summer.seagulls_hit = false;
         seagulls.pause();
     }
     
-    if (summer.isHit2(mouseX, mouseY) && !sea.isPlaying()) {
+    if (page == 2 &&  summer.isHit2(mouseX, mouseY) && !sea.isPlaying()) {
         sea.loop();
         seagulls.pause();
         palm.pause();
@@ -237,12 +257,12 @@ void mousePressed() {
         cicada.pause();
         airplane.pause();
         // rain_under_parasol.pause();
-    } else if (summer.isHit2(mouseX, mouseY) && sea.isPlaying()) {
+    } else if (page == 2 && summer.isHit2(mouseX, mouseY) && sea.isPlaying()) {
         summer.sea_hit = false;
         sea.pause();
     }
     
-    if (summer.isHit3(mouseX, mouseY) && !palm.isPlaying()) {
+    if (page == 2 && summer.isHit3(mouseX, mouseY) && !palm.isPlaying()) {
         palm.loop();
         seagulls.pause();
         sea.pause();
@@ -250,12 +270,12 @@ void mousePressed() {
         cicada.pause();
         airplane.pause();
         //rain_under_parasol.pause();
-    } else if (summer.isHit3(mouseX, mouseY) && palm.isPlaying()) {
+    } else if (page == 2 && summer.isHit3(mouseX, mouseY) && palm.isPlaying()) {
         summer.palm_hit = false;
         palm.pause();
     }
     
-    if (summer.isHit4(mouseX, mouseY) && !leaf.isPlaying()) {
+    if (page == 2 && summer.isHit4(mouseX, mouseY) && !leaf.isPlaying()) {
         leaf.loop();
         seagulls.pause();
         sea.pause();
@@ -263,12 +283,12 @@ void mousePressed() {
         cicada.pause();
         airplane.pause();
         //rain_under_parasol.pause();
-    } else if (summer.isHit4(mouseX, mouseY) && leaf.isPlaying()) {
+    } else if (page == 2 && summer.isHit4(mouseX, mouseY) && leaf.isPlaying()) {
         summer.leaf_hit = false;
         leaf.pause();
     }
     
-    if (summer.isHit7(mouseX, mouseY) && !cicada.isPlaying()) {
+    if (page == 2 && summer.isHit7(mouseX, mouseY) && !cicada.isPlaying()) {
         cicada.loop();
         seagulls.pause();
         sea.pause();
@@ -276,12 +296,12 @@ void mousePressed() {
         palm.pause();
         airplane.pause();
         //rain_under_parasol.pause();
-    } else if (summer.isHit7(mouseX, mouseY) && cicada.isPlaying()) {
+    } else if (page == 2 && summer.isHit7(mouseX, mouseY) && cicada.isPlaying()) {
         summer.cicada_hit = false;
         cicada.pause();
     }
     
-    if (summer.isHit9(mouseX, mouseY) && !airplane.isPlaying()) {
+    if (page == 2 && summer.isHit9(mouseX, mouseY) && !airplane.isPlaying()) {
         airplane.loop();
         seagulls.pause();
         sea.pause();
@@ -289,12 +309,11 @@ void mousePressed() {
         cicada.pause();
         palm.pause();
         //rain_under_parasol.pause();
-    } else if (summer.isHit9(mouseX, mouseY) && airplane.isPlaying()) {
+    } else if (page == 2 && summer.isHit9(mouseX, mouseY) && airplane.isPlaying()) {
         summer.airplane_hit = false;
         airplane.pause();
     }
-    
-    /* if(summer.isHit10(mouseX, mouseY) && !rain_under_parasol.isPlaying()) {
+    /* if(page == 2 && summer.isHit10(mouseX, mouseY) && !rain_under_parasol.isPlaying()) {
     rain_under_parasol.loop();
     seagulls.pause();
     sea.pause();
@@ -302,14 +321,55 @@ void mousePressed() {
     cicada.pause();
     airplane.pause();
     palm.pause();
-} else if (summer.isHit10(mouseX, mouseY) && rain_under_parasol.isPlaying()){
+} else if (page == 2 && summer.isHit10(mouseX, mouseY) && rain_under_parasol.isPlaying()){
     summer.parasol_hit = false;
     rain_under_parasol.pause();
 }*/
+    if (page == 3 && fall.isHit1(mouseX, mouseY) && !leaves.isPlaying()) {
+        leaves.loop();
+        crow.pause();
+        tree.pause();
+        bug.pause();
+    } else if (page == 3 && fall.isHit1(mouseX, mouseY) && leaves.isPlaying()) {
+        fall.scarecrow_hit = false;
+        leaves.pause();
+    }
+    
+    if (page == 3 && fall.isHit2(mouseX, mouseY) && !leaves.isPlaying()) {
+        tree.loop();
+        crow.pause();
+        leaves.pause();
+        bug.pause();
+    } else if (page == 3 && fall.isHit2(mouseX, mouseY) && leaves.isPlaying()) {
+        fall.tree_hit = false;
+        tree.pause();
+    }
+    
+    if (page == 3 && fall.isHit3(mouseX, mouseY) && !crow.isPlaying()) {
+        crow.loop();
+        tree.pause();
+        leaves.pause();
+        bug.pause();
+    } else if (page == 3 && fall.isHit3(mouseX, mouseY) && crow.isPlaying()) {
+        fall.crow_hit = false;
+        crow.pause();
+    }
+    
+    if (page == 3 && fall.isHit4(mouseX, mouseY) && !bug.isPlaying()) {
+        bug.loop();
+        tree.pause();
+        leaves.pause();
+        crow.pause();
+    } else if (page == 3 && fall.isHit4(mouseX, mouseY) && bug.isPlaying()) {
+        fall.bug_hit = false;
+        bug.pause();
+    }
+    
+    
     //winter
-    if (winter.isHit1(mouseX, mouseY) && !fire.isPlaying()) {
+    if (page == 4 && winter.isHit1(mouseX, mouseY) && !fire.isPlaying()) {
         fire.loop();
-    } else if (spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
+    } else if (page == 4 && spring.isHit1(mouseX, mouseY) && Butterfly.isPlaying()) {
         winter.fire_hit = false;
         fire.pause();
     }
