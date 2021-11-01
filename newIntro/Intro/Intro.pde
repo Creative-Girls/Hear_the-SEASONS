@@ -112,11 +112,11 @@ void setup() {
     fire = new SoundFile(this,"/winter/sound/fire.flac");
     
     // fall
-    leaves = new SoundFile(this, "leaves.wav");
-    crow = new SoundFile(this, "hooded_crow.wav");
+    leaves = new SoundFile(this, "/fall/sound/leaves.wav");
+    crow = new SoundFile(this, "/fall/sound/hooded_crow.wav");
     //fallbgm = minim.loadFile("fallbg.wav");
-    tree = new SoundFile(this, "tree.wav");
-    bug = new SoundFile(this, "cricket.wav");
+    tree = new SoundFile(this, "/fall/sound/tree.wav");
+    bug = new SoundFile(this, "/fall/sound/cricket.wav");
     //fallbgm.amp(0.5);
     //fallbgm.loop();
     
@@ -189,7 +189,7 @@ void draw() {
     }else if (rain.isPlaying())
         rain.pause(); */
     }
-    elseif (page == 4)
+    else if (page == 4)
         {
         winter.draw();
         if (winter.mousecursor1(mouseX, mouseY))

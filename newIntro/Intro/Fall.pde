@@ -46,9 +46,9 @@ class Fall {
         leaves1 = loadImage("/fall/img/leaves1.png");
         leaves2 = loadImage("/fall/img/leaves2.png");
         
-        moon = loadImage("/data/fall/img/moon.png");
-        bug1 = loadImage("/data/fall/img/bug1.png");
-        bug2 = loadImage("/data/fall/img/bug2.png");
+        moon = loadImage("/fall/img/moon.png");
+        bug1 = loadImage("/fall/img/bug1.png");
+        bug2 = loadImage("/fall/img/bug2.png");
         bug3 = loadImage("/fall/img/bug3.png");
         bug4 = loadImage("/fall/img/bug4.png");
         rain = loadImage("rain.png");
