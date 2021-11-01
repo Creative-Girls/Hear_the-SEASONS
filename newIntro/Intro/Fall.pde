@@ -1,4 +1,6 @@
 class Fall {
+    
+    
     PImage fallbg;
     PImage crow1;
     PImage crow2;
@@ -12,9 +14,14 @@ class Fall {
     PImage bug3;
     PImage bug4;
     PImage moon;
+    PImage rain;
     
     float x, y;
     float cx, cy;
+    
+    //weather month , day
+    String w;
+    int m, d;
     
     boolean scarecrow_hit = false;
     boolean tree_hit = false;
@@ -24,6 +31,9 @@ class Fall {
     Fall(float x_, float y_, String weather, int month, int day) {
         x = x_;
         y = y_;
+        w = weather;
+        m = month;
+        d = day;
         
         fallbg = loadImage("/fall/img/Fallbg.png");
         scarecrow = loadImage("/fall/img/scarecrow.png");
@@ -36,11 +46,34 @@ class Fall {
         leaves1 = loadImage("/fall/img/leaves1.png");
         leaves2 = loadImage("/fall/img/leaves2.png");
         
-        moon = loadImage("/data/fall/img/moon.png");
-        bug1 = loadImage("/data/fall/img/bug1.png");
-        bug2 = loadImage("/data/fall/img/bug2.png");
+        moon = loadImage("/fall/img/moon.png");
+        bug1 = loadImage("/fall/img/bug1.png");
+        bug2 = loadImage("/fall/img/bug2.png");
         bug3 = loadImage("/fall/img/bug3.png");
         bug4 = loadImage("/fall/img/bug4.png");
+        rain = loadImage("rain.png");
+        
+        /*gaeun computer code*/
+        /*
+        fallbg = loadImage("Fallbg.png");
+        scarecrow = loadImage("scarecrow.png");
+        
+        crow1 = loadImage("crow1.png");
+        crow2 = loadImage("crow2.png");
+        crow3 = loadImage("crow3.png");
+        
+        tree = loadImage("mapletree.png");
+        leaves1 = loadImage("leaves1.png");
+        leaves2 = loadImage("leaves2.png");
+        
+        moon = loadImage("moon.png");
+        bug1 = loadImage("bug1.png");
+        bug2 = loadImage("bug2.png");
+        bug3 = loadImage("bug3.png");
+        bug4 = loadImage("bug4.png");
+        
+        rain = loadImage("rain.png");
+        */
     }
     
     //scarecrow_hit detection
@@ -85,7 +118,7 @@ class Fall {
     }
     
     // crow_hit detection
-    boolean isHit3(float mx, float my) {
+    boolean isHit3(floatmx, float my) {
         if (dist(mx, my, x - 150, y - 60) < 80) {
             crow_hit = true;
             return true;
@@ -115,7 +148,7 @@ class Fall {
         }
     }
     
-    boolean mousecursor4(float mx, float my, String weather) {
+    boolean mousecursor4(float mx, float my) {
         if (dist(mx, my, x, y) < 60 || dist(mx, my, x + 150, y - 200) < 60) {
             return true;
         } else {
@@ -124,12 +157,13 @@ class Fall {
         }
     }
     
-    void setup() {
-    }
+    
     
     void draw() {
+        
         backimage();
-        // night 
+        
+        // at night moon and lightbugs are appear
         if (hour() >= 18) {
             scarecrow_display();
             moon_display();
@@ -141,12 +175,22 @@ class Fall {
             scarecrow_display();
             tree_display();
             crow_display();
-            
         }
     }
     
     void backimage() {
-        background(fallbg);
+        
+        // weather equal true or not
+        // if raing now, it's rainy
+        if (w.equals("clear sky") == true || w.equals("few clouds clouds") == true
+            || w.equals("scattered clouds") == true || w.equals("broken clouds") == true)
+            background(fallbg);
+        elseif (w.equals("shower rain") == true || w.equals("rain") == true
+            || w.equals("thunderstorm") == true) {
+            tint(180);
+            image(fallbg, x, y);
+            image(rain, x, y, 708, 979);
+        }
     }
     
     void scarecrow_display() {
@@ -213,5 +257,4 @@ class Fall {
         imageMode(CENTER);
         image(moon, x, 85, 200, 200);
     }
-    }
-        
+}
