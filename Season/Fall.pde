@@ -105,7 +105,7 @@ class Fall{
         */
     }
     
-    voiddraw() {                                                                                    
+    void draw() {                                                                                    
         backimage();                                                                                   
         
         // at night moon and lightbugs are appear                                                      
@@ -205,7 +205,7 @@ class Fall{
         }
     }
     
-    voidbackimage() {
+    void backimage() {
         background(iFallbg); //가을 배경이 안 나와서 임시로 추가했음 가은이 확인 바람
         // weather equal true or not
         // if raing now, it's rainy

@@ -1,4 +1,4 @@
-lass Button {
+class Button {
     Season season;
     /*
     0:Menu
@@ -56,7 +56,7 @@ lass Button {
         rainbut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/rainbut.png");
         */
     }
-    voiddraw() {
+    void draw() {
         
         // season selection
         if (!menuOn) {
@@ -112,7 +112,7 @@ lass Button {
                     winter = null;
                 } else if (dist(mouseX, mouseY, w - 70, 280)<50) {
                     type = "fall";
-                    fall = newFall(season, w / 2, h / 2, weather, month, day, time);
+                    fall = new Fall(season, w / 2, h / 2, weather, month, day, time);
                     spring = null;
                     winter = null;
                 } else if (dist(mouseX, mouseY, w - 70, 350)<50) {
@@ -124,4 +124,4 @@ lass Button {
             }
         }
     }
-    
+}

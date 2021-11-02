@@ -524,7 +524,7 @@ class Summer {
         image(iparasol, w, h);
     }
     
-    voidmousePressed() {
+    void mousePressed() {
         if (seagullsHit(mouseX, mouseY) && !seagulls.isPlaying()) {
             seagulls.loop();
             sea.pause();
@@ -617,34 +617,7 @@ class Summer {
                                                                parasolHitYN = false;
                                                                 rain_under_parasol.pause();
      }
- // day & night change
-    if (timeMenuOn) {
-      // day&night change
-      if (dist(mouseX, mouseY, 70, 140)<50) {
-        if (time >= 18 || time <6) { // if night -> day
-          time = 0;
-          time += 7;
-          print(time);
-        } else if (time < 18 || time >= 6)
-        { // if day -> night
-          time = 0;
-          time += 20;
-          print(time);
-        }
-      } else if (dist(mouseX, mouseY, 70, 210)<50) { // weather change
-        // if rain -> sun
-        if (weather.equals("shower rain") == true || weather.equals("rain") == true
-          || weather.equals("thunderstorm") == true)
-          weather = "clear sky";
-        println(weather);
-      } else if (dist(mouseX, mouseY, 70, 280)<50) {
-        // if sun -> rain
-        if (weather.equals("clear sky") == true ||weather.equals("few clouds clouds") == true
-          || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
-          weather = "rain";
-        println(weather);
-      }
     }
-                                                            }
-                                                            }  
+}                                                         
+                                                              
                                                                 
