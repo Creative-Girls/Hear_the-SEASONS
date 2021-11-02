@@ -30,7 +30,6 @@ class Winter{
     this.day = day;
     
     fire = minim.loadFile("/winter/sound/fire.mp3");
-
     iWinterbg = loadImage("/winter/img/winterBG.png");
     iFire = loadImage("/winter/img/fire.png");
   }
