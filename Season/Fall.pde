@@ -109,13 +109,13 @@ class Fall{
         backimage();                                                                                   
         
         // at night moon and lightbugs are appear                                                      
-        if (hour() >= 18) {                                                                           
+        if (hour() >= 18 || time <6) {                                                                           
             scarecrow_display();                                                                   
             moon_display();                                                                        
             tree_display();                                                                        
             crow_display();                                                                        
             bug_display();                                                                         
-        } else if (hour() < 18) {                                                                  
+        } else if (hour() < 18 || time >= 6) {                                                                  
             //day                                                                                  
             scarecrow_display();                                                                   
             tree_display();                                                                        
@@ -206,19 +206,22 @@ class Fall{
     }
     
     void backimage() {
-        background(iFallbg); //가을 배경이 안 나와서 임시로 추가했음 가은이 확인 바람
-        // weather equal true or not
-        // if raing now, it's rainy
-        if (weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
-            || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true)
-            background(iFallbg);
-        else if (weather.equals("shower rain") == true || weather.equals("rain") == true
-            || weather.equals("thunderstorm") == true) {
-            tint(180);
-            image(iFallbg, w, h);
-            image(iRain, w, h, 708, 979);
-        }
+
+    // if raing now, it's rainy & frog appear
+    if ( weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
+      || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
+    {
+      background(iFallbg);
+      if (time >= 18 || time <6)
+        background(inFallbg);
+    } else if (weather.equals("shower rain") == true|| weather.equals("rain") == true
+      || weather.equals("thunderstorm") == true) {
+      image(iFallbg, w, h);
+      if (time >= 18 || time <6)
+        background(inFallbg);
+      image(iRain, w, h, 708, 979);
     }
+  }
     
     void scarecrow_display() {
         
