@@ -82,7 +82,7 @@ class Spring{
 
   //BlueBird hit
   boolean birdHit(float mx, float my) {
-    if (dist(mx, my, w - 40, h - 400) < 50) {
+    if (dist(mx, my, w , h - 400) < 50) {
       BbirdHitYN = true;
       return true;
     } else {
@@ -112,7 +112,7 @@ class Spring{
   }
 
   boolean mousecursor2(float mx, float my) {
-    if (dist(mx, my, w - 40, h - 400) < 80) {
+    if (dist(mx, my, w, h - 400) < 80) {
       return true;
     } else {
       cursor(ARROW);

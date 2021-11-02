@@ -62,17 +62,26 @@ class Button{
         if(dist(mouseX,mouseY,w-70,140)<50) {
           type = "spring";
           spring = new Spring(season,w/2,h/2,weather,month,day);
+          summer = null;
+          fall = null;
+          winter = null;
+        }else if(dist(mouseX,mouseY,w-70, 210)<50) {
+          type="summer";
+          summer = new Summer(season,w/2,h/2,weather,month,day);
+          spring = null;
           fall = null;
           winter = null;
         }else if(dist(mouseX,mouseY,w-70, 280)<50) {
           type="fall";
           fall = new Fall(season,w/2,h/2,weather,month,day);
           spring = null;
+          summer= null;
           winter = null;
         }else if(dist(mouseX,mouseY,w-70, 350)<50) {
           type="winter";
           winter = new Winter(season,w/2,h/2,weather,month,day);
           spring = null;
+          summer = null;
           fall = null;
         }
       }
