@@ -71,6 +71,12 @@ void draw() {
       frameRate(5);
       spring.draw();
     }
+    else if(type.equals("summer")&&summer!=null)
+    {
+      menuOn = true;
+      frameRate(5);
+      summer.draw();
+    }
     else if(type.equals("fall")&&fall!=null)
     {
       menuOn = true;
@@ -91,6 +97,9 @@ void mousePressed() {
     but.mousePressed();
   }else if(type.equals("spring")&&spring!=null){
     spring.mousePressed();
+    but.mousePressed();
+  }else if(type.equals("summer")&&summer!=null){
+    summer.mousePressed();
     but.mousePressed();
   }else if(type.equals("fall")&&fall!=null){
     fall.mousePressed();
