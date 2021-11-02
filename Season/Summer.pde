@@ -69,7 +69,7 @@ class Summer {
         ipalm2 = loadImage("/summer/img/palm2.png");
         isea = loadImage("/summer/img/sea.png");
         isea_night = loadImage("/summer/img/sea_night.png");
-        iground = loadImage("/summer/img/ground.jpg");
+        iground = loadImage("/summer/img/ground_night.png");
         iground_night = loadImage("/summer/img/ground_night.png");
         iseagull1 = loadImage("/summer/img/seagull1.png");
         iseagull2 = loadImage("/summer/img/seagull2.png");
@@ -281,7 +281,7 @@ class Summer {
         }
     }
 
-    void backimage() {       
+    void backimage() {     
       if(hour() < 18 && hour() >= 6 ){
             image(iSummerBg, w, h, 708, 979);
             // if raing now, it's rainy & parasol sound appear
