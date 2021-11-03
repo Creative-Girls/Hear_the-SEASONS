@@ -15,6 +15,7 @@ class Winter{
   PImage iSnow;
   PImage iSmoke;
   PImage iSun;
+  PImage iRain;
 
   String weather;
   float w,h; // w:width, h:height
@@ -26,12 +27,14 @@ class Winter{
   int imgX, imgY;
   int fireS=0;
   int scale = 1;
-  int cloudX, cloudY;
-  int snowY;
+  int cloudX;
+  int cloudY=0;
+  int snowY=0;
+  int rainY=0;
   int n = 0;
   
-  boolean snowYN;
-  boolean sunYN;
+  boolean snowYN=false;
+  boolean rainYN=false;
   
   
    Winter(Season season, float w, float h, String weather, int month, int day, int time) {
@@ -43,9 +46,6 @@ class Winter{
     this.day = day;
     this.time = time;
     
-    cloudX = 0;
-    snowY = 50;
-    
     fire = minim.loadFile("/winter/sound/fire.mp3");
     iWinterbg = loadImage("/winter/img/winterBG.png");
     iWinterbgnight = loadImage("/winter/img/winterBGnight.png");
@@ -55,6 +55,12 @@ class Winter{
     iSnow = loadImage("/winter/img/snow.png");
     iSmoke = loadImage("/winter/img/smoke.png");
     iSun = loadImage("/winter/img/sun.png");
+    iRain = loadImage("/winter/img/rain.png");
+    
+    if (weather.equals("shower rain") == true|| weather.equals("rain") == true
+      || weather.equals("thunderstorm") == true) {
+        rainYN = true;
+    }    
   }
   
   void draw() {
@@ -64,7 +70,9 @@ class Winter{
     sunDisplay();
     cloudDisplay();
     snowDisplay();
-    smokeDisplay();
+    
+    if(rainYN)
+      rainDisplay();
 
     imageMode(CENTER);
     but.draw();
@@ -96,16 +104,6 @@ class Winter{
         image(iWinterbgnight,0,0);
     if (time < 18 && time >=6)
         image(iWinterbg,0,0);
-    // if raing now, it's rainy & frog appear
-    if ( weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
-      || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true|| weather.equals("overcast clouds") == true ||  weather.equals("mist") == true){
-    //  image(iWinterbg,0,0);
-      }
-    else if (weather.equals("shower rain") == true|| weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true) {
-     // image(iWinterbg, 0,0);
-     // image(iRain, w, h, 708, 979);
-    }
   }
 
   void fireDisplay() {
@@ -142,6 +140,15 @@ class Winter{
     snowY+=2;
     if(snowY>=(h*2))
       snowY = 0;
+  }
+  
+  void rainDisplay() {
+    imageMode(CORNER);
+    image(iRain,0, rainY);
+    image(iRain,0,rainY-(h*2));
+    rainY+=2;
+    if(rainY>=(h*2))
+      rainY = 0;
   }
   void smokeDisplay() {
     imageMode(CORNER);
