@@ -64,22 +64,20 @@ class Button {
                 image(startBut, w / 2 - 50, h - 300, 130, 80);
             }
         } else {
-            image(menu, w - 70, 70, 50, 50);
-            image(wheelmenu, 70, 70, 50, 50);
+            image(menu, w - 40, 40, 50, 50);
+            image(wheelmenu, 40, 40, 50, 50);
             if (seasonMenuOn)
                 {
-                image(springBut, w - 70, 140, 50, 50);
-                image(summerBut, w - 70, 210, 50, 50);
-                image(fallBut, w - 70, 280, 50, 50);
-                image(winterBut, w - 70, 350, 50, 50);
+                image(springBut, w - 40, 120, 50, 50);
+                image(summerBut, w - 40, 190, 50, 50);
+                image(fallBut, w - 40, 260, 50, 50);
+                image(winterBut, w - 40, 330, 50, 50);
             }
-            
             if (timeMenuOn)
                 {
-                image(daynightbut, 70, 140, 50, 50);
-                image(sunbut, 70, 210, 50, 50);
-                image(rainbut, 70, 280, 50, 50);
-                //image(winterBut,  w-70, 350, 50, 50);
+                image(daynightbut, 40, 120, 50, 50);
+                image(sunbut, 40, 190, 50, 50);
+                image(rainbut, 40, 260, 50, 50);
             }
         }
         
@@ -93,33 +91,42 @@ class Button {
                 spring = new Spring(season, w / 2, h / 2, weather, month, day, time);
             }
         } else {
-            if (!seasonMenuOn &&  dist(mouseX, mouseY, w - 70, 70)<50) {
+            if (!seasonMenuOn &&  dist(mouseX, mouseY, w - 40, 40)<50) {
                 seasonMenuOn = true;
-            } else if (seasonMenuOn &&  dist(mouseX, mouseY, w - 70, 70)<50) {
+            } else if (seasonMenuOn &&  dist(mouseX, mouseY, w - 40, 40)<50) {
                 seasonMenuOn = false;
             }
             
-            if (!timeMenuOn &&  dist(mouseX, mouseY, 70, 70)<50)
+            if (!timeMenuOn &&  dist(mouseX, mouseY, 40, 40)<50)
                 timeMenuOn = true;
-            else if (timeMenuOn &&  dist(mouseX, mouseY, 70, 70)<50)
+            else if (timeMenuOn &&  dist(mouseX, mouseY, 40, 40)<50)
                 timeMenuOn = false;
             
             if (seasonMenuOn) {
-                if (dist(mouseX, mouseY, w - 70, 140)<50) {
+                if (dist(mouseX, mouseY, w - 40, 120)<50) {
                     type = "spring";
                     spring = new Spring(season, w / 2, h / 2, weather, month, day, time);
                     fall = null;
                     winter = null;
-                } else if (dist(mouseX, mouseY, w - 70, 280)<50) {
+                    summer = null;
+                } else if (dist(mouseX, mouseY, w - 40, 190)<50) {
+                    type = "summer";
+                    summer = new Summer(season, w / 2, h / 2, weather, month, day, time);
+                    spring = null;
+                    winter = null;
+                    fall = null;
+                }  else if (dist(mouseX, mouseY, w -40 , 260)<50) {
                     type = "fall";
                     fall = new Fall(season, w / 2, h / 2, weather, month, day, time);
                     spring = null;
                     winter = null;
-                } else if (dist(mouseX, mouseY, w - 70, 350)<50) {
+                    summer = null;
+                } else if (dist(mouseX, mouseY, w - 40, 330)<50) {
                     type = "winter";
                     winter = new Winter(season, w / 2, h / 2, weather, month, day, time);
                     spring = null;
                     fall = null;
+                    summer = null;
                 }
             }
         }
