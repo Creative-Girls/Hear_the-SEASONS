@@ -2,7 +2,7 @@ import processing.sound.*;
 
 class Summer {
     Season season;
-    
+
     //sound
     AudioPlayer rain;
     AudioPlayer rain_under_parasol;

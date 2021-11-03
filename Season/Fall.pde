@@ -2,7 +2,7 @@ import processing.sound.*;
 
 class Fall{
     Season season;
-    
+
     //sound
     AudioPlayer leaves;
     AudioPlayer crow;

@@ -56,7 +56,7 @@ class Winter{
     //sound setting
     fire = minim.loadFile("/winter/sound/fire.mp3");
     christmas = minim.loadFile("/winter/sound/christmas.mp3");
-    christmas.setGain(20);
+    christmas.setGain(0);
     
     if(month==12&&day==25)
     {

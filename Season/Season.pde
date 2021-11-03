@@ -2,8 +2,8 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 
 //public variable
-Minim minim;
 Button but;
+Minim minim;
 String type = "start";
 boolean menuOn = false;
 boolean seasonMenuOn = false;
@@ -36,7 +36,6 @@ Winter winter = null;
 
 
 void setup() {
-    minim = new Minim(this);
     
     size(708, 979);
     background(255);
@@ -58,6 +57,8 @@ void setup() {
     month = month();
     day = day();
     time = hour();
+    
+    minim = new Minim(this);
     
     //Button
     but = new Button(this, width, height,time);

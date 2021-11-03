@@ -44,7 +44,6 @@ class Spring {
     this.day = day;
     this.time = time;
 
-    
      sRain = minim.loadFile("/spring/sound/rain.wav");
      sButterfly = minim.loadFile("/spring/sound/butterfly.mp3");
      sBird = new SoundFile(season,"/spring/sound/bird.wav");
