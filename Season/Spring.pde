@@ -43,7 +43,7 @@ class Spring {
     this.month = month;
     this.day = day;
     this.time = time;
-
+    
      sRain = minim.loadFile("/spring/sound/rain.wav");
      sButterfly = minim.loadFile("/spring/sound/butterfly.mp3");
      sBird = new SoundFile(season,"/spring/sound/bird.wav");
@@ -63,7 +63,7 @@ class Spring {
      
 
     // gaeun computer code
-    /*sRain = minim.loadFile("/Users/uga-eun/Desktop/Season/data/spring/sound/rain.wav");
+   /* sRain = minim.loadFile("/Users/uga-eun/Desktop/Season/data/spring/sound/rain.wav");
     sButterfly = minim.loadFile("/Users/uga-eun/Desktop/Season/data/spring/sound/butterfly.mp3");
     sBird = new SoundFile(season, "/Users/uga-eun/Desktop/Season/data/spring/sound/bird.wav");
     sFrog = minim.loadFile("/Users/uga-eun/Desktop/Season/data/spring/sound/frog.mp3");
@@ -160,11 +160,11 @@ class Spring {
   }
 
   void backimage() {
-    time = 20;
-    image(iSpringbg, w, h, 708, 979);
+    //time = 20;
+
 
     // if raing now, it's rainy & frog appear
-    if ( weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
+    if ( weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
       || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
     {
       background(iSpringbg);
@@ -289,7 +289,7 @@ class Spring {
         println(weather);
       } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
-        if (weather.equals("clear sky") == true ||weather.equals("few clouds clouds") == true
+        if (weather.equals("haze") == true ||weather.equals("clear sky") == true ||weather.equals("few clouds clouds") == true
           || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
           weather = "rain";
         println(weather);
