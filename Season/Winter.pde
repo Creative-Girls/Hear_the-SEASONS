@@ -250,6 +250,36 @@ class Winter {
           weather = "rain";
         println(weather);
       }
+      // day & night change
+      if (timeMenuOn) {
+      // day&night change
+        if (dist(mouseX, mouseY, 40, 120)<50) {
+          if (time >= 18 || time < 6) { // if night -> day
+            dayNight = false;
+          } else if (time < 18 && time >= 6)
+          {// if day -> night
+            dayNight = true;
+          }
+      } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
+          rainYN = false;
+      } else if (dist(mouseX, mouseY, 40, 260)<50) {
+            rainYN = true;
+      }
+       if (dayNight)
+      {
+        iWinterbg = loadImage("/winter/img/winterBG.png");
+        iSun = loadImage("/winter/img/sun.png");
+      } else
+      {
+        iWinterbg = loadImage("/winter/img/winterBGnight.png");
+        iSun = loadImage("/winter/img/moon.png");
+      }
+  
+      if (dayNight)
+        iCloud = loadImage("/winter/img/cloud.png");
+      else if (!dayNight || rainYN)
+        iCloud = loadImage("/winter/img/darkCloud.png");
+      }
     }
   }
 }
