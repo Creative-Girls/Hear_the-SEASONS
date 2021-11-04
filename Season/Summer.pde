@@ -4,7 +4,7 @@ class Summer {
   Season season;
 
   //sound
-  AudioPlayer rain;
+  AudioPlayer sRain;
   AudioPlayer rain_under_parasol;
   SoundFile airplane;
   SoundFile cicada;
@@ -53,6 +53,7 @@ class Summer {
     this.day = day;
     this.time = time;
 
+    sRain = minim.loadFile("/spring/sound/rain.wav");
     rain_under_parasol =  minim.loadFile("/summer/sound/rain-under-parasol.mp3");
     cicada = new SoundFile(season, "/summer/sound/cicada.wav");
     seagull =  minim.loadFile("/summer/sound/seagulls.wav");
@@ -125,7 +126,6 @@ class Summer {
     backimage();
 
     if (time >= 6 || time < 18) {
-      seagull_display();
       sea_display();
       ground_display();
       palm_display();
@@ -134,6 +134,7 @@ class Summer {
       lighthouse_display();
       boat_display();
       airplane_display();
+      seagull_display();
     }
     //night
     else if (time >= 18 || time < 6) {
@@ -143,16 +144,26 @@ class Summer {
       parasol_display();
       lighthouse_night_display();
       boat_night_display();
-      airplane_display();
       stars_display();
+      airplane_display();
     }
     but.draw();
+    if (dist(mouseX, mouseY, w + 180, h + 250) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w - 250, h + 100) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w - 150, h - 60) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w, h) < 50 || dist(mouseX, mouseY, w + 150, h - 200) < 50)
+      cursor(HAND);
+    else
+      cursor(ARROW);
   }
 
 
   //seagull hit detection
   boolean seagullHit(float mx, float my) {
-    if (dist(mx, my, w - 180, h + 230) < 30) {
+    if (dist(mx, my, w - 180, h + 140) < 30) {
       seagullHitYN = true;
       return true;
     } else {
@@ -162,7 +173,7 @@ class Summer {
   }
 
   boolean mousecursor1(float mx, float my) {
-    if (dist(mx, my, w - 180, h + 230) < 30) {
+    if (dist(mx, my, w - 180, h + 140) < 30) {
       return true;
     } else {
       cursor(ARROW);
@@ -548,7 +559,7 @@ class Summer {
 
     if (parasolHit(mouseX, mouseY) && !rain_under_parasol.isPlaying() &&
       (weather.equals("shower rain") == true || weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true)  ) {
+          || weather.equals("thunderstorm") == true ||weather.equals("thunderstorm") == true)  ) {
       rain_under_parasol.loop();
       seagull.pause();
       sea.pause();
