@@ -16,11 +16,9 @@ class Spring {
   PImage iRock;
   PImage iBack;
   PImage iSun;
-  PImage iCloud1;
-  PImage iCloud2;
+  PImage iCloud;
   PImage iRain;
   PImage iSpringbg;
-  PImage inSpringbg;
 
   String weather;
   float w, h; // w:width, h:height
@@ -29,11 +27,20 @@ class Spring {
   boolean butterflyHitYN = false;
   boolean BbirdHitYN = false;
   boolean frogHitYN = false;
+  
+  int cloudX;
+  int cloudY=0;
+  int snowY=0;
+  int rainY=0;
 
   int hour;
   int imgX, imgY;
-  int cloudX, cloudY;
   int n = 0;
+  
+  boolean dayNight = true; //true:day, false:night
+  boolean snowYN=false;
+  boolean rainYN=false;
+  boolean christmasYN = false;
 
   Spring(Season season, float w, float h, String weather, int month, int day, int time) {
     this.season = season;
@@ -44,21 +51,41 @@ class Spring {
     this.day = day;
     this.time = time;
     
+    if (weather.equals("shower rain") == true|| weather.equals("rain") == true
+      || weather.equals("thunderstorm") == true) {
+      rainYN = true;
+    }
+
+    if (time >= 18 || time <6)
+      dayNight = false;
+    if (time < 18 && time >=6)
+      dayNight = true;
+      
+    if (dayNight)
+    {
+      iSpringbg = loadImage("/spring/img/SpringBg.png");
+      iSun = loadImage("/winter/img/sun.png");
+    } else
+    {
+      iSpringbg = loadImage("/spring/img/SpringBgnight.png");
+      iSun = loadImage("/winter/img/moon.png");
+    }
+
+    if (dayNight)
+      iCloud = loadImage("/winter/img/cloud.png");
+    else if (!dayNight || rainYN)
+      iCloud = loadImage("/winter/img/darkCloud.png");
+    
      sRain = minim.loadFile("/spring/sound/rain.wav");
      sButterfly = minim.loadFile("/spring/sound/butterfly.mp3");
      sBird = new SoundFile(season,"/spring/sound/bird.wav");
      sFrog = minim.loadFile("/spring/sound/frog.mp3");
      
-     iSpringbg = loadImage("/spring/img/SpringBg.png");
-     inSpringbg = loadImage("/spring/img/SpringBgnight.png");
      iBbutterfly = loadImage("/spring/img/BlueButterfly.png");
      iBbird1 = loadImage("/spring/img/BlueBird1.png");
      iBbird2 = loadImage("/spring/img/BlueBird2.png");
      iFrog = loadImage("/spring/img/Frog.png");
      iRock = loadImage("/spring/img/rock.png");
-     iSun = loadImage("/spring/img/sun.png");
-     iCloud1 = loadImage("/spring/img/cloud1.png");
-     iCloud2 = loadImage("/spring/img/cloud2.png");
      iRain = loadImage("/common/img/rain.png");
      
 
@@ -85,17 +112,20 @@ class Spring {
     backimage();
 
     if (time >= 18 || time <6) { // night
-      butterflyDisplay();
-      BbirdDisplay();
       sunDisplay();
       cloudDisplay();
-    } else if (time < 18 || time >= 6) { // day
+    } else if (time < 18 && time >= 6) { // day
       //day
       butterflyDisplay();
       BbirdDisplay();
       sunDisplay();
       cloudDisplay();
     }
+    
+    if (rainYN)
+      rainDisplay();
+      
+    imageMode(CENTER);
     but.draw();
   }
 
@@ -161,23 +191,8 @@ class Spring {
 
   void backimage() {
     //time = 20;
-
-
-    // if raing now, it's rainy & frog appear
-    if (weather.equals("mist") == true ||  weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
-      || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
-    {
-      background(iSpringbg);
-      if (time >= 18 || time <6)
-        background(inSpringbg);
-    } else if (weather.equals("shower rain") == true|| weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true) {
-      image(iSpringbg, w, h);
-      if (time >= 18 || time <6)
-        background(inSpringbg);
-      image(iRain, w, h, 708, 979);
-      frogDisplay();
-    }
+    imageMode(CENTER);
+     image(iSpringbg, w, h);
   }
 
   void butterflyDisplay() {
@@ -224,18 +239,32 @@ class Spring {
     }
   }
 
-  void sunDisplay() {
-    imageMode(CENTER);
-    image(iSun, w - 250, h - 390, random(100, 150), random(100, 150));
-  }
-
   void cloudDisplay() {
-    imageMode(CENTER);
+    imageMode(CORNER);
+    iCloud.resize((int)w*2, 200);
 
-    image(iCloud1, w - 150 - floor(cos(cloudX)), h - 350 - floor(sin(cloudY)), 100, 100);
-    image(iCloud2, w + 150 + floor(cos(cloudX)), h - 400 + floor(sin(cloudY)), 100, 100);
-    cloudX += 1;
-    cloudY += 1;
+    image(iCloud, cloudX, 100);
+    image(iCloud, cloudX-(w*2), 100);
+
+    cloudX += 2;
+
+    if (cloudX >= (w*2))
+      cloudX = 0;
+  }
+  
+   void rainDisplay() {
+    imageMode(CORNER);
+    image(iRain, 0, rainY);
+    image(iRain, 0, rainY-(h*2));
+    rainY+=2;
+    if (rainY>=(h*2))
+      rainY = 0;
+  }
+  
+    void sunDisplay() {
+    imageMode(CORNER);
+
+    image(iSun, w+100, h-350, 150, 150);
   }
   void mousePressed() {
     //spring
@@ -271,12 +300,12 @@ class Spring {
     if (timeMenuOn) {
       // day&night change
       if (dist(mouseX, mouseY, 70, 140)<50) {
-        if (time >= 18 || time <6) { // if night -> day
+        if (time >= 18 || time < 6) { // if night -> day
           time = 0;
           time += 7;
           print(time);
         } else if (time < 18 || time >= 6)
-        { // if day -> night
+        {// if day -> night
           time = 0;
           time += 20;
           print(time);
@@ -289,10 +318,40 @@ class Spring {
         println(weather);
       } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
-        if (weather.equals("mist") == true || weather.equals("haze") == true ||weather.equals("clear sky") == true ||weather.equals("few clouds clouds") == true
+        if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
           || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
           weather = "rain";
         println(weather);
+      }
+      // day & night change
+      if (timeMenuOn) {
+      // day&night change
+        if (dist(mouseX, mouseY, 40, 120)<50) {
+          if (time >= 18 || time < 6) { // if night -> day
+            dayNight = false;
+          } else if (time < 18 && time >= 6)
+          {// if day -> night
+            dayNight = true;
+          }
+      } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
+          rainYN = false;
+      } else if (dist(mouseX, mouseY, 40, 260)<50) {
+            rainYN = true;
+      }
+       if (dayNight)
+      {
+        iSpringbg = loadImage("/spring/img/SpringBg.png");
+        iSun = loadImage("/winter/img/sun.png");
+      } else
+      {
+        iSpringbg = loadImage("/spring/img/SpringBgnight.png");
+        iSun = loadImage("/winter/img/moon.png");
+      }
+  
+      if (dayNight)
+        iCloud = loadImage("/winter/img/cloud.png");
+      else if (!dayNight || rainYN)
+        iCloud = loadImage("/winter/img/darkCloud.png");
       }
     }
   }

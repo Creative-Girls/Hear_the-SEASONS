@@ -6,6 +6,7 @@ class Winter {
   //sound
   AudioPlayer fire;
   AudioPlayer christmas;
+  AudioPlayer sRain;
 
   //image
   PImage iWinterbg;
@@ -54,6 +55,7 @@ class Winter {
     this.time = time;
 
     //sound setting
+    sRain = minim.loadFile("/spring/sound/rain.wav");
     fire = minim.loadFile("/winter/sound/fire.mp3");
     christmas = minim.loadFile("/winter/sound/christmas.mp3");
     christmas.setGain(-20);
@@ -110,15 +112,20 @@ class Winter {
     sunDisplay();
     snowDisplay();
 
-    if (rainYN)
-      rainDisplay();
-
     if (christmasYN&&!dayNight)
       santaDisplay();
 
     cloudDisplay();
     if (christmasYN)
       lightDisplay();
+      
+    if (rainYN)
+    {
+      rainDisplay();
+      sRain.play();
+      if(christmasYN)
+        christmas.pause();
+    }
 
     imageMode(CENTER);
     but.draw();
