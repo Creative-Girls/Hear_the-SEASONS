@@ -86,7 +86,7 @@ class Spring {
      iBbird2 = loadImage("/spring/img/BlueBird2.png");
      iFrog = loadImage("/spring/img/Frog.png");
      iRock = loadImage("/spring/img/rock.png");
-     iRain = loadImage("/common/img/rain.png");
+     iRain = loadImage("/spring/img/rain.png");
      
 
     // gaeun computer code
@@ -123,7 +123,13 @@ class Spring {
     }
     
     if (rainYN)
-      rainDisplay();
+    {
+      sRain.play();
+      frogDisplay();
+      rainDisplay();    
+    }
+    if(!rainYN)
+      sRain.pause();
       
     imageMode(CENTER);
     but.draw();
@@ -142,7 +148,7 @@ class Spring {
 
   //BlueBird hit
   boolean birdHit(float mx, float my) {
-    if (dist(mx, my, w - 40, h - 400) < 50) {
+    if (dist(mx, my, w - 80, h - 400) < 50) {
       BbirdHitYN = true;
       return true;
     } else {
@@ -216,11 +222,11 @@ class Spring {
         n -= 14;
       }
       if (n%2==0)
-        image(iBbird1, w, h-n);
+        image(iBbird1, w-80, h-n);
       if (n%2==1)
-        image(iBbird2, w, h-n);
+        image(iBbird2, w-80, h-n);
     } else {
-      image(iBbird2, w, h);
+      image(iBbird2, w-80, h);
     }
   }
 
