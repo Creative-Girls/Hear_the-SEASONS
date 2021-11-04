@@ -188,18 +188,17 @@ class Fall {
   void backimage() {
 
     // if raing now, it's rainy & frog appear
-    if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
-      || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
-    {
-      background(iFallbg);
-      if (time >= 18 || time <6)
-        background(inFallbg);
-    } else if (weather.equals("shower rain") == true|| weather.equals("rain") == true
+    if (weather.equals("shower rain") == true|| weather.equals("rain") == true
       || weather.equals("thunderstorm") == true) {
       image(iFallbg, w, h);
       if (time >= 18 || time <6)
         background(inFallbg);
       rainDisplay();
+    } else
+    {
+      background(iFallbg);
+      if (time >= 18 || time <6)
+        background(inFallbg);
     }
   }
 

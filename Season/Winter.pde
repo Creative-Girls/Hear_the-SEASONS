@@ -6,6 +6,7 @@ class Winter {
   //sound
   AudioPlayer fire;
   AudioPlayer christmas;
+  AudioPlayer sRain;
 
   //image
   PImage iWinterbg;
@@ -17,6 +18,8 @@ class Winter {
   PImage iSmoke;
   PImage iSun;
   PImage iRain;
+  
+  PImage snowbut;
 
   PImage cTree;
   PImage cSanta;
@@ -54,6 +57,7 @@ class Winter {
     this.time = time;
 
     //sound setting
+    sRain = minim.loadFile("/spring/sound/rain.wav");
     fire = minim.loadFile("/winter/sound/fire.mp3");
     christmas = minim.loadFile("/winter/sound/christmas.mp3");
     christmas.setGain(-20);
@@ -101,6 +105,7 @@ class Winter {
     iSnow = loadImage("/winter/img/snow.png");
     iSmoke = loadImage("/winter/img/smoke.png");
     iRain = loadImage("/winter/img/rain.png");
+    snowbut = loadImage("/winter/img/snowbut.png");
   }
 
   void draw() {
@@ -108,17 +113,36 @@ class Winter {
     backimage();
     fireDisplay();
     sunDisplay();
-    snowDisplay();
-
-    if (rainYN)
-      rainDisplay();
-
+    
+    if(snowYN)
+      snowDisplay();
+    
+    if(timeMenuOn)
+    {
+      imageMode(CENTER);
+        image(snowbut, 40, 330, 50, 50);
+    }
+     imageMode(CORNER);
     if (christmasYN&&!dayNight)
       santaDisplay();
 
     cloudDisplay();
     if (christmasYN)
       lightDisplay();
+      
+    if (rainYN)
+    {
+      rainDisplay();
+      sRain.play();
+      if(christmasYN)
+        christmas.pause();
+    }
+    if (!rainYN)
+    {
+      sRain.pause();
+      if(christmasYN)
+        christmas.play();
+    }
 
     imageMode(CENTER);
     but.draw();
@@ -262,8 +286,13 @@ class Winter {
           }
       } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
           rainYN = false;
+          snowYN = false;
       } else if (dist(mouseX, mouseY, 40, 260)<50) {
             rainYN = true;
+            snowYN = false;
+      } else if (dist(mouseX, mouseY, 40, 330)<50) { // weather change
+          snowYN = true;
+          rainYN = false;
       }
        if (dayNight)
       {

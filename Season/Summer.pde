@@ -313,20 +313,19 @@ class Summer {
  
     void backimage() {
       // if raing now, it's rainy & frog appear
-      if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
-        || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
-      {
-        image(iSummerBg, w, h, 708, 979);
-        if (time >= 18 || time <6)
-          image(iSummerBg_night, w, h);
-      } else if (weather.equals("shower rain") == true|| weather.equals("rain") == true
+      if (weather.equals("shower rain") == true|| weather.equals("rain") == true
         || weather.equals("thunderstorm") == true) {
         image(iSummerBg, w, h);
         if (time >= 18 || time <6)
           image(iSummerBg_night, w, h);
         image(iRain, w, h, 708, 979);
+      } else
+      {
+        image(iSummerBg, w, h, 708, 979);
+        if (time >= 18 || time <6)
+          image(iSummerBg_night, w, h);
       }
-  }
+    }
 
   void palm_display() {
 
