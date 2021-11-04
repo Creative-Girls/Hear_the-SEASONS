@@ -9,6 +9,7 @@ class Fall {
   AudioPlayer fallbgm;
   SoundFile tree;
   AudioPlayer bug;
+  // SoundFile rain;
 
   //image
   PImage iFallbg;
@@ -30,11 +31,13 @@ class Fall {
   String weather;
   float w, h; // w:width, h:height
   int month, day;
+  int rainY=0;
 
   boolean scarecrowHitYN = false;
   boolean treeHitYN = false;
   boolean crowHitYN = false;
   boolean bugHitYN = false;
+  boolean rainYN=false;
 
   int hour;
   int imgX, imgY;
@@ -50,58 +53,59 @@ class Fall {
     this.month = month;
     this.day = day;
     this.time = time;
-
-    leaves = minim.loadFile("/fall/sound/leaves.wav");
-    crow = minim.loadFile("/fall/sound/hooded_crow.wav");
-    //fallbgm = minim.loadFile("fallbg.wav");
-    tree = new SoundFile(season, "/fall/sound/tree.wav");
-    bug = minim.loadFile("/fall/sound/cricket.wav");
-
-    iFallbg = loadImage("/fall/img/Fallbg.png");
-    inFallbg = loadImage("/fall/img/Fallbgnight.png");
-    iScarecrow = loadImage("/fall/img/scarecrow.png");
-
-    iCrow1 = loadImage("/fall/img/crow1.png");
-    iCrow2 = loadImage("/fall/img/crow2.png");
-    iCrow3 = loadImage("/fall/img/crow3.png");
-
-    iTree = loadImage("/fall/img/mapletree.png");
-    iLeaves1 = loadImage("/fall/img/leaves1.png");
-    iLeaves2 = loadImage("/fall/img/leaves2.png");
-
-    iMoon = loadImage("/fall/img/moon.png");
-    iBug1 = loadImage("/fall/img/bug1.png");
-    iBug2 = loadImage("/fall/img/bug2.png");
-    iBug3 = loadImage("/fall/img/bug3.png");
-    iBug4 = loadImage("/fall/img/bug4.png");
-    iRain = loadImage("/common/img/rain.png");
-
-    // don'tremove ~ gaeun is sad ~~
     /*
+    leaves = minim.loadFile("/fall/sound/leaves.wav");
+     crow = minim.loadFile("/fall/sound/hooded_crow.wav");
+     //fallbgm = minim.loadFile("fallbg.wav");
+     tree = new SoundFile(season, "/fall/sound/tree.wav");
+     bug = minim.loadFile("/fall/sound/cricket.wav");
+     
+     iFallbg = loadImage("/fall/img/Fallbg.png");
+     inFallbg = loadImage("/fall/img/Fallbgnight.png");
+     iScarecrow = loadImage("/fall/img/scarecrow.png");
+     
+     iCrow1 = loadImage("/fall/img/crow1.png");
+     iCrow2 = loadImage("/fall/img/crow2.png");
+     iCrow3 = loadImage("/fall/img/crow3.png");
+     
+     iTree = loadImage("/fall/img/mapletree.png");
+     iLeaves1 = loadImage("/fall/img/leaves1.png");
+     iLeaves2 = loadImage("/fall/img/leaves2.png");
+     
+     iMoon = loadImage("/fall/img/moon.png");
+     iBug1 = loadImage("/fall/img/bug1.png");
+     iBug2 = loadImage("/fall/img/bug2.png");
+     iBug3 = loadImage("/fall/img/bug3.png");
+     iBug4 = loadImage("/fall/img/bug4.png");
+     iRain = loadImage("/common/img/rain.png");
+     */
+    // don'tremove ~ gaeun is sad ~~
+
     leaves = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/leaves.wav");
-     crow= minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/hooded_crow.wav");
-     //fallbgm = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/fallbg.wav");
-     tree= new SoundFile(season, "/Users/uga-eun/Desktop/Season/data/fall/sound/tree.wav");
-     bug = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/cricket.wav");
-     
-     iFallbg = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/Fallbg.png");
-     inFallbg = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/Fallbgnight.png");
-     iScarecrow = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/scarecrow.png");
-     
-     iCrow1 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/crow1.png");
-     iCrow2 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/crow2.png");
-     iCrow3 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/crow3.png");
-     
-     iTree = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/mapletree.png");
-     iLeaves1 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/leaves1.png");
-     iLeaves2 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/leaves2.png");
-     
-     iMoon = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/moon.png");
-     iBug1 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug1.png");
-     iBug2 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug2.png");
-     iBug3 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug3.png");
-     iBug4 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug4.png");
-     iRain = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/rain.png");*/
+    crow= minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/hooded_crow.wav");
+    //fallbgm = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/fallbg.wav");
+    tree= new SoundFile(season, "/Users/uga-eun/Desktop/Season/data/fall/sound/tree.wav");
+    bug = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/cricket.wav");
+    //  rain = new SoundFile(season,"/Users/uga-eun/Desktop/Season/data/summer/sound/rain.wav");
+
+    iFallbg = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/Fallbg.png");
+    inFallbg = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/Fallbgnight.png");
+    iScarecrow = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/scarecrow.png");
+
+    iCrow1 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/crow1.png");
+    iCrow2 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/crow2.png");
+    iCrow3 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/crow3.png");
+
+    iTree = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/mapletree.png");
+    iLeaves1 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/leaves1.png");
+    iLeaves2 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/leaves2.png");
+
+    iMoon = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/moon.png");
+    iBug1 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug1.png");
+    iBug2 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug2.png");
+    iBug3 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug3.png");
+    iBug4 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug4.png");
+    iRain = loadImage("/Users/uga-eun/Desktop/Season/data/winter/img/rain.png");
   }
 
   void draw() {
@@ -121,11 +125,21 @@ class Fall {
       crow_display();
     }
     but.draw();
+    if (dist(mouseX, mouseY, w + 180, h + 250) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w - 250, h + 100) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w - 150, h - 60) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w, h) < 50 || dist(mouseX, mouseY, w + 150, h - 200) < 50)
+      cursor(HAND);
+    else
+      cursor(ARROW);
   }
 
   //scarecrow_hit detection
   boolean scarecrowHit(float mx, float my) {
-    if (dist(mx, my, w + 180, h + 250) < 50) {
+    if (dist(mx, my, w + 180, h + 250) < 80) {
       scarecrowHitYN = true;
       return true;
     } else {
@@ -134,14 +148,6 @@ class Fall {
     }
   }
 
-  boolean mousecursor1(float mx, float my) {
-    if (dist(mx, my, w + 180, h + 250) < 80) {
-      return true;
-    } else {
-      cursor(ARROW);
-      return false;
-    }
-  }
 
   //tree_hit detection
   boolean treeHit(float mx, float my) {
@@ -155,14 +161,6 @@ class Fall {
   }
 
 
-  boolean mousecursor2(float mx, float my) {
-    if (dist(mx, my, w - 250, h + 100) < 80) {
-      return true;
-    } else {
-      cursor(ARROW);
-      return false;
-    }
-  }
 
   //crow_hit detection
   boolean crowHit(float mx, float my) {
@@ -175,31 +173,13 @@ class Fall {
     }
   }
 
-  boolean mousecursor3(float mx, float my) {
-    if (dist(mx, my, w - 150, h - 60) < 80) {
-      return true;
-    } else {
-      cursor(ARROW);
-      return false;
-    }
-  }
-
   //bug_hit detection
   boolean bugHit(float mx, float my) {
-    if (dist(mx, my, w, h) < 60 || dist(mx, my, w + 150, h - 200) < 60) {
+    if (dist(mx, my, w, h) < 50 || dist(mx, my, w + 150, h - 200) < 50) {
       bugHitYN = true;
       return true;
     } else {
       bugHitYN = false;
-      return false;
-    }
-  }
-
-  boolean mousecursor4(float mx, float my) {
-    if (dist(mx, my, w, h) < 60 || dist(mx, my, w + 150, h - 200) < 60) {
-      return true;
-    } else {
-      cursor(ARROW);
       return false;
     }
   }
@@ -218,8 +198,18 @@ class Fall {
       image(iFallbg, w, h);
       if (time >= 18 || time <6)
         background(inFallbg);
-      image(iRain, w, h, 708, 979);
+      rainDisplay();
     }
+  }
+
+  void rainDisplay() {
+    imageMode(CORNER);
+    image(iRain, 0, rainY, 900, 979);
+    image(iRain, 0, rainY-(h*4));
+    rainY+=2;
+    if (rainY>=(h*2))
+      rainY = 0;
+    // rain.start();
   }
 
   void scarecrow_display() {
@@ -298,7 +288,6 @@ class Fall {
       leaves.pause();
     }
     if (treeHit(mouseX, mouseY) && !tree.isPlaying()) {
-      ;
       tree.loop();
       crow.pause();
       leaves.pause();
@@ -328,7 +317,7 @@ class Fall {
     // day & night change
     if (timeMenuOn) {
       // day&night change
-      if (dist(mouseX, mouseY,40, 120)<50) {
+      if (dist(mouseX, mouseY, 70, 140)<50) {
         if (time >= 18 || time < 6) { // if night -> day
           time = 0;
           time += 7;
@@ -339,13 +328,13 @@ class Fall {
           time += 20;
           print(time);
         }
-      } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
+      } else if (dist(mouseX, mouseY, 70, 210)<50) { // weather change
         // if rain -> sun
         if (weather.equals("shower rain") == true || weather.equals("rain") == true
           || weather.equals("thunderstorm") == true)
           weather = "clear sky";
         println(weather);
-      } else if (dist(mouseX, mouseY, 40, 260)<50) {
+      } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
         if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
           || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
