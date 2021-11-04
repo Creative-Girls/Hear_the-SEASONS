@@ -2,8 +2,8 @@ import ddf.minim.*;
 import ddf.minim.analysis.*;
 
 //public variable
-Minim minim;
 Button but;
+Minim minim;
 String type = "start";
 boolean menuOn = false;
 boolean seasonMenuOn = false;
@@ -36,14 +36,13 @@ Winter winter = null;
 
 
 void setup() {
-    minim = new Minim(this);
     
     size(708, 979);
     background(255);
     bg = loadImage("/intro/img/Intro-bg.png");
     //bg= loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-bg.png");
     bg.resize(708, 979);
-    bg_title = loadImage("/intro/img /Intro-title.png");
+    bg_title = loadImage("/intro/img/Intro-title.png");
     //bg_title = loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-title.png");
     bg_title.resize(708, 979);
     
@@ -58,6 +57,8 @@ void setup() {
     month = month();
     day = day();
     time = hour();
+    
+    minim = new Minim(this);
     
     //Button
     but = new Button(this, width, height,time);

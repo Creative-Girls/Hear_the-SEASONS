@@ -44,14 +44,13 @@ class Spring {
     this.day = day;
     this.time = time;
 
-    
      sRain = minim.loadFile("/spring/sound/rain.wav");
      sButterfly = minim.loadFile("/spring/sound/butterfly.mp3");
      sBird = new SoundFile(season,"/spring/sound/bird.wav");
      sFrog = minim.loadFile("/spring/sound/frog.mp3");
      
      iSpringbg = loadImage("/spring/img/SpringBg.png");
-     iSpringbg = loadImage("/spring/img/SpringBg.png");
+     inSpringbg = loadImage("/spring/img/SpringBgnight.png");
      iBbutterfly = loadImage("/spring/img/BlueButterfly.png");
      iBbird1 = loadImage("/spring/img/BlueBird1.png");
      iBbird2 = loadImage("/spring/img/BlueBird2.png");
@@ -161,6 +160,7 @@ class Spring {
   }
 
   void backimage() {
+    time = 20;
     image(iSpringbg, w, h, 708, 979);
 
     // if raing now, it's rainy & frog appear
