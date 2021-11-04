@@ -18,12 +18,13 @@ class Summer {
   PImage iseagull1, iseagull2, iseagull3, iseagull4;
   PImage isea, isea_night;
   PImage ipalm1, ipalm2;
-  PImage ilighthouse, ilighthouse_night;
+  PImage ilighthouse, ilighthouse_night, ilighthouse_night2;
   PImage icicada;
   PImage iboat, iboat_night;
   PImage iairplane;
   PImage iparasol;
   PImage iRain;
+  PImage istars;
 
   String weather;
   float w, h; // w:width, h:height
@@ -74,12 +75,14 @@ class Summer {
     iseagull4 = loadImage("/summer/img/seagull4.png");
     ilighthouse = loadImage("/summer/img/lighthouse.png");
     ilighthouse_night = loadImage("/summer/img/lighthouse_night.png");
+    ilighthouse_night2 = loadImage("/summer/img/lighthouse_night2.png");
     iparasol = loadImage("/summer/img/parasol.png");
     icicada = loadImage("/summer/img/cicada.png");
     iairplane = loadImage("/summer/img/airplane.png");
     iboat_night = loadImage("/summer/img/boat_night.png");
     iboat = loadImage("/summer/img/boat.png");
     iRain = loadImage("/common/img/rain.png");
+    istars = loadImage("/summer/img/stars.png");
 
     // do not remove ~~ gaeun is sad ~
     /*
@@ -142,6 +145,7 @@ class Summer {
       lighthouse_night_display();
       boat_night_display();
       airplane_display();
+      stars_display();
     }
     but.draw();
   }
@@ -189,7 +193,7 @@ class Summer {
 
   //palm hit
   boolean palmHit(float mx, float my) {
-    if (dist(mx, my, w - 250, h - 300) < 80 || dist(mx, my, w + 250, h - 180) < 80) {
+    if (dist(mx, my, w + 300, h + 150) < 80) {
       palmHitYN = true;
       return true;
     } else {
@@ -199,17 +203,37 @@ class Summer {
   }
 
   boolean mousecursor3(float mx, float my) {
-    if (dist(mx, my, w - 250, h - 300) < 80 || dist(mx, my, w + 250, h - 180) < 80) {
+    if (dist(mx, my, w + 300, h + 150) < 80) {
       return true;
     } else {
       cursor(ARROW);
       return false;
     }
   }
+  
+  //lighthouse hit
+  boolean lighthouseHit(float mx, float my) {
+    if (dist(mx, my, w - 180, h + 250) < 30) {
+      lighthouseHitYN = true;
+      return true;
+    } else {
+      lighthouseHitYN = false;
+      return false;
+    }
+  }
+
+  boolean mousecursor4(float mx, float my) {
+    if (dist(mx, my, w - 180, h + 250) < 30) {
+      return true;
+    } else {
+      cursor(ARROW);
+      return false;
+    }
+  }  
 
   //cicada hit
   boolean cicadaHit(float mx, float my) {
-    if (dist(mx, my, w + 340, h - 100) < 30) {
+    if (dist(mx, my, w + 300, h + 250) < 30) {
       cicadaHitYN = true;
       return true;
     } else {
@@ -219,7 +243,7 @@ class Summer {
   }
 
   boolean mousecursor5(float mx, float my) {
-    if (dist(mx, my, w + 340, h - 100) < 30) {
+    if (dist(mx, my, w + 300, h + 250) < 30) {
       return true;
     } else {
       cursor(ARROW);
@@ -229,7 +253,7 @@ class Summer {
 
   //boat hit
   boolean boatHit(float mx, float my) {
-    if (dist(mx, my, w, h + 279) < 30) {
+    if (dist(mx, my, w + 100, h + 150) < 30) {
       boatHitYN = true;
       return true;
     } else {
@@ -239,7 +263,7 @@ class Summer {
   }
 
   boolean mousecursor6(float mx, float my) {
-    if (dist(mx, my, w, h + 279) < 30) {
+    if (dist(mx, my, w + 100, h + 150) < 30) {
       return true;
     } else {
       cursor(ARROW);
@@ -308,17 +332,18 @@ class Summer {
   void palm_display() {
 
     imageMode(CENTER);
-
-    if (palmHitYN)
-    {
-      image(ipalm1, w + floor(cos(imgX) * 4), h + floor(sin(imgY) * 4));
-      image(ipalm2, w + floor(cos(imgX) * 4), h + floor(sin(imgY) * 4));
-
-      imgX += 1;
-      imgY += 1;
+    
+    if (palmHitYN) {
+        n += 1;
+      if (n >= 14) {
+        n -= 14;
+      }
+      if (n%2==0)
+        image(ipalm1, w, h);
+      if (n%2==1)
+        image(ipalm2, w, h);
     } else {
       image(ipalm1, w, h);
-      image(ipalm2, w, h);
     }
   }
 
@@ -369,19 +394,19 @@ class Summer {
       }
       if (n % 2 ==  0)
         image(iseagull1, w, h - n);
-      image(iseagull2, w, h - n);
-      image(iseagull3, w, h - n);
-      image(iseagull4, w, h - n);
+      image(iseagull2, w, h - n-1);
+      image(iseagull3, w, h - n-2);
+      image(iseagull4, w, h - n-1);
       if (n % 2 ==  1)
         image(iseagull1, w, h - n);
-      image(iseagull2, w, h - n);
-      image(iseagull3, w, h - n);
-      image(iseagull4, w, h - n);
+      image(iseagull2, w, h - n-1);
+      image(iseagull3, w, h - n-2);
+      image(iseagull4, w, h - n-1);
     } else {
       image(iseagull1, w, h - n);
-      image(iseagull2, w, h - n);
-      image(iseagull3, w, h - n);
-      image(iseagull4, w, h - n);
+      image(iseagull2, w, h - n-1);
+      image(iseagull3, w, h - n-2);
+      image(iseagull4, w, h - n-1);
     }
   }
 
@@ -401,7 +426,14 @@ class Summer {
     imageMode(CENTER);
 
     if (lighthouseHitYN) {
-      image(ilighthouse_night, w, h);
+        n += 1;
+      if (n >= 14) {
+        n -= 14;
+      }
+      if (n%2==0)
+        image(ilighthouse_night, w, h);
+      if (n%2==1)
+        image(ilighthouse_night2, w, h);
     } else {
       image(ilighthouse_night, w, h);
     }
@@ -455,6 +487,13 @@ class Summer {
     imageMode(CENTER);
 
     image(iparasol, w, h);
+  }
+  
+    void stars_display() {
+
+    imageMode(CENTER);
+
+    image(istars, w, h);
   }
 
   void mousePressed() {
