@@ -120,7 +120,7 @@ class Fall {
       tree_display();
       crow_display();
       bug_display();
-    } else if (time < 18 || time >= 6) {
+    } else if (time < 18 && time >= 6) {
       //day
       scarecrow_display();
       tree_display();
@@ -331,7 +331,7 @@ class Fall {
           time = 0;
           time += 7;
           print(time);
-        } else if (time < 18 || time >= 6)
+        } else if (time < 18 && time >= 6)
         {// if day -> night
           time = 0;
           time += 20;
