@@ -90,7 +90,7 @@ class Summer {
     iboat_night = loadImage("/summer/img/boat_night.png");
     iboat = loadImage("/summer/img/boat.png");
     iRain = loadImage("/common/img/rain.png");
-    
+
     // do not remove ~~ gaeun is sad ~
     /*
         rain_under_parasol =  minim.loadFile("/Users/uga-eun/Desktop/Season/data/summer/sound/rain-under-parasol.mp3");
@@ -319,32 +319,22 @@ class Summer {
     }
   }
 
-  void backimage() {
-    if (time < 18 || time >= 6) {
-      image(iSummerBg, w, h, 708, 979);
-      // if raing now, it's rainy & parasol sound appear
-      if (weather.equals("mist") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
-        || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true)
-        background(iSummerBg);
-      else if (weather.equals("shower rain") == true || weather.equals("rain") == true
+ 
+    void backimage() {
+      // if raing now, it's rainy & frog appear
+      if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
+        || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
+      {
+        image(iSummerBg, w, h, 708, 979);
+        if (time >= 18 || time <6)
+          image(iSummerBg_night, w, h);
+      } else if (weather.equals("shower rain") == true|| weather.equals("rain") == true
         || weather.equals("thunderstorm") == true) {
-        tint(180);
-        image(iRain, w, h);
         image(iSummerBg, w, h);
+        if (time >= 18 || time <6)
+          image(iSummerBg_night, w, h);
+        image(iRain, w, h, 708, 979);
       }
-    } else if (time >= 18 && time < 6) {
-      image(iSummerBg_night, w, h, 708, 979);
-      // if raing now, it's rainy & parasol sound appear
-      if (weather.equals("mist") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
-        || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true)
-        background(iSummerBg_night);
-      else if (weather.equals("shower rain") == true || weather.equals("rain") == true
-        || weather.equals("thunderstorm") == true) {
-        tint(180);
-        image(iRain, w, h,708,979);
-        image(iSummerBg_night, w, h);
-      }
-    }
   }
 
   void palm_display() {
@@ -632,13 +622,13 @@ class Summer {
           time += 20;
           print(time);
         }
-      } else if (dist(mouseX, mouseY, 40,190)<50) { // weather change
+      } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
         // if rain -> sun
         if (weather.equals("shower rain") == true || weather.equals("rain") == true
           || weather.equals("thunderstorm") == true ||weather.equals("thunderstorm") == true)
           weather = "clear sky";
         println(weather);
-      } else if (dist(mouseX, mouseY,40,260)<50) {
+      } else if (dist(mouseX, mouseY, 40, 260)<50) {
         // if sun -> rain
         if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
           || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
