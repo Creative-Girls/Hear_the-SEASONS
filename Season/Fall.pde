@@ -53,7 +53,7 @@ class Fall {
     this.month = month;
     this.day = day;
     this.time = time;
-    /*
+    
     leaves = minim.loadFile("/fall/sound/leaves.wav");
      crow = minim.loadFile("/fall/sound/hooded_crow.wav");
      //fallbgm = minim.loadFile("fallbg.wav");
@@ -78,9 +78,9 @@ class Fall {
      iBug3 = loadImage("/fall/img/bug3.png");
      iBug4 = loadImage("/fall/img/bug4.png");
      iRain = loadImage("/common/img/rain.png");
-     */
+     
     // don'tremove ~ gaeun is sad ~~
-
+/*
     leaves = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/leaves.wav");
     crow= minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/hooded_crow.wav");
     //fallbgm = minim.loadFile("/Users/uga-eun/Desktop/Season/data/fall/sound/fallbg.wav");
@@ -106,6 +106,7 @@ class Fall {
     iBug3 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug3.png");
     iBug4 = loadImage("/Users/uga-eun/Desktop/Season/data/fall/img/bug4.png");
     iRain = loadImage("/Users/uga-eun/Desktop/Season/data/winter/img/rain.png");
+    */
   }
 
   void draw() {
