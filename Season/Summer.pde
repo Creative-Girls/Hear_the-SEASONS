@@ -576,14 +576,10 @@ class Summer {
         }
       } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
         // if rain -> sun
-        if (weather.equals("shower rain") == true || weather.equals("rain") == true
-          || weather.equals("thunderstorm") == true ||weather.equals("thunderstorm") == true)
           weather = "clear sky";
         println(weather);
       } else if (dist(mouseX, mouseY, 40, 260)<50) {
         // if sun -> rain
-        if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
-          || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
           weather = "rain";
         println(weather);
       }

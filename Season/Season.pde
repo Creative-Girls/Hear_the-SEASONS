@@ -39,7 +39,7 @@ void setup() {
     
     size(708, 979);
     background(255);
-    bg = loadImage("/intro/img/Intro-bg.png");
+    bg = loadImage("/spring/img/SpringBg.png");
     //bg= loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-bg.png");
     bg.resize(708, 979);
     bg_title = loadImage("/intro/img/Intro-title.png");

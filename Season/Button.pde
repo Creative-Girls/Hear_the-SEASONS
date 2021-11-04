@@ -61,7 +61,7 @@ class Button {
         // season selection
         if (!menuOn) {
             if (type.equals("start")) {
-                image(startBut, w / 2 - 50, h - 300, 130, 80);
+                image(startBut, w / 2 - 70, h - 300, 160, 80);
             }
         } else {
             image(menu, w - 40, 40, 50, 50);
@@ -86,7 +86,7 @@ class Button {
     void mousePressed() {
         //버튼범위 확인 필요
         if (!menuOn) {
-            if (dist(mouseX, mouseY,(w / 2 - 50),(h - 300)) <130) {
+            if (dist(mouseX, mouseY,w/2-70,(h - 300)) <160) {
                 type = "spring";
                 spring = new Spring(season, w / 2, h / 2, weather, month, day, time);
             }
