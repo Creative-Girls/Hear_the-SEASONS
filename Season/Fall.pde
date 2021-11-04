@@ -4,6 +4,7 @@ class Fall {
   Season season;
 
   //sound
+  AudioPlayer sRain;
   AudioPlayer leaves;
   AudioPlayer crow;
   AudioPlayer fallbgm;
@@ -53,7 +54,7 @@ class Fall {
     this.month = month;
     this.day = day;
     this.time = time;
-    
+     sRain = minim.loadFile("/spring/sound/rain.wav");
     leaves = minim.loadFile("/fall/sound/leaves.wav");
      crow = minim.loadFile("/fall/sound/hooded_crow.wav");
      //fallbgm = minim.loadFile("fallbg.wav");
@@ -125,6 +126,12 @@ class Fall {
       tree_display();
       crow_display();
     }
+    
+    if(rainYN)
+      sRain.play();
+    if(!rainYN)
+      sRain.pause();
+    
     but.draw();
     if (dist(mouseX, mouseY, w + 180, h + 250) < 80)
       cursor(HAND);
@@ -193,10 +200,12 @@ class Fall {
       image(iFallbg, w, h);
       if (time >= 18 || time <6)
         background(inFallbg);
-      rainDisplay();
+        rainDisplay();
+        rainYN = true;
     } else
     {
       background(iFallbg);
+      rainYN=false;
       if (time >= 18 || time <6)
         background(inFallbg);
     }
@@ -330,15 +339,12 @@ class Fall {
         }
       } else if (dist(mouseX, mouseY, 70, 210)<50) { // weather change
         // if rain -> sun
-        if (weather.equals("shower rain") == true || weather.equals("rain") == true
-          || weather.equals("thunderstorm") == true)
           weather = "clear sky";
         println(weather);
       } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
-        if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
-          || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
           weather = "rain";
+          rainYN=true;
         println(weather);
       }
     }
