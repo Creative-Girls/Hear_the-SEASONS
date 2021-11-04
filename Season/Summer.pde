@@ -11,11 +11,11 @@ class Summer {
   AudioPlayer palm;
   SoundFile sea;
   AudioPlayer seaBg;
-  AudioPlayer seagulls;
+  AudioPlayer seagull;
 
   PImage iSummerBg, iSummerBg_night;
   PImage iground, iground_night;
-  PImage iseagull1, iseagull2, iseagull3, iseagull4;
+  PImage iseagull, iseagull1, iseagull2;
   PImage isea, isea_night;
   PImage ipalm1, ipalm2;
   PImage ilighthouse, ilighthouse_night, ilighthouse_night2;
@@ -30,7 +30,7 @@ class Summer {
   float w, h; // w:width, h:height
   int month, day, time;
 
-  boolean seagullsHitYN = false;
+  boolean seagullHitYN = false;
   boolean seaHitYN = false;
   boolean palmHitYN = false;
   boolean lighthouseHitYN = false;
@@ -55,7 +55,7 @@ class Summer {
 
     rain_under_parasol =  minim.loadFile("/summer/sound/rain-under-parasol.mp3");
     cicada = new SoundFile(season, "/summer/sound/cicada.wav");
-    seagulls =  minim.loadFile("/summer/sound/seagulls.wav");
+    seagull =  minim.loadFile("/summer/sound/seagulls.wav");
     sea = new SoundFile(season, "/summer/sound/sea.wav");
     palm =  minim.loadFile("/summer/sound/leaf.wav");
     airplane = new SoundFile(season, "/summer/sound/airplane.wav");
@@ -69,10 +69,9 @@ class Summer {
     isea_night = loadImage("/summer/img/sea_night.png");
     iground = loadImage("/summer/img/ground_night.png");
     iground_night = loadImage("/summer/img/ground_night.png");
+    iseagull = loadImage("/summer/img/seagull.png");
     iseagull1 = loadImage("/summer/img/seagull1.png");
     iseagull2 = loadImage("/summer/img/seagull2.png");
-    iseagull3 = loadImage("/summer/img/seagull3.png");
-    iseagull4 = loadImage("/summer/img/seagull4.png");
     ilighthouse = loadImage("/summer/img/lighthouse.png");
     ilighthouse_night = loadImage("/summer/img/lighthouse_night.png");
     ilighthouse_night2 = loadImage("/summer/img/lighthouse_night2.png");
@@ -152,18 +151,18 @@ class Summer {
 
 
   //seagull hit detection
-  boolean seagullsHit(float mx, float my) {
-    if (dist(mx, my, w, h - 100) < 100) {
-      seagullsHitYN = true;
+  boolean seagullHit(float mx, float my) {
+    if (dist(mx, my, w - 180, h + 230) < 30) {
+      seagullHitYN = true;
       return true;
     } else {
-      seagullsHitYN = false;
+      seagullHitYN = false;
       return false;
     }
   }
 
   boolean mousecursor1(float mx, float my) {
-    if (dist(mx, my, w, h - 100) < 100) {
+    if (dist(mx, my, w - 180, h + 230) < 30) {
       return true;
     } else {
       cursor(ARROW);
@@ -387,26 +386,17 @@ class Summer {
 
     imageMode(CENTER);
 
-    if (seagullsHitYN) {
+    if (seagullHitYN) {
       n+= 1;
       if (n>= 14) {
         n -= 14;
       }
       if (n % 2 ==  0)
         image(iseagull1, w, h - n);
-      image(iseagull2, w, h - n-1);
-      image(iseagull3, w, h - n-2);
-      image(iseagull4, w, h - n-1);
       if (n % 2 ==  1)
-        image(iseagull1, w, h - n);
-      image(iseagull2, w, h - n-1);
-      image(iseagull3, w, h - n-2);
-      image(iseagull4, w, h - n-1);
+      image(iseagull2, w, h - n);
     } else {
-      image(iseagull1, w, h - n);
-      image(iseagull2, w, h - n-1);
-      image(iseagull3, w, h - n-2);
-      image(iseagull4, w, h - n-1);
+      image(iseagull, w, h);
     }
   }
 
@@ -497,21 +487,21 @@ class Summer {
   }
 
   void mousePressed() {
-    if (seagullsHit(mouseX, mouseY) && !seagulls.isPlaying()) {
-      seagulls.loop();
+    if (seagullHit(mouseX, mouseY) && !seagull.isPlaying()) {
+      seagull.loop();
       sea.pause();
       palm.pause();
       cicada.pause();
       airplane.pause();
       rain_under_parasol.pause();
-    } else if (seagullsHit(mouseX, mouseY) && seagulls.isPlaying()) {
-      seagullsHitYN = false;
-      seagulls.pause();
+    } else if (seagullHit(mouseX, mouseY) && seagull.isPlaying()) {
+      seagullHitYN = false;
+      seagull.pause();
     }
 
     if (seaHit(mouseX, mouseY) && !sea.isPlaying()) {
       sea.loop();
-      seagulls.pause();
+      seagull.pause();
       palm.pause();
       cicada.pause();
       airplane.pause();
@@ -523,7 +513,7 @@ class Summer {
 
     if (palmHit(mouseX, mouseY) && !palm.isPlaying()) {
       palm.loop();
-      seagulls.pause();
+      seagull.pause();
       sea.pause();
       cicada.pause();
       airplane.pause();
@@ -535,7 +525,7 @@ class Summer {
 
     if (cicadaHit(mouseX, mouseY) && !cicada.isPlaying()) {
       cicada.loop();
-      seagulls.pause();
+      seagull.pause();
       sea.pause();
       palm.pause();
       airplane.pause();
@@ -547,7 +537,7 @@ class Summer {
 
     if (airplaneHit(mouseX, mouseY) && !airplane.isPlaying()) {
       airplane.loop();
-      seagulls.pause();
+      seagull.pause();
       sea.pause();
       cicada.pause();
       palm.pause();
@@ -561,7 +551,7 @@ class Summer {
       (weather.equals("shower rain") == true || weather.equals("rain") == true
       || weather.equals("thunderstorm") == true)  ) {
       rain_under_parasol.loop();
-      seagulls.pause();
+      seagull.pause();
       sea.pause();
       cicada.pause();
       airplane.pause();
