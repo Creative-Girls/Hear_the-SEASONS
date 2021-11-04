@@ -164,7 +164,7 @@ class Spring {
 
 
     // if raing now, it's rainy & frog appear
-    if ( weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
+    if (weather.equals("mist") == true ||  weather.equals("haze") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
       || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true ||weather.equals("overcast clouds") == true)
     {
       background(iSpringbg);
@@ -289,7 +289,7 @@ class Spring {
         println(weather);
       } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
-        if (weather.equals("haze") == true ||weather.equals("clear sky") == true ||weather.equals("few clouds clouds") == true
+        if (weather.equals("mist") == true || weather.equals("haze") == true ||weather.equals("clear sky") == true ||weather.equals("few clouds clouds") == true
           || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
           weather = "rain";
         println(weather);

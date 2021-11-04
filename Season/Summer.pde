@@ -89,7 +89,8 @@ class Summer {
     iairplane = loadImage("/summer/img/airplane.png");
     iboat_night = loadImage("/summer/img/boat_night.png");
     iboat = loadImage("/summer/img/boat.png");
-
+    iRain = loadImage("/common/img/rain.png");
+    
     // do not remove ~~ gaeun is sad ~
     /*
         rain_under_parasol =  minim.loadFile("/Users/uga-eun/Desktop/Season/data/summer/sound/rain-under-parasol.mp3");
@@ -319,10 +320,10 @@ class Summer {
   }
 
   void backimage() {
-    if (hour() < 18 && hour() >= 6) {
+    if (time < 18 || time >= 6) {
       image(iSummerBg, w, h, 708, 979);
       // if raing now, it's rainy & parasol sound appear
-      if (weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
+      if (weather.equals("mist") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
         || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true)
         background(iSummerBg);
       else if (weather.equals("shower rain") == true || weather.equals("rain") == true
@@ -331,16 +332,16 @@ class Summer {
         image(iRain, w, h);
         image(iSummerBg, w, h);
       }
-    } else if (hour() >= 18 && hour() < 6) {
+    } else if (time >= 18 && time < 6) {
       image(iSummerBg_night, w, h, 708, 979);
       // if raing now, it's rainy & parasol sound appear
-      if (weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
+      if (weather.equals("mist") == true || weather.equals("clear sky") == true || weather.equals("few clouds clouds") == true
         || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true)
         background(iSummerBg_night);
       else if (weather.equals("shower rain") == true || weather.equals("rain") == true
         || weather.equals("thunderstorm") == true) {
         tint(180);
-        image(iRain, w, h);
+        image(iRain, w, h,708,979);
         image(iSummerBg_night, w, h);
       }
     }
@@ -639,7 +640,7 @@ class Summer {
         println(weather);
       } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
-        if (weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
+        if (weather.equals("mist") == true || weather.equals("haze") == true || weather.equals("clear sky") == true ||  weather.equals("few clouds clouds") == true
           || weather.equals("scattered clouds") == true || weather.equals("broken clouds") == true || weather.equals("overcast clouds") == true)
           weather = "rain";
         println(weather);
