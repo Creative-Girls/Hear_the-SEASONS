@@ -18,6 +18,8 @@ class Winter {
   PImage iSmoke;
   PImage iSun;
   PImage iRain;
+  
+  PImage snowbut;
 
   PImage cTree;
   PImage cSanta;
@@ -103,6 +105,7 @@ class Winter {
     iSnow = loadImage("/winter/img/snow.png");
     iSmoke = loadImage("/winter/img/smoke.png");
     iRain = loadImage("/winter/img/rain.png");
+    snowbut = loadImage("/winter/img/snowbut.png");
   }
 
   void draw() {
@@ -110,8 +113,16 @@ class Winter {
     backimage();
     fireDisplay();
     sunDisplay();
-    snowDisplay();
-
+    
+    if(snowYN)
+      snowDisplay();
+    
+    if(timeMenuOn)
+    {
+      imageMode(CENTER);
+        image(snowbut, 40, 330, 50, 50);
+    }
+     imageMode(CORNER);
     if (christmasYN&&!dayNight)
       santaDisplay();
 
@@ -125,6 +136,12 @@ class Winter {
       sRain.play();
       if(christmasYN)
         christmas.pause();
+    }
+    if (!rainYN)
+    {
+      sRain.pause();
+      if(christmasYN)
+        christmas.play();
     }
 
     imageMode(CENTER);
@@ -269,8 +286,13 @@ class Winter {
           }
       } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
           rainYN = false;
+          snowYN = false;
       } else if (dist(mouseX, mouseY, 40, 260)<50) {
             rainYN = true;
+            snowYN = false;
+      } else if (dist(mouseX, mouseY, 40, 330)<50) { // weather change
+          snowYN = true;
+          rainYN = false;
       }
        if (dayNight)
       {
