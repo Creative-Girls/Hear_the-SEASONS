@@ -116,13 +116,20 @@ class Spring {
 
     imageMode(CENTER);
     but.draw();
-
     
-    
+    // what has sound chnages the mouse curor to the hand_ga eun
+    if (dist(mouseX, mouseY, w, h) < 50)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w - 80, h - 400) < 80)
+      cursor(HAND);
+    else if (dist(mouseX, mouseY, w - 180, h + 180) < 50)
+      cursor(HAND);
+    else
+      cursor(ARROW);
   }
 
 
-  
+//butterfly hit detection_gaeun
   boolean butterflyHit(float mx, float my) {
     if (dist(mx, my, w, h) < 50) {
       butterflyHitYN = true;
@@ -133,7 +140,7 @@ class Spring {
     }
   }
 
-  
+//BlueBird hit detection_gaeun
   boolean birdHit(float mx, float my) {
     if (dist(mx, my, w - 80, h - 400) < 50) {
       BbirdHitYN = true;
@@ -144,7 +151,7 @@ class Spring {
     }
   }
 
-  
+//frog hit detection_gaeun
   boolean frogHit(float mx, float my) {
     if (dist(mx, my, w - 180, h + 180) < 50) {
       frogHitYN = true;
@@ -155,10 +162,10 @@ class Spring {
     }
   }
 
- 
+
 
   void backimage() {
-    //time = 20;
+    
     imageMode(CENTER);
     image(iSpringbg, w, h);
   }
@@ -278,36 +285,35 @@ class Spring {
           time += 20;
           print(time);
         }
-      } 
-     
-        // day&night change
-        if (dist(mouseX, mouseY, 40, 120)<50) {
-          if (time >= 18 || time < 6) { // if night -> day
-            dayNight = false;
-          } else if (time < 18 && time >= 6)
-          {// if day -> night
-            dayNight = true;
-          }
-        } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
-          rainYN = false;
-        } else if (dist(mouseX, mouseY, 40, 260)<50) {
-          rainYN = true;
+      }
+
+      // day&night change
+      if (dist(mouseX, mouseY, 40, 120)<50) {
+        if (time >= 18 || time < 6) { // if night -> day
+          dayNight = false;
+        } else if (time < 18 && time >= 6)
+        {// if day -> night
+          dayNight = true;
         }
-        if (dayNight)
-        {
-          iSpringbg = loadImage("/spring/img/SpringBg.png");
-          iSun = loadImage("/winter/img/sun.png");
-        } else
-        {
-          iSpringbg = loadImage("/spring/img/SpringBgnight.png");
-          iSun = loadImage("/winter/img/moon.png");
-        }
-        
-        if (dayNight)
-          iCloud = loadImage("/winter/img/cloud.png");
-        else if (!dayNight || rainYN)
-          iCloud = loadImage("/winter/img/darkCloud.png");
-      
+      } else if (dist(mouseX, mouseY, 40, 190)<50) { // weather change
+        rainYN = false;
+      } else if (dist(mouseX, mouseY, 40, 260)<50) {
+        rainYN = true;
+      }
+      if (dayNight)
+      {
+        iSpringbg = loadImage("/spring/img/SpringBg.png");
+        iSun = loadImage("/winter/img/sun.png");
+      } else
+      {
+        iSpringbg = loadImage("/spring/img/SpringBgnight.png");
+        iSun = loadImage("/winter/img/moon.png");
+      }
+
+      if (dayNight)
+        iCloud = loadImage("/winter/img/cloud.png");
+      else if (!dayNight || rainYN)
+        iCloud = loadImage("/winter/img/darkCloud.png");
     }
   }
 }
