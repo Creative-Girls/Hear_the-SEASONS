@@ -38,7 +38,7 @@ void setup() {
     size(708, 979); //background size
     background(255); //background color
     bg = loadImage("/spring/img/SpringBg.png"); //background image
-    bg= loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-bg.png");
+  //  bg= loadImage("/Users/uga-eun/Desktop/Season/data/spring/img/SpringBg.png");
     bg.resize(708, 979);
     bg_title = loadImage("/intro/img/Intro-title.png"); //background image(title)
     //bg_title = loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-title.png");

@@ -49,6 +49,11 @@ class Summer {   //summer class
   int boatX; //width of boat
   int n = 0; //a constant
   
+  //aiprplane animation error solve - Sieun 
+  int airplanP = 0;
+  float airplaneW;
+  float airplaneH;
+  
   Summer(Season season, float w, float h, String weather, int month, int day, int time) {
     this.season = season;
     this.w = w;
@@ -56,7 +61,10 @@ class Summer {   //summer class
     this.weather = weather;
     this.month = month;
     this.day = day;
-    this.time = time;
+    this.time = 22;
+    
+    airplaneW = w;
+    airplaneH = h;
     
     //sound
     sRain = minim.loadFile("/spring/sound/rain.wav"); //rain sound
@@ -434,19 +442,18 @@ class Summer {   //summer class
       boatX = 0;
   }
 
-  void airplane_display() {  //airplane
-
+  void airplane_night_display(){  //airplane
     imageMode(CENTER);
 
     if (airplaneHitYN) {  //if you click airplane, it flies away the sky.
-      n += 1;
-      image(iairplane, w + n, h - n);
+    airplanP += 1;
+      image(iairplane,airplaneW +airplanP,airplaneH - airplanP);
     } else {
-      image(iairplane, w, h);
+      image(iairplane,airplaneW, airplaneH);
     }
   }
 
-  void airplane_night_display() {  //airplane
+ void airplane_display() {  //airplane
 
     imageMode(CENTER);
 
