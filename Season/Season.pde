@@ -1,9 +1,9 @@
-import ddf.minim.*;
+import ddf.minim.*; //minim library
 import ddf.minim.analysis.*;
 
 //public variable
-Button but;
-Minim minim;
+Button but; //button variable
+Minim minim; 
 String type = "start";
 boolean menuOn = false;
 boolean seasonMenuOn = false;
@@ -11,8 +11,6 @@ boolean timeMenuOn = false;
 
 private PImage bg;
 private PImage bg_title;
-
-private int w_color = 255;
 
 //get weather API
 private XML xml;
@@ -37,12 +35,12 @@ Winter winter = null;
 
 void setup() {
     
-    size(708, 979);
-    background(255);
-    bg = loadImage("/spring/img/SpringBg.png");
+    size(708, 979); //background size
+    background(255); //background color
+    bg = loadImage("/spring/img/SpringBg.png"); //background image
     //bg= loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-bg.png");
     bg.resize(708, 979);
-    bg_title = loadImage("/intro/img/Intro-title.png");
+    bg_title = loadImage("/intro/img/Intro-title.png"); //background image(title)
     //bg_title = loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-title.png");
     bg_title.resize(708, 979);
     
@@ -65,7 +63,7 @@ void setup() {
 }
 
 void draw() {  
-    if (type.equals("start"))
+    if (type.equals("start")) //intro page
     {
         frameRate(1000);
         background(255);
@@ -73,26 +71,26 @@ void draw() {
         image(bg_title, 0, 0);
         but.draw();
     }
-    else if (type.equals("spring") &&  spring!= null)
+    else if (type.equals("spring") &&  spring!= null) //spring page
     {
         menuOn = true;
         background(255);
         frameRate(5);
         spring.draw();
     }
-    else if (type.equals("summer") &&  summer!= null)
+    else if (type.equals("summer") &&  summer!= null)  //summer page
     {
         menuOn = true;
         frameRate(5);
         summer.draw();
     }
-    else if (type.equals("fall") &&  fall!= null)
+    else if (type.equals("fall") &&  fall!= null)  //fall page
     {
         menuOn = true;
         frameRate(5);
         fall.draw();
     }
-    else if (type.equals("winter") &&  winter!= null)
+    else if (type.equals("winter") &&  winter!= null)  //winter page
     {
         menuOn = true;
         frameRate(5);
@@ -101,19 +99,19 @@ void draw() {
 }
 
 void mousePressed() {
-    if (type.equals("start"))
+    if (type.equals("start")) //if press start button, it is pressed.
         {
         but.mousePressed();
-    } else if (type.equals("spring") &&  spring!= null) {
+    } else if (type.equals("spring") &&  spring!= null) { //if press spring button, it is pressed.
         spring.mousePressed();
         but.mousePressed();
-    } else if (type.equals("summer") &&  summer!= null) {
+    } else if (type.equals("summer") &&  summer!= null) { //if press summer button, it is pressed.
         summer.mousePressed();
         but.mousePressed();
-    } else if (type.equals("fall") &&  fall!= null) {
+    } else if (type.equals("fall") &&  fall!= null) { //if press fall button, it is pressed.
         fall.mousePressed();
         but.mousePressed();
-    } else if (type.equals("winter") &&  winter!= null) {
+    } else if (type.equals("winter") &&  winter!= null) { //if press winter button, it is pressed.
         winter.mousePressed();
         but.mousePressed();
     }
