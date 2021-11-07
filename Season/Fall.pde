@@ -117,7 +117,7 @@ class Fall {
       cursor(HAND);
     else if (dist(mouseX, mouseY, w - 150, h - 60) < 80)
       cursor(HAND);
-    else if (dist(mouseX, mouseY, w, h) < 50 || dist(mouseX, mouseY, w + 150, h - 200) < 50)
+    else if (dist(mouseX, mouseY, w, h) < 50 || dist(mouseX, mouseY, w + 150, h - 200) < 50 && time >= 18 || time <6 )
       cursor(HAND);
     else
       cursor(ARROW);
