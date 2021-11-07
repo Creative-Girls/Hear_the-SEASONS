@@ -50,13 +50,13 @@ class Summer {   //summer class
   int n = 0; //a constant
   
   //aiprplane animation error solve - Sieun 
-  int airplanP = 0;
-  float airplaneW;
-  float airplaneH;
+  int airplaneP = 0; //a constant
+  float airplaneW;  //airplane's width
+  float airplaneH;  //airplane's height
   
-  int palmP = 0;
-  float palmW;
-  float palmH;
+  int palmP = 0;  //a constant
+  float palmW;  //palm's weight
+  float palmH;  //palm's height
   
   Summer(Season season, float w, float h, String weather, int month, int day, int time) {
     this.season = season;
@@ -67,10 +67,10 @@ class Summer {   //summer class
     this.day = day;
     this.time = 22;
     
-    airplaneW = w;
-    airplaneH = h;
-    palmW = w;
-    palmH = h;
+    airplaneW = w; //insert w value to airplaneW
+    airplaneH = h; //insert h value
+    palmW = w;  //insert w value
+    palmH = h;  //insert h value
     
     //sound
     sRain = minim.loadFile("/spring/sound/rain.wav"); //rain sound
@@ -201,8 +201,6 @@ class Summer {   //summer class
       if (dist(mouseX, mouseY, w, h + 280) < 50) //sea
         cursor(HAND);
       else if (dist(mouseX, mouseY, w + 300, h + 150) < 80) //palm
-        cursor(HAND);
-      else if (dist(mouseX, mouseY, w - 180, h + 40) < 30)   //lighthouse
         cursor(HAND);
       else if (dist(mouseX, mouseY, w, h - 400) < 80) //airplane
         cursor(HAND);
@@ -431,7 +429,7 @@ class Summer {   //summer class
 
     boatX += 2;
 
-    if (boatX >= (w*3))
+    if (boatX >= (w*2))
       boatX = 0;
   }
 
@@ -444,7 +442,7 @@ class Summer {   //summer class
 
     boatX += 2;
 
-    if (boatX >= (w*3))
+    if (boatX >= (w*2))
       boatX = 0;
   }
 
@@ -452,9 +450,10 @@ class Summer {   //summer class
     imageMode(CENTER);
 
     if (airplaneHitYN) {  //if you click airplane, it flies away the sky.
-    airplanP += 1;
-      image(iairplane,airplaneW +airplanP,airplaneH - airplanP);
+      airplaneP += 1;
+      image(iairplane,airplaneW +airplaneP,airplaneH - airplaneP);
     } else {
+      airplaneP = 0;
       image(iairplane,airplaneW, airplaneH);
     }
   }
@@ -467,6 +466,7 @@ class Summer {   //summer class
       n += 1;
       image(iairplane, w + n, h - n);
     } else {
+      n = 0;
       image(iairplane, w, h);
     }
   }
