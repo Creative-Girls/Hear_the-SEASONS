@@ -123,7 +123,7 @@ class Button {
                     summer = null;         
                 } else if (dist(mouseX, mouseY, w - 40, 330)<50) {
                     type = "winter";
-                    winter = new Winter(season, w / 2, h / 2, weather, 12,25, time);
+                    winter = new Winter(season, w / 2, h / 2, weather,month,day, time);
                     spring = null;
                     fall = null;
                     summer = null;
