@@ -41,20 +41,7 @@ class Button {
         rainbut = loadImage("/common/img/rainbut.png");
         
         
-        // don't remove please ~ gaeun is sad ~~
-        /*
-        startBut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/startBut.png");
-        menu = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/menu.png");
-        springBut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/springBut.png");
-        summerBut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/summerBut.png");
-        fallBut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/fallBut.png");
-        winterBut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/winterBut.png");
-        
-        wheelmenu = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/wheel.png");
-        daynightbut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/daynightbut.png");
-        sunbut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/sunbut.png");
-        rainbut = loadImage("/Users/uga-eun/Desktop/Season/data/common/img/rainbut.png");
-        */
+       
     }
     void draw() {
         
