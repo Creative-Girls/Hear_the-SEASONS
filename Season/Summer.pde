@@ -54,6 +54,10 @@ class Summer {   //summer class
   float airplaneW;
   float airplaneH;
   
+  int palmP = 0;
+  float palmW;
+  float palmH;
+  
   Summer(Season season, float w, float h, String weather, int month, int day, int time) {
     this.season = season;
     this.w = w;
@@ -65,6 +69,8 @@ class Summer {   //summer class
     
     airplaneW = w;
     airplaneH = h;
+    palmW = w;
+    palmH = h;
     
     //sound
     sRain = minim.loadFile("/spring/sound/rain.wav"); //rain sound
@@ -309,16 +315,16 @@ class Summer {   //summer class
     imageMode(CENTER);
     
     if (palmHitYN) {  //if you click palm, the leaves are shaking.
-        n += 1;
-      if (n >= 14) {
-        n -= 14;
+        palmP += 1;
+      if (palmP >= 14) {
+        palmP -= 14;
       }
-      if (n%2==0)
-        image(ipalm1, w, h);
-      if (n%2==1)
-        image(ipalm2, w, h);
+      if (palmP % 2 == 0)
+        image(ipalm1, palmW, palmH);
+      if (palmP % 2 == 1)
+        image(ipalm2, palmW, palmH);
     } else {
-      image(ipalm1, w, h);
+      image(ipalm1, palmW, palmH);
     }
   }
 
@@ -327,16 +333,16 @@ class Summer {   //summer class
     imageMode(CENTER);
     
     if (palmHitYN) {  //if you click palm, the leaves are shaking.
-        n += 1;
-      if (n >= 14) {
-        n -= 14;
+        palmP += 1;
+      if (palmP >= 14) {
+        palmP -= 14;
       }
-      if (n%2==0)
-        image(ipalm1, w, h);
-      if (n%2==1)
-        image(ipalm2, w, h);
+      if (palmP % 2 == 0)
+        image(ipalm1, palmW, palmH);
+      if (palmP % 2 == 1)
+        image(ipalm2, palmW, palmH);
     } else {
-      image(ipalm1, w, h);
+      image(ipalm1, palmW, palmH);
     }
   }
 
