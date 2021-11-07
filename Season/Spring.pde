@@ -1,4 +1,4 @@
-import processing.sound.*;
+import processing.sound.*; //sound library
 
 class Spring {
   Season season;
@@ -24,23 +24,21 @@ class Spring {
   float w, h; // w:width, h:height
   int month, day, time;
 
+  //wheter hit or not function
   boolean butterflyHitYN = false;
   boolean BbirdHitYN = false;
   boolean frogHitYN = false;
   
-  int cloudX;
-  int cloudY=0;
-  int snowY=0;
-  int rainY=0;
+  int cloudX; //cloud width
+  int cloudY=0; //cloud height
+  int rainY=0; //rain height
 
   int hour;
-  int imgX, imgY;
-  int n = 0;
+  int imgX, imgY; //image width & height
+  int n = 0; //a constant
   
   boolean dayNight = true; //true:day, false:night
-  boolean snowYN=false;
-  boolean rainYN=false;
-  boolean christmasYN = false;
+  boolean rainYN=false; //rain or not
 
   Spring(Season season, float w, float h, String weather, int month, int day, int time) {
     this.season = season;
@@ -51,17 +49,18 @@ class Spring {
     this.day = day;
     this.time = time;
     
+    //if it is rain
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
       || weather.equals("thunderstorm") == true) {
       rainYN = true;
     }
 
-    if (time >= 18 || time <6)
+    if (time >= 18 || time <6) //at night
       dayNight = false;
-    if (time < 18 && time >=6)
+    if (time < 18 && time >=6) //at daytime
       dayNight = true;
       
-    if (dayNight)
+    if (dayNight) //at daytime
     {
       iSpringbg = loadImage("/spring/img/SpringBg.png");
       iSun = loadImage("/winter/img/sun.png");
@@ -71,16 +70,18 @@ class Spring {
       iSun = loadImage("/winter/img/moon.png");
     }
 
-    if (dayNight)
+    if (dayNight) //at night
       iCloud = loadImage("/winter/img/cloud.png");
     else if (!dayNight || rainYN)
       iCloud = loadImage("/winter/img/darkCloud.png");
     
+    //sound
      sRain = minim.loadFile("/spring/sound/rain.wav");
      sButterfly = minim.loadFile("/spring/sound/butterfly.mp3");
      sBird = new SoundFile(season,"/spring/sound/bird.wav");
      sFrog = minim.loadFile("/spring/sound/frog.mp3");
-     
+    
+     //image
      iBbutterfly = loadImage("/spring/img/BlueButterfly.png");
      iBbird1 = loadImage("/spring/img/BlueBird1.png");
      iBbird2 = loadImage("/spring/img/BlueBird2.png");
@@ -122,7 +123,7 @@ class Spring {
       cloudDisplay();
     }
     
-    if (rainYN)
+    if (rainYN) //rain
     {
       sRain.play();
       frogDisplay();
@@ -168,26 +169,30 @@ class Spring {
     }
   }
 
-  boolean mousecursor1(float mx, float my) {
-    if (dist(mx, my, w, h) < 80) {
+  //butterfly
+  boolean mousecursor1(float mx, float my) { 
+    if (dist(mx, my, w, h) < 50) {
+      cursor(HAND);
       return true;
     } else {
       cursor(ARROW);
       return false;
     }
   }
-
+ //bird
   boolean mousecursor2(float mx, float my) {
-    if (dist(mx, my, w - 40, h - 400) < 80) {
+    if (dist(mx, my, w - 80, h - 400) < 80) {
+      cursor(HAND);
       return true;
     } else {
       cursor(ARROW);
       return false;
     }
   }
-
+  //frog
   boolean mousecursor3(float mx, float my) {
-    if (dist(mx, my, w - 180, h + 180) < 80) {
+    if (dist(mx, my, w - 180, h + 180) < 50) {
+      cursor(HAND);
       return true;
     } else {
       cursor(ARROW);
@@ -204,7 +209,7 @@ class Spring {
   void butterflyDisplay() {
     imageMode(CENTER);
 
-    if (butterflyHitYN)
+    if (butterflyHitYN)  //if hit the butterfly, it fly.
     {
       image(iBbutterfly, w + floor(cos(imgX) * 4), h + floor(sin(imgY) * 4));
       imgX += 1;
@@ -214,7 +219,7 @@ class Spring {
     }
   }
 
-  void BbirdDisplay() {
+  void BbirdDisplay() {  //if hit the bird, it fly.
     imageMode(CENTER);
     if (BbirdHitYN) {
       n += 1;
@@ -230,7 +235,7 @@ class Spring {
     }
   }
 
-  void frogDisplay() {
+  void frogDisplay() {  //if hit frog, it moves up & down.
     imageMode(CENTER);
     image(iRock, w - 180, h + 250, 180, 200);
 
@@ -245,7 +250,7 @@ class Spring {
     }
   }
 
-  void cloudDisplay() {
+  void cloudDisplay() {  //it flows automatically.
     imageMode(CORNER);
     iCloud.resize((int)w*2, 200);
 
@@ -258,7 +263,7 @@ class Spring {
       cloudX = 0;
   }
   
-   void rainDisplay() {
+   void rainDisplay() { //if the weather is rain, rain image appears.
     imageMode(CORNER);
     image(iRain, 0, rainY);
     image(iRain, 0, rainY-(h*2));
@@ -267,12 +272,12 @@ class Spring {
       rainY = 0;
   }
   
-    void sunDisplay() {
+    void sunDisplay() { //if it isn't rain at daytime, the sun image moves automatically.
     imageMode(CORNER);
 
     image(iSun, w+100, h-350, 150, 150);
   }
-  void mousePressed() {
+  void mousePressed() { //if you click something, that sound is looping and other sound is stopped.
     //spring
     if (butterflyHit(mouseX, mouseY) && !sButterfly.isPlaying()) {
       sButterfly.loop();
