@@ -6,7 +6,6 @@ import ddf.minim.analysis.*;
 Modify all class code as a whole
 -. Modified so that audio files loaded at once from the Season class are loaded from each class
 -. Move code for object hit to each class
-
 */
 
 //public variable
@@ -78,7 +77,7 @@ void setup() {
 
 /*
   Sieun Song
-  Call draw function according to season
+  -. Call draw function according to season
 */
 void draw() {  
     if (type.equals("start")) //intro page

@@ -66,6 +66,8 @@ class Spring {
       dayNight = false;
     if (time < 18 && time >=6) //at daytime
       dayNight = true;
+      
+    println(dayNight);
 
     /*
       Sieun Song
@@ -80,7 +82,6 @@ class Spring {
       iSpringbg = loadImage("/spring/img/SpringBgnight.png");
       iSun = loadImage("/winter/img/moon.png");
     }
-
     if (dayNight) //at night
       iCloud = loadImage("/winter/img/cloud.png");
     else if (!dayNight || rainYN)
@@ -108,11 +109,11 @@ class Spring {
       Sieun Song
       -. Image change according to day and night
     */
-    if (time >= 18 || time <6) {
+    if (!dayNight) {
       // nighttime _ gaeun
       sunDisplay();
       cloudDisplay();
-    } else if (time < 18 && time >= 6) {
+    } else {
       // daytime_gaeun
       butterflyDisplay();
       BbirdDisplay();
@@ -288,7 +289,6 @@ class Spring {
     }
 
     if (birdHit(mouseX, mouseY) && !sBird.isPlaying()) {
-      ;
       sBird.play();
       sFrog.pause();
       sButterfly.pause();
@@ -309,24 +309,10 @@ class Spring {
     // day & night change
     if (timeMenuOn) {
       // day&night change
-      if (dist(mouseX, mouseY, 70, 140)<50) {
-        if (time >= 18 || time < 6) { // if night -> day
-          time = 0;
-          time += 7;
-          print(time);
-        } else if (time < 18 || time >= 6)
-        {// if day -> night
-          time = 0;
-          time += 20;
-          print(time);
-        }
-      }
-
-      // day&night change
       if (dist(mouseX, mouseY, 40, 120)<50) {
-        if (time >= 18 || time < 6) { // if night -> day
+        if (dayNight) { // if night -> day
           dayNight = false;
-        } else if (time < 18 && time >= 6)
+        } else if (!dayNight)
         {// if day -> night
           dayNight = true;
         }
@@ -344,7 +330,6 @@ class Spring {
         iSpringbg = loadImage("/spring/img/SpringBgnight.png");
         iSun = loadImage("/winter/img/moon.png");
       }
-
       if (dayNight)
         iCloud = loadImage("/winter/img/cloud.png");
       else if (!dayNight || rainYN)
