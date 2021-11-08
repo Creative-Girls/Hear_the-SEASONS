@@ -58,6 +58,10 @@ class Summer {   //summer class
   float palmW;  //palm's weight
   float palmH;  //palm's height
   
+  int seagullP = 0;  //a constant
+  float seagullW;  //palm's weight
+  float seagullH;  //palm's height  
+  
   Summer(Season season, float w, float h, String weather, int month, int day, int time) {
     this.season = season;
     this.w = w;
@@ -71,6 +75,8 @@ class Summer {   //summer class
     airplaneH = h; //insert h value
     palmW = w;  //insert w value
     palmH = h;  //insert h value
+    seagullW = w;  //insert w value
+    seagullH = h;  //insert h value
     
     //sound
     sRain = minim.loadFile("/spring/sound/rain.wav"); //rain sound
@@ -145,9 +151,9 @@ class Summer {   //summer class
   void draw() {
     backimage();
 
-    if (time >= 18 || time <6) //daytime
+    if (time >= 18 || time <6) //night
       dayNight = false;
-    if (time < 18 && time >=6) //night
+    if (time < 18 && time >=6) //daytime
       dayNight = true;
       
       
@@ -385,16 +391,17 @@ class Summer {   //summer class
     imageMode(CENTER);
 
     if (seagullHitYN) {  //if you click it, it is flying over.
-      n+= 1;
-      if (n>= 14) {
-        n -= 14;
+      seagullP += 1;
+      if(seagullP >= 14) {
+        seagullP -= 14;
       }
-      if (n % 2 ==  0)
-        image(iseagull, w, h - (n + 20));
-      if (n % 2 ==  1)
-      image(iseagull1, w, h - (n ));
+      if (seagullP % 2 ==  0)
+        image(iseagull, seagullW, seagullH - (seagullP + 20));
+      if (seagullP % 2 ==  1)
+      image(iseagull1, seagullW, seagullH - seagullP);
+      
     } else {
-      image(iseagull, w, h);
+      image(iseagull, seagullW, seagullH);
     }
   }
 
