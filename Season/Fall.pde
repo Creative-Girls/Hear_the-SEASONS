@@ -345,20 +345,24 @@ class Fall {
           // if night -> day
           time = 0;
           time += 7;
+          minim.stop();
           print(time);
         } else if (time < 18 && time >= 6)
         {// if day -> night
           time = 0;
           time += 20;
+          minim.stop();
           print(time);
         }
       } else if (dist(mouseX, mouseY, 70, 210)<50) { // weather change
         // if rain -> sun
         weather = "clear sky";
+
         println(weather);
       } else if (dist(mouseX, mouseY, 70, 280)<50) {
         // if sun -> rain
         weather = "rain";
+
         rainYN=true;
         println(weather);
       }

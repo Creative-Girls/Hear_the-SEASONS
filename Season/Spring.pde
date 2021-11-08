@@ -317,7 +317,7 @@ class Spring {
     }
 
     if (birdHit(mouseX, mouseY) && !sBird.isPlaying()) {
-      sBird.play();
+      sBird.loop();
       sFrog.pause();
       sButterfly.pause();
     } else if (birdHit(mouseX, mouseY) && sBird.isPlaying()) {
@@ -343,6 +343,10 @@ class Spring {
       if (dist(mouseX, mouseY, 40, 120)<50) {
         if (dayNight) { // if night -> day
           dayNight = false;
+          if(sButterfly.isPlaying())
+            sButterfly.pause();
+         if(sBird.isPlaying())
+           sBird.pause();
         } else if (!dayNight)
         {// if day -> night
           dayNight = true;

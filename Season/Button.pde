@@ -122,6 +122,8 @@ class Button {
                 } else if (dist(mouseX, mouseY, w - 40, 190)<50) {
                     minim.stop();
 
+                    if(spring != null)
+                      spring.sBird.stop();
                     if(fall != null)
                       fall.tree.stop();
                     type = "summer";
@@ -131,6 +133,8 @@ class Button {
                     fall = null;
                 }  else if (dist(mouseX, mouseY, w -40 , 260)<50) {
                     minim.stop();
+                    if(spring != null)
+                      spring.sBird.stop();  
                     if(summer != null)    
                     {
                       summer.sea.stop();
@@ -144,6 +148,8 @@ class Button {
                     summer = null;         
                 } else if (dist(mouseX, mouseY, w - 40, 330)<50) {
                     minim.stop();       
+                    if(spring != null)
+                      spring.sBird.stop();                 
                   if(fall != null)
                     fall.tree.stop();
                   if(summer != null)    

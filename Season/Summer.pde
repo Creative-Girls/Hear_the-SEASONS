@@ -551,10 +551,12 @@ class Summer {   //summer class
         if (time >= 18 || time < 6) { // if you wnat to change night -> day.
           time = 0;
           time += 7;
+          minim.stop();
           print(time);
         } else if (time < 18 || time >= 6){ // if day -> night
           time = 0;
           time += 20;
+          minim.stop();
           print(time);
         }
       } else if (dist(mouseX, mouseY, 40, 190) < 50) { // weather change
