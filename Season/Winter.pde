@@ -1,5 +1,15 @@
 import processing.sound.*;
 
+/*
+    season : Winter
+      name : Sieun Song
+  
+  function
+  -. Can hear the bonfire sound
+  -. On Christmas Day, Can hear carols 
+  -. it snows
+*/
+
 class Winter {
   Season season;
 
@@ -62,22 +72,26 @@ class Winter {
     christmas = minim.loadFile("/winter/sound/christmas.mp3");
     christmas.setGain(-20);
 
+     //Check the Christmas date
     if (month==12&&day==25)
     {
       christmasYN = true;
       christmas.loop();
     }
 
+    //Check the rain weather
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
       || weather.equals("thunderstorm") == true|| weather.equals("moderate rain")) {
       rainYN = true;
     }
 
-    if (time >= 18 || time <6)
+    //Check the time zone(day or night)
+    if (time >= 18 || time <6) //night
       dayNight = false;
-    if (time < 18 && time >=6)
+    if (time < 18 && time >=6) //day
       dayNight = true;
 
+    //If the date is Christmas, load images visible on Christmas
     if (christmasYN)
     {
       cTree = loadImage("/winter/img/christmas/tree.png");
@@ -85,6 +99,7 @@ class Winter {
       cLight = loadImage("/winter/img/christmas/light.png");
     }
 
+    //Load daytime viewable images
     if (dayNight)
     {
       iWinterbg = loadImage("/winter/img/winterBG.png");
@@ -95,6 +110,7 @@ class Winter {
       iSun = loadImage("/winter/img/moon.png");
     }
 
+    //Change the cloud image according to the weather and time of day
     if (dayNight)
       iCloud = loadImage("/winter/img/cloud.png");
     else if (!dayNight || rainYN)
@@ -122,7 +138,7 @@ class Winter {
       imageMode(CENTER);
         image(snowbut, 40, 330, 50, 50);
     }
-     imageMode(CORNER);
+    imageMode(CORNER);
     if (christmasYN&&!dayNight)
       santaDisplay();
 
@@ -161,6 +177,7 @@ class Winter {
     }
   }
 
+  //Change mouse cursor image
   void fireMouseCursor(float mx, float my) {
     if (dist(mouseX, mouseY, w-250, h+300) < 120) {
       cursor(HAND);
@@ -185,6 +202,7 @@ class Winter {
     imageMode(CORNER);
     image(iFirewood, w-220, h+370);
 
+    //apply the animate when the bonfire is clicked
     if (fireHitYN)
     {
       image(iFire, w-210, h+300, iFire.width+fireS, iFire.height+fireS);
@@ -208,6 +226,8 @@ class Winter {
     if (cloudX >= (w*2))
       cloudX = 0;
   }
+  
+  //Apply snow motion
   void snowDisplay() {
     imageMode(CORNER);
     image(iSnow, 0, snowY);
@@ -217,6 +237,7 @@ class Winter {
       snowY = 0;
   }
 
+  //Apply rain motion
   void rainDisplay() {
     imageMode(CORNER);
     image(iRain, 0, rainY);
@@ -224,10 +245,6 @@ class Winter {
     rainY+=2;
     if (rainY>=(h*2))
       rainY = 0;
-  }
-  void smokeDisplay() {
-    imageMode(CORNER);
-    image(iSmoke, w-160, h+120);
   }
   void sunDisplay() {
     imageMode(CORNER);

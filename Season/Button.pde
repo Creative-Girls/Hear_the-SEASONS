@@ -105,28 +105,53 @@ class Button {
            */
             if (seasonMenuOn) {
                 if (dist(mouseX, mouseY, w - 40, 120)<50) {
-                  minim.stop();                  
+                  minim.stop();   
+                  if(fall != null)
+                    fall.tree.stop();
+                  if(summer != null)    
+                  {
+                    summer.sea.stop();
+                    summer.airplane.stop();
+                    summer.cicada.stop();
+                  }
                     type = "spring";
                     spring = new Spring(season, w / 2, h / 2, weather, month, day, time);
                     fall = null;
                     winter = null;
                     summer = null;
                 } else if (dist(mouseX, mouseY, w - 40, 190)<50) {
-                  minim.stop();
+                    minim.stop();
+
+                    if(fall != null)
+                      fall.tree.stop();
                     type = "summer";
                     summer = new Summer(season, w / 2, h / 2, weather, month, day, time);
                     spring = null;
                     winter = null;
                     fall = null;
                 }  else if (dist(mouseX, mouseY, w -40 , 260)<50) {
-                  minim.stop();
+                    minim.stop();
+                    if(summer != null)    
+                    {
+                      summer.sea.stop();
+                      summer.airplane.stop();
+                      summer.cicada.stop();
+                    }
                     type = "fall";
                     fall = new Fall(season, w / 2, h / 2, weather, month, day, time);
                     spring = null;
                     winter = null;
                     summer = null;         
                 } else if (dist(mouseX, mouseY, w - 40, 330)<50) {
-                  minim.stop();           
+                    minim.stop();       
+                  if(fall != null)
+                    fall.tree.stop();
+                  if(summer != null)    
+                  {
+                    summer.sea.stop();
+                    summer.airplane.stop();
+                    summer.cicada.stop();
+                  }
                     type = "winter";
                     winter = new Winter(season, w / 2, h / 2, weather,month,day, time);
                     spring = null;

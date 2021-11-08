@@ -223,7 +223,7 @@ class Spring {
   }
 
   /*
-    Subin Han, Sieun Song
+    Subin Han
    -. Bird Animation
    */
   void BbirdDisplay() {  //if hit the bird, it fly.
