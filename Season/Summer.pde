@@ -1,5 +1,8 @@
 import processing.sound.*;  //sound library
-
+  /*
+   Subin Han
+   -. Summer
+   */
 class Summer {   //summer class 
   Season season;  //call season class 
   Season test;
@@ -70,7 +73,7 @@ class Summer {   //summer class
     this.weather = weather;
     this.month = month;
     this.day = day;
-    this.time = 22;
+    this.time = time;
     
     airplaneW = w; //insert w value to airplaneW
     airplaneH = h; //insert h value

@@ -41,7 +41,10 @@ Winter winter = null;
 
 
 void setup() {
-    
+    /*
+      Subin Han
+   -. made start button image and made it clicked (couldn't link to next page) 
+   */
     size(708, 979); //background size
     background(255); //background color
     bg = loadImage("/spring/img/SpringBg.png"); //background image
