@@ -2,6 +2,7 @@ import processing.sound.*;  //sound library
 
 class Summer {   //summer class 
   Season season;  //call season class 
+  Season test;
 
   //sound
   AudioPlayer sRain;

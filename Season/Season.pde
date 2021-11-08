@@ -119,12 +119,12 @@ void draw() {
 */
 void mousePressed() {
     if (type.equals("start")) //if press start button, it is pressed.
-        {
+    {
         but.mousePressed();
     } else if (type.equals("spring") &&  spring!= null) { //if press spring button, it is pressed.
         spring.mousePressed();
         but.mousePressed();
-    } else if (type.equals("summer") &&  summer!= null) { //if press summer button, it is pressed.
+    } else if (type.equals("summer") &&  summer!= null) { //if press summer button, it is pressed.      
         summer.mousePressed();
         but.mousePressed();
     } else if (type.equals("fall") &&  fall!= null) { //if press fall button, it is pressed.

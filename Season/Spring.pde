@@ -48,7 +48,7 @@ class Spring {
     this.month = month;
     this.day = day;
     this.time = time;
-
+   
     /*
       Sieun Song
      -.  if it is rain
