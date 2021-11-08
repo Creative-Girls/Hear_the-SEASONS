@@ -1,7 +1,11 @@
 import processing.sound.*;
 
 class Fall {
-  // You_Ga_Eun making
+
+  /*
+            Gaeun You
+   */
+
 
   Season season;
 
@@ -36,6 +40,9 @@ class Fall {
   int month, day;
   int rainY=0;
 
+  /*
+   check compoment hit
+   */
   boolean scarecrowHitYN = false;
   boolean treeHitYN = false;
   boolean crowHitYN = false;
@@ -56,38 +63,39 @@ class Fall {
     this.month = month;
     this.day = day;
     this.time = time;
-    sRain = minim.loadFile("/spring/sound/rain.wav");
-    leaves = minim.loadFile("/fall/sound/leaves.wav");
-    crow = minim.loadFile("/fall/sound/hooded_crow.wav");
-    tree = new SoundFile(season, "/fall/sound/tree.wav");
-    bug = minim.loadFile("/fall/sound/cricket.wav");
 
-    iFallbg = loadImage("/fall/img/Fallbg.png");
-    inFallbg = loadImage("/fall/img/Fallbgnight.png");
-    iScarecrow = loadImage("/fall/img/scarecrow.png");
+    /*
+     load image & sound
+     */
+    sRain = minim.loadFile("/spring/sound/rain.wav"); // rain sound
+    leaves = minim.loadFile("/fall/sound/leaves.wav"); // leave sound
+    crow = minim.loadFile("/fall/sound/hooded_crow.wav"); // crow sound
+    tree = new SoundFile(season, "/fall/sound/tree.wav"); // tree sound
+    bug = minim.loadFile("/fall/sound/cricket.wav"); // firefly sound
 
-    iCrow1 = loadImage("/fall/img/crow1.png");
-    iCrow2 = loadImage("/fall/img/crow2.png");
-    iCrow3 = loadImage("/fall/img/crow3.png");
+    iFallbg = loadImage("/fall/img/Fallbg.png"); // fall background
+    inFallbg = loadImage("/fall/img/Fallbgnight.png"); // night fall background
+    iScarecrow = loadImage("/fall/img/scarecrow.png"); // scarecrow image
 
-    iTree = loadImage("/fall/img/mapletree.png");
-    iLeaves1 = loadImage("/fall/img/leaves1.png");
-    iLeaves2 = loadImage("/fall/img/leaves2.png");
+    iCrow1 = loadImage("/fall/img/crow1.png"); // crow image 1
+    iCrow2 = loadImage("/fall/img/crow2.png"); // crow image 2
 
-    iMoon = loadImage("/fall/img/moon.png");
-    iBug1 = loadImage("/fall/img/bug1.png");
+    iTree = loadImage("/fall/img/mapletree.png"); // tree image
+    iLeaves1 = loadImage("/fall/img/leaves1.png"); // leaves image
+    iLeaves2 = loadImage("/fall/img/leaves2.png"); // leaves image
+
+    iMoon = loadImage("/fall/img/moon.png"); // moon image
+    iBug1 = loadImage("/fall/img/bug1.png"); // firefly images 1 ~ 4
     iBug2 = loadImage("/fall/img/bug2.png");
     iBug3 = loadImage("/fall/img/bug3.png");
     iBug4 = loadImage("/fall/img/bug4.png");
-    iRain = loadImage("/common/img/rain.png");
-
-
+    iRain = loadImage("/common/img/rain.png"); // rain image
   }
 
   void draw() {
     backimage();
 
-    // at night moon and lightbugs are appear
+    // at night moon and firefly are appear
     if (time >= 18 || time <6) {
       scarecrow_display();
       moon_display();
@@ -95,7 +103,8 @@ class Fall {
       crow_display();
       bug_display();
     } else if (time < 18 && time >= 6) {
-      //day time
+      //day time -> moon and firefly are not appear
+
       scarecrow_display();
       tree_display();
       crow_display();
@@ -107,9 +116,9 @@ class Fall {
     if (!rainYN)
       sRain.pause();
 
-   // season & weather button draw
+    // season & weather button draw
     but.draw();
-    
+
     // what has sound chnages the mouse curor to the hand
     if (dist(mouseX, mouseY, w + 180, h + 250) < 80)
       cursor(HAND);
@@ -189,11 +198,13 @@ class Fall {
     }
   }
 
+
+  // rain display
+  // rain appear only rainy day
+
   void rainDisplay() {
     imageMode(CORNER);
 
-    // rain display
-    // rain appear only rainy day
 
     image(iRain, 0, rainY, 900, 979);
     image(iRain, 0, rainY-(h*4));
@@ -202,12 +213,11 @@ class Fall {
       rainY = 0;
   }
 
+  // scarecrow display
+  // if scarecrow click -> it moves in a circle
   void scarecrow_display() {
 
     imageMode(CENTER);
-
-    // scarecrow display
-    // if scarecrow click -> it moves in a circle
     if (scarecrowHitYN)
     {
       image(iScarecrow, w + 180 + floor(cos(imgX) * 7), h + 250 + floor(sin(imgY) * 7), 300, 300);
@@ -218,13 +228,13 @@ class Fall {
     }
   }
 
+  // maple tree display
+  // if maple tree click -> tree shakes and leaves fall
   void tree_display() {
 
     imageMode(CENTER);
     image(iTree, w - 250, h + 100, 800, 800);
 
-    // maple tree display
-    // if maple tree click -> tree shakes and leaves fall
     if (treeHitYN) {
       image(iLeaves1, w - 250 + floor(cos(imgX) * 2), h + 100 + floor(sin(imgY) * 2), 800, 800);
       imgX += 1;
@@ -236,12 +246,12 @@ class Fall {
     }
   }
 
+  // crow display
+  // crow on the mapletree
   void crow_display() {
 
     imageMode(CENTER);
 
-    // crow display
-    // crow on the mapletree
     if (crowHitYN) {
       image(iCrow2, w - 150 + floor(cos(imgX) * 2), h - 60 - imgY * 2, 50, 50);
       imgX += 1;
@@ -251,12 +261,11 @@ class Fall {
     }
   }
 
+  // bugs display
+  // bugs appear only night
   void bug_display() {
 
     imageMode(CENTER);
-
-    // bugs display
-    // bugs appear only night
     if (bugHitYN) {
       image(iBug1, w + floor(cos(imgX) * 2), h - imgY * 2, 60, 60);
       image(iBug2, w + 150 - imgY * 2, h - 200 - imgY * 2, 60, 60);
@@ -270,9 +279,10 @@ class Fall {
     }
   }
 
+  // moon displays
+  // moon appears only night
   void moon_display() {
-    // moon displays
-    // moon appears only night
+
     imageMode(CENTER);
     image(iMoon, w, 85, 200, 200);
   }

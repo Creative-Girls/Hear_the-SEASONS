@@ -110,42 +110,6 @@ class Summer {   //summer class
     iRain = loadImage("/common/img/rain.png"); //rain image
     istars = loadImage("/summer/img/stars.png"); //stars image
 
-    // do not remove ~~ gaeun is sad ~
-    /*
-        rain_under_parasol =  minim.loadFile("/Users/uga-eun/Desktop/Season/data/summer/sound/rain-under-parasol.mp3");
-     cicada = new SoundFile(season, "/Users/uga-eun/Desktop/Season/data/summer/sound/cicada.wav");
-     seagulls =  minim.loadFile( "/Users/uga-eun/Desktop/Season/data/summer/sound/seagulls.wav");
-     sea = new SoundFile(season, "/Users/uga-eun/Desktop/Season/data/summer/sound/sea.wav");
-     palm=  minim.loadFile( "/Users/uga-eun/Desktop/Season/data/summer/sound/leaf.wav");
-     leaf=  minim.loadFile( "/Users/uga-eun/Desktop/Season/data/summer/sound/leaf.wav");
-     airplane = new SoundFile(season, "/Users/uga-eun/Desktop/Season/data/summer/sound/airplane.wav");
-     
-     iSummerBg= loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/SummerBg.png");
-     iSummerBg_night = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/SummerBg_night.png");
-     
-     ipalm1 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/palm1.png");
-     ipalm2 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/palm2.png");
-     isea= loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/sea.png");
-     isea_night = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/sea_night.png");
-     iground = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/ground_night.png");
-     iground_night = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/ground_night.png");
-     iseagull1 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/seagull1.png");
-     iseagull2 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/seagull2.png");
-     iseagull3 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/seagull3.png");
-     iseagull4 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/seagull4.png");
-     ileaf1 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/leaf1.png");
-     ileaf2 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/leaf2.png");
-     ileaf3 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/leaf3.png");
-     ileaf4 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/leaf4.png");
-     ileaf5 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/leaf5.png");
-     ileaf6 = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/leaf6.png");
-     ilighthouse= loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/lighthouse.png");
-     ilighthouse_night= loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/lighthouse_night.png");
-     iparasol = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/parasol.png");
-     icicada = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/cicada.png");
-     iairplane = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/airplane.png");
-     iboat_night = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/boat_night.png");
-     iboat = loadImage("/Users/uga-eun/Desktop/Season/data/summer/img/boat.png");*/
   }
 
   void draw() {

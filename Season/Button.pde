@@ -88,7 +88,12 @@ class Button {
             } else if (seasonMenuOn &&  dist(mouseX, mouseY, w - 40, 40)<50) {
                 seasonMenuOn = false;
             }
+            /*
+            Gaeun You
             
+            timeMenuon true -> open the sub menu
+            tumeMenuon false -> close the sub menu
+            */
             if (!timeMenuOn &&  dist(mouseX, mouseY, 40, 40)<50)
                 timeMenuOn = true;
             else if (timeMenuOn &&  dist(mouseX, mouseY, 40, 40)<50)

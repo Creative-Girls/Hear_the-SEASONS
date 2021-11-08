@@ -51,28 +51,28 @@ class Spring {
 
     /*
       Sieun Song
-      -.  if it is rain
-    */
+     -.  if it is rain
+     */
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
       || weather.equals("thunderstorm") == true|| weather.equals("moderate rain")) {
       rainYN = true;
     }
-    
+
     /*
       Sieun Song
-      -. Check whether it is day or night
-    */
+     -. Check whether it is day or night
+     */
     if (time >= 18 || time <6) //at night
       dayNight = false;
     if (time < 18 && time >=6) //at daytime
       dayNight = true;
-      
+
     println(dayNight);
 
     /*
       Sieun Song
-      -. Image change according to day and night
-    */
+     -. Image change according to day and night
+     */
     if (dayNight) //at daytime
     {
       iSpringbg = loadImage("/spring/img/SpringBg.png");
@@ -107,8 +107,8 @@ class Spring {
 
     /*
       Sieun Song
-      -. Image change according to day and night
-    */
+     -. Image change according to day and night
+     */
     if (!dayNight) {
       // nighttime _ gaeun
       sunDisplay();
@@ -121,10 +121,10 @@ class Spring {
       cloudDisplay();
     }
 
-   /*
+    /*
      Sieun Song
      -. Change the display when it rains
-   */
+     */
     if (rainYN) //rain
     {
       sRain.play();
@@ -136,8 +136,11 @@ class Spring {
 
     imageMode(CENTER);
     but.draw();
-    
-    // what has sound chnages the mouse curor to the hand - Gaeun
+
+    /*
+     Gaeun You
+     -. what has sound chnages the mouse curor to the hand
+     */
     if (dist(mouseX, mouseY, w, h) < 50)
       cursor(HAND);
     else if (dist(mouseX, mouseY, w - 80, h - 400) < 80)
@@ -149,7 +152,10 @@ class Spring {
   }
 
 
-//butterfly hit detection_gaeun
+  /*
+  Gaeun You
+   -. butterfly hit detection
+   */
   boolean butterflyHit(float mx, float my) {
     if (dist(mx, my, w, h) < 50) {
       butterflyHitYN = true;
@@ -160,7 +166,10 @@ class Spring {
     }
   }
 
-//BlueBird hit detection_gaeun
+  /*
+  Gaeun You
+   -. BlueBird hit detection
+   */
   boolean birdHit(float mx, float my) {
     if (dist(mx, my, w - 80, h - 400) < 50) {
       BbirdHitYN = true;
@@ -171,7 +180,10 @@ class Spring {
     }
   }
 
-//frog hit detection_gaeun
+  /*
+  Gaeun You
+   -. frog hit detection
+   */
   boolean frogHit(float mx, float my) {
     if (dist(mx, my, w - 180, h + 180) < 50) {
       frogHitYN = true;
@@ -183,17 +195,20 @@ class Spring {
   }
 
 
-
+  /*
+    Gaeun You
+   -. load back image
+   */
   void backimage() {
-    
+
     imageMode(CENTER);
     image(iSpringbg, w, h);
   }
 
   /*
     Sieun Song
-    -. butterfly animation
-  */
+   -. butterfly animation
+   */
   void butterflyDisplay() {
     imageMode(CENTER);
 
@@ -209,8 +224,8 @@ class Spring {
 
   /*
     Subin Han, Sieun Song
-    -. Bird Animation
-  */
+   -. Bird Animation
+   */
   void BbirdDisplay() {  //if hit the bird, it fly.
     imageMode(CENTER);
     if (BbirdHitYN) {
@@ -227,6 +242,10 @@ class Spring {
     }
   }
 
+  /*
+    Gaeun You
+   - Frog animation
+   */
   void frogDisplay() {  //if hit frog, it moves up & down.
     imageMode(CENTER);
     image(iRock, w - 180, h + 250, 180, 200);
@@ -244,8 +263,8 @@ class Spring {
 
   /*
     Sieun Song
-    -. Cloud animaiton
-  */
+   -. Cloud animaiton
+   */
   void cloudDisplay() {  //it flows automatically.
     imageMode(CORNER);
     iCloud.resize((int)w*2, 200);
@@ -258,11 +277,11 @@ class Spring {
     if (cloudX >= (w*2))
       cloudX = 0;
   }
-  
+
   /*
     Sieun Song
-    -. Rain Animaiton
-  */
+   -. Rain Animaiton
+   */
   void rainDisplay() { //if the weather is rain, rain image appears.
     imageMode(CORNER);
     image(iRain, 0, rainY);
@@ -272,13 +291,22 @@ class Spring {
       rainY = 0;
   }
 
-  void sunDisplay() { //if it isn't rain at daytime, the sun image moves automatically.
+  /*
+   Gaeun You
+   -. if it isn't rain at daytime, the sun image appear
+   */
+  void sunDisplay() {
     imageMode(CORNER);
 
     image(iSun, w+100, h-350, 150, 150);
   }
-  void mousePressed() { //if you click something, that sound is looping and other sound is stopped.
-    //spring
+
+  /*
+  Gaeun You
+   -. if you click something, that sound is looping and other sound is stopped.
+   */
+  void mousePressed() {
+
     if (butterflyHit(mouseX, mouseY) && !sButterfly.isPlaying()) {
       sButterfly.loop();
       sFrog.pause();
@@ -306,7 +334,10 @@ class Spring {
       sFrog.pause();
     }
 
-    // day & night change
+    /*
+    Gaeun You
+     -. day & night change
+     */
     if (timeMenuOn) {
       // day&night change
       if (dist(mouseX, mouseY, 40, 120)<50) {
