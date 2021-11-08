@@ -49,17 +49,28 @@ class Spring {
     this.day = day;
     this.time = time;
 
-    //if it is rain
+    /*
+      Sieun Song
+      -.  if it is rain
+    */
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true) {
+      || weather.equals("thunderstorm") == true|| weather.equals("moderate rain")) {
       rainYN = true;
     }
-
+    
+    /*
+      Sieun Song
+      -. Check whether it is day or night
+    */
     if (time >= 18 || time <6) //at night
       dayNight = false;
     if (time < 18 && time >=6) //at daytime
       dayNight = true;
 
+    /*
+      Sieun Song
+      -. Image change according to day and night
+    */
     if (dayNight) //at daytime
     {
       iSpringbg = loadImage("/spring/img/SpringBg.png");
@@ -93,6 +104,10 @@ class Spring {
   void draw() {
     backimage();
 
+    /*
+      Sieun Song
+      -. Image change according to day and night
+    */
     if (time >= 18 || time <6) {
       // nighttime _ gaeun
       sunDisplay();
@@ -105,6 +120,10 @@ class Spring {
       cloudDisplay();
     }
 
+   /*
+     Sieun Song
+     -. Change the display when it rains
+   */
     if (rainYN) //rain
     {
       sRain.play();
@@ -117,7 +136,7 @@ class Spring {
     imageMode(CENTER);
     but.draw();
     
-    // what has sound chnages the mouse curor to the hand_ga eun
+    // what has sound chnages the mouse curor to the hand - Gaeun
     if (dist(mouseX, mouseY, w, h) < 50)
       cursor(HAND);
     else if (dist(mouseX, mouseY, w - 80, h - 400) < 80)
@@ -170,6 +189,10 @@ class Spring {
     image(iSpringbg, w, h);
   }
 
+  /*
+    Sieun Song
+    -. butterfly animation
+  */
   void butterflyDisplay() {
     imageMode(CENTER);
 
@@ -183,6 +206,10 @@ class Spring {
     }
   }
 
+  /*
+    Subin Han, Sieun Song
+    -. Bird Animation
+  */
   void BbirdDisplay() {  //if hit the bird, it fly.
     imageMode(CENTER);
     if (BbirdHitYN) {
@@ -191,7 +218,7 @@ class Spring {
         n -= 14;
       }
       if (n%2==0)
-        image(iBbird1, w-80, h-n);
+        image(iBbird1, w-80, h-n); //change the position of the new wing - Sieun Song
       if (n%2==1)
         image(iBbird2, w-80, h-n);
     } else {
@@ -214,6 +241,10 @@ class Spring {
     }
   }
 
+  /*
+    Sieun Song
+    -. Cloud animaiton
+  */
   void cloudDisplay() {  //it flows automatically.
     imageMode(CORNER);
     iCloud.resize((int)w*2, 200);
@@ -226,7 +257,11 @@ class Spring {
     if (cloudX >= (w*2))
       cloudX = 0;
   }
-
+  
+  /*
+    Sieun Song
+    -. Rain Animaiton
+  */
   void rainDisplay() { //if the weather is rain, rain image appears.
     imageMode(CORNER);
     image(iRain, 0, rainY);

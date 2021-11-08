@@ -287,7 +287,7 @@ class Summer {   //summer class
   void backimage() {
     // if raing now, it's rainy
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true) {
+      || weather.equals("thunderstorm") == true|| weather.equals("moderate rain")) {
       image(iSummerBg, w, h);
       
       if (time >= 18 || time <6) //at night
@@ -563,7 +563,7 @@ class Summer {   //summer class
 //paraol sound can be heard only while raining.
     if (parasolHit(mouseX, mouseY) && !rain_under_parasol.isPlaying() &&
       (weather.equals("shower rain") == true || weather.equals("rain") == true
-          || weather.equals("thunderstorm") == true ||weather.equals("thunderstorm") == true)  ) {
+          || weather.equals("thunderstorm") == true ||weather.equals("thunderstorm") == true|| weather.equals("moderate rain"))  ) {
       rain_under_parasol.loop();
       seagull.pause();
       sea.pause();

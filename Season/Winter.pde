@@ -69,7 +69,7 @@ class Winter {
     }
 
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true) {
+      || weather.equals("thunderstorm") == true|| weather.equals("moderate rain")) {
       rainYN = true;
     }
 

@@ -1,6 +1,14 @@
 import ddf.minim.*; //minim library
 import ddf.minim.analysis.*;
 
+/*
+2021.11.02 - Sieun Song
+Modify all class code as a whole
+-. Modified so that audio files loaded at once from the Season class are loaded from each class
+-. Move code for object hit to each class
+
+*/
+
 //public variable
 Button but; //button variable
 Minim minim; 
@@ -12,7 +20,7 @@ boolean timeMenuOn = false;
 private PImage bg;
 private PImage bg_title;
 
-//get weather API
+//get weather API - Sieun Song
 private XML xml;
 private String key;
 private XML latElement;
@@ -22,7 +30,7 @@ String weather;
 String wrain = "rain";
 String wclear = "clear";
 
-//get Date
+//get Date - Sieun Song
 int month;
 int day;
 int time;
@@ -38,20 +46,26 @@ void setup() {
     size(708, 979); //background size
     background(255); //background color
     bg = loadImage("/spring/img/SpringBg.png"); //background image
-  //  bg= loadImage("/Users/uga-eun/Desktop/Season/data/spring/img/SpringBg.png");
+    //bg= loadImage("/Users/uga-eun/Desktop/Season/data/spring/img/SpringBg.png");
     bg.resize(708, 979);
     bg_title = loadImage("/intro/img/Intro-title.png"); //background image(title)
     //bg_title = loadImage("/Users/uga-eun/Desktop/Season/data/intro/img/Intro-title.png");
     bg_title.resize(708, 979);
     
-    //get weatherAPI
+    /*
+      Sieun Song
+      -. get and set weaterAPI information
+    */
     key = "d296134b27215cc728104f660752f821";
     xml = loadXML("https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=" + key + "&mode=xml");
     latElement = xml.getChild("weather");
     weather = latElement.getString("value");
     println(weather);
-    
-    //get Date
+   
+    /*
+      Sieun Song
+      -. get Date
+    */
     month = month();
     day = day();
     time = hour();
@@ -62,6 +76,10 @@ void setup() {
     but = new Button(this, width, height,time);
 }
 
+/*
+  Sieun Song
+  Call draw function according to season
+*/
 void draw() {  
     if (type.equals("start")) //intro page
     {
@@ -98,6 +116,10 @@ void draw() {
     }
 }
 
+/*
+  Sieun Song
+  -. Call mousePressed function according to season
+*/
 void mousePressed() {
     if (type.equals("start")) //if press start button, it is pressed.
         {

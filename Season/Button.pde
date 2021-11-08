@@ -1,12 +1,9 @@
 class Button {
+  /*
+  2021.11.02 - Sieun Song
+  Unification of several button classes into one
+  */
     Season season;
-    /*
-    0:Menu
-    1:Spring
-    2:Summer
-    3:Fall
-    4:Winter
-    */
     float w, h;
     
     //seaseon selection button
@@ -67,11 +64,19 @@ class Button {
                 image(rainbut, 40, 260, 50, 50);
             }
         }
-        
-        // day&night selection
     }
     void mousePressed() {
         //버튼범위 확인 필요
+        /*
+          2021.11.02 - Sieun Song
+          Check on Sesaon Menu on/off - Sieun Song
+          
+          menuOn = false : event about start button
+          menuOn = true : event about season button
+          
+          seasonMenuOn = true : open the sub menu
+          seasonMenuOn = false : close the sub menu
+        */
         if (!menuOn) {
             if (dist(mouseX, mouseY,w/2-70,(h - 300)) <160) {
                 type = "spring";
@@ -89,6 +94,10 @@ class Button {
             else if (timeMenuOn &&  dist(mouseX, mouseY, 40, 40)<50)
                 timeMenuOn = false;
             
+           /*
+           2021.11.02 - Sieun Song
+           When the season screen is moved, the corresponding seasonal class object is created and another seasonal class object is null
+           */
             if (seasonMenuOn) {
                 if (dist(mouseX, mouseY, w - 40, 120)<50) {
                     type = "spring";

@@ -174,7 +174,7 @@ class Fall {
 
     // if raing now, it's rainy & frog appear
     if (weather.equals("shower rain") == true|| weather.equals("rain") == true
-      || weather.equals("thunderstorm") == true) {
+      || weather.equals("thunderstorm") == true || weather.equals("moderate rain")) {
       image(iFallbg, w, h);
       if (time >= 18 || time <6)
         background(inFallbg);
